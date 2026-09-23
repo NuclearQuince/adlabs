@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is the complete marketing website + analytics dashboard for **AD Labs** (Ad Labs Tech Pvt Ltd, founded 2026, Bengaluru). The project combines a premium editorial marketing site (cream/lime/ink palette) with a full-featured analytics dashboard (Apple-neutrals light/dark, gold accent).
+Marketing website + analytics dashboard for **AD Labs** (Ad Labs Tech Pvt Ltd, founded 2026, Bengaluru). A single Next.js app serves four routes: the storefront landing page (`/`), an in-depth company page (`/about`), the marketing/discovery page (`/discover`), and the live analytics dashboard (`/dashboard`).
 
 **Live URLs (when deployed):**
 - Website: `https://adlabs.in`
@@ -10,9 +10,8 @@ This is the complete marketing website + analytics dashboard for **AD Labs** (Ad
 
 ## Stack
 
-- **Vite 8** + **React 19** + **TypeScript**
-- **Tailwind CSS v4** (via `@tailwindcss/vite`)
-- **React Router DOM v7** (client-side routing)
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** (via `@tailwindcss/postcss`)
 - **Framer Motion** (animations)
 - **Lucide React** (icons)
 - **oxlint** (linting)
@@ -21,90 +20,79 @@ This is the complete marketing website + analytics dashboard for **AD Labs** (Ad
 
 ```
 adlabs/
+├── app/                           # Next.js App Router
+│   ├── layout.tsx                 # Root layout: fonts, GlowCursor, metadata
+│   └── page.tsx                   # Home → SitePage
+│   ├── about/page.tsx             # /about → About
+│   ├── dashboard/page.tsx         # /dashboard → DashboardPage
+│   └── discover/page.tsx          # /discover → DiscoveryPage
 ├── public/
-│   ├── images/                    # 11 optimized JPGs (from ShopSignal)
-│   ├── ad-labs-logo.svg           # Nav logo (inline React component)
+│   ├── images/                    # photography + product assets
 │   └── favicon.svg                # Favicon
 ├── src/
-│   ├── components/                # Shared UI primitives
-│   │   ├── Logo.tsx               # AD Labs mark (inline, font-safe)
-│   │   ├── Reveal.tsx             # Framer Motion scroll-in
-│   │   ├── CountUp.tsx            # Animated number counter
-│   │   └── SectionHeader.tsx      # Index/kicker/H2 pattern
-│   ├── data/
-│   │   ├── site.ts                # All website copy (verbatim from ShopSignal audit)
-│   │   └── dashboard.ts           # Dashboard mock data (coherent universe)
-│   ├── site/                      # Marketing website (12 sections)
-│   │   ├── SitePage.tsx           # Composition root
-│   │   ├── Nav.tsx                # Sticky, blur, mobile drawer
+│   ├── site/                      # Marketing website sections
+│   │   ├── SitePage.tsx           # Composition root (01–14)
+│   │   ├── Nav.tsx                # Sticky, blur, section tracking, mobile drawer
 │   │   ├── Hero.tsx               # Full-bleed, telemetry badges, marquee
-│   │   ├── BlindSpot.tsx          # 3-card problem framing
-│   │   ├── Journey.tsx            # Funnel bars + 5 step cards
-│   │   ├── Atelier.tsx            # Tabbed in-store view with overlays
-│   │   ├── Proof.tsx              # A/B before/after with uplift
-│   │   ├── System.tsx             # Trio + mini dashboard preview
-│   │   ├── Metrics.tsx            # 12-signal grid
-│   │   ├── Sectors.tsx            # 4 sector cards
-│   │   ├── Privacy.tsx            # Dark section, principles + pipeline
-│   │   ├── How.tsx                # 3 steps + wishlist form + feedback
-│   │   ├── Team.tsx               # 3 founder cards with LinkedIn
-│   │   ├── Footer.tsx             # Links, socials (Users icon), legal
-│   │   └── PilotModal.tsx         # Full pilot request form
+│   │   ├── BlindSpot.tsx          # 3-card problem framing (01)
+│   │   ├── Journey.tsx            # Funnel bars + 5 step cards (02)
+│   │   ├── Atelier.tsx            # Tabbed in-store view with overlays (03)
+│   │   ├── System.tsx             # Trio + mini dashboard preview (04)
+│   │   ├── Privacy.tsx            # Privacy architecture, DPDP charter (05)
+│   │   ├── Proof.tsx              # A/B before/after with uplift (06)
+│   │   ├── Metrics.tsx            # 12-signal grid (07)
+│   │   ├── Sectors.tsx            # 4 sector cards (08)
+│   │   ├── Mission.tsx            # Witness-not-spy ethos (09)
+│   │   ├── Team.tsx               # Founder cards + operating principles (10)
+│   │   ├── How.tsx                # 3 steps + wishlist form (11)
+│   │   ├── Pricing.tsx            # Pilot terms + cohort bonuses (12)
+│   │   ├── Faq.tsx                # Accordion FAQ (13)
+│   │   ├── Contact.tsx            # Contact form (14)
+│   │   ├── About.tsx              # /about content
+│   │   ├── DiscoveryPage.tsx      # /discover content
+│   │   ├── Footer.tsx             # Links, newsletter, socials, legal
+│   │   └── PilotModal.tsx         # Full pilot request modal
 │   ├── app/                       # Analytics dashboard
 │   │   ├── DashboardPage.tsx      # Shell: sidebar, topbar, theme, present mode
-│   │   ├── PresentMode.tsx        # Keyboard-nav slides, autoplay, demo chip
-│   │   ├── ui.tsx                 # Panel, Chip, DeltaPill, GradePill, Segmented
-│   │   ├── charts.tsx             # AreaChart, Sparkline, FunnelBars, HeatGrid, HBars
-│   │   └── screens/
-│   │       ├── Overview.tsx       # 5 KPIs, area chart, funnel, 3 actions
-│   │       ├── Stores.tsx         # Table + StoreDetail
-│   │       ├── Campaigns.tsx      # Timeline + before/after + verdict
-│   │       ├── Zones.tsx          # HeatGrid + attention share + flags
-│   │       ├── Brief.tsx          # Monday Brief with 3 actions + feedback
-│   │       └── Manager.tsx        # Today curve + staffing + checklist
-│   ├── main.tsx                   # Router: / (SitePage) + /dashboard (DashboardPage)
+│   │   ├── PresentMode.tsx        # Keyboard-nav slides, autoplay
+│   │   ├── ui.tsx                 # Panel, Chip, DeltaPill, Segmented
+│   │   ├── charts.tsx             # AreaChart, Sparkline, FunnelBars, HeatGrid
+│   │   └── screens/               # Overview, Stores, Campaigns, Zones, Brief, Manager
+│   ├── components/                # Shared UI primitives (Reveal, Section, FlipCard…)
+│   ├── data/
+│   │   ├── site.ts                # All website copy (swap point #1)
+│   │   └── dashboard.ts           # Dashboard mock data (swap point #2)
+│   ├── utils/
+│   │   ├── mailto.ts              # mailto: form submission (no backend)
+│   │   └── useMountLoader.ts      # Skeleton loading hook
 │   └── index.css                  # Tailwind v4 + design tokens + keyframes
-├── index.html                     # Fonts, meta, favicon
-├── vite.config.ts                 # React + Tailwind v4 plugins
+├── next.config.mjs
+├── postcss.config.mjs
+├── vercel.json
 └── package.json
 ```
 
 ## Design System
 
-### Website (Cream/Lime/Ink)
-- Background: `#FAF8F5` (cream)
-- Alt background: `#F3EFE6` (beige)
-- Text: `#121212` (ink)
-- Accent: `#D4F53C` (lime)
-- Hairline: `rgba(18,18,18,0.12)`
-- Fonts: Plus Jakarta Sans / Instrument Serif / Space Mono
+### Website (Dark / Ink + Violet)
+- Background: `#0a0a0b` (ink)
+- Surface: `#18181c` / `#121214`
+- Text: `#f5f5f7` · Sub: `#a1a1aa` · Faint: `#86868b`
+- Accent: `#8B7CF6` (violet) · Hover: `#6E5CE6`
+- Gold (positives): `#d4be8a` · Danger: `#ff3b30`
+- Fonts: Inter (sans) / Fraunces (display headings)
+- Radii: 12–24px · Motion: 280ms cubic-bezier(0.25, 1, 0.5, 1), `prefers-reduced-motion` safe
 
-### Dashboard (Light/Dark + Gold)
-| Token | Light | Dark |
-|-------|-------|------|
-| `--app-bg` | `#F5F5F7` | `#000000` |
-| `--app-card` | `#FFFFFF` | `#1C1C1E` |
-| `--app-raise` | `#FFFFFF` | `#2C2C2E` |
-| `--app-text` | `#1D1D1F` | `#F5F5F7` |
-| `--app-sub` | `#6E6E73` | `#98989D` |
-| `--app-faint` | `#86868B` | `#86868B` |
-| `--app-line` | `rgba(0,0,0,.08)` | `rgba(255,255,255,.12)` |
-| `--app-gold` | `#A9792B` | `#C99B4A` |
-| `--app-pos` | `#1D8A4E` | `#30D158` |
-| `--app-neg` | `#C9372C` | `#FF453A` |
-
-- Font: **Inter** (tabular numerals for metrics)
-- Radii: 16–20px
-- Shadows: clay (light) / deep (dark)
-- Motion: 180ms ease-out UI, 240ms page transitions, `prefers-reduced-motion` safe
+### Dashboard (Light/Dark Apple-neutrals)
+Defined via `--app-*` tokens under `.app-scope[data-theme="light"/"dark"]` in `src/index.css`. Metric numerals use tabular figures.
 
 ## Scripts
 
 | Command | Description |
 |---------|-------------|
-| `npm run dev` | Start dev server (port 5173) |
+| `npm run dev` | Start the Next.js dev server (port 3000) |
 | `npm run build` | Type-check + production build |
-| `npm run preview` | Preview production build |
+| `npm run start` | Serve the production build |
 | `npm run lint` | Run oxlint |
 
 ## Data Contracts (Swap Points)
@@ -113,52 +101,40 @@ All copy and numbers are centralized for instant swapping:
 
 | File | Purpose |
 |------|---------|
-| `src/data/site.ts` | Website copy, nav, form fields, founder bios, social config |
-| `src/data/dashboard.ts` | Dashboard KPIs, funnel, traffic hours, stores, zones, campaigns, briefs, manager data |
+| `src/data/site.ts` | Website copy, nav groups, founders, form fields, pricing, FAQ |
+| `src/data/dashboard.ts` | Dashboard KPIs, funnel, traffic hours, stores, zones, campaigns, briefs |
 
-**To swap real data:** Edit the arrays/objects in these files. No component changes needed.
+Section indices (01–14) and navigation anchor ids (`#blindspot`, `#journey`, …) are driven from `src/data/site.ts` — keep them in sync when reordering sections.
 
 ## Deployment (Vercel)
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
+npm run build
 vercel --prod
 ```
 
-- Framework preset: **Vite**
-- Build command: `npm run build`
-- Output directory: `dist`
+- Framework preset: **Next.js** (auto-detected; no `rewrites` needed)
 - Custom domain: `adlabs.in` (add in Vercel dashboard after first deploy)
-
-## Present Mode (Dashboard)
-
-- Press **P** or click "Present" in sidebar
-- **Arrow keys** navigate slides
-- **Esc** exits
-- **Auto-advance** every 8s (toggle with button)
-- Shows "SIMULATED SHOWCASE DATA" chip
+- `deploy.sh` / `autodeploy.sh` contain one-command / watch-mode deploy helpers
 
 ## Demo Data Coherence
 
 All numbers share a single universe:
 
-- **Tenant:** Maison Étoile · Madison Avenue Flagship
+- **Tenant:** Organic Clothing Co. · Bandra Flagship · Mumbai
 - **Today footfall:** 2,481 | Stop rate: 7.5% | Walk-ins: 39
-- **Week footfall:** 16,340 | Stop rate: 11.4% | Walk-ins: 391 (+14.6%)
-- **A/B test (Wk 4):** Capture 6.4% → 7.3% (+14.6% uplift, 14-day A/B)
-- **Zones:** 10 zones, Leather Island 68% traffic, Vitrine West flagged
+- **Week stop rate:** 11.4% (peer 8.9%)
+- **A/B test (14 days):** Capture 6.4% → 7.3% (+14.6% uplift)
+- **Zones:** Leather Goods Island 68% traffic, Vitrine West under-lit
 
 All numbers are **simulated** — no real client data.
 
 ## Accessibility
 
-- Contrast AA+ in both themes
-- Focus-visible rings (gold)
+- Contrast AA throughout
+- Focus-visible violet rings
 - `prefers-reduced-motion` respected
-- ARIA labels on charts, tabs, dialogs
+- ARIA labels on tabs, dialogs, forms
 - Keyboard navigation throughout
 
 ## Future Swap Checklist

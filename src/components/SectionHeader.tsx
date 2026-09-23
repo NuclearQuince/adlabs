@@ -1,5 +1,8 @@
 import type { ReactNode } from "react"
+import { motion, useReducedMotion } from "framer-motion"
 import { Reveal } from "./Reveal"
+
+const EASE = [0.25, 1, 0.5, 1] as const
 
 export function SectionHeader({
   index,
@@ -7,48 +10,48 @@ export function SectionHeader({
   children,
   sub,
   center = false,
-  light = false,
 }: {
   index?: string
   kicker: string
   children: ReactNode
   sub?: string
   center?: boolean
-  light?: boolean
 }) {
+  const reduce = useReducedMotion()
   return (
     <Reveal className={center ? "text-center" : ""}>
       <div className={`flex items-center gap-3 ${center ? "justify-center" : ""}`}>
         {index && (
-          <span
-            className="font-mono text-[11px] tracking-[0.18em]"
-            style={{ color: light ? "rgba(250,248,245,0.55)" : "rgba(18,18,18,0.45)" }}
+          <motion.span
+            className="cosmic-text-xs font-medium text-[#86868b]"
+            initial={reduce ? false : { opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.05, ease: EASE }}
           >
             {index} /
-          </span>
+          </motion.span>
         )}
-        <span
-          className="kicker"
-          style={{ color: light ? "rgba(250,248,245,0.55)" : "rgba(18,18,18,0.5)" }}
-        >
+        <span className="cosmic-text-xs font-medium uppercase tracking-normal text-[#8B7CF6]">
           {kicker}
         </span>
       </div>
-      <h2
-        className={`mt-4 font-serif text-4xl leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-6xl ${
-          light ? "text-[#FAF8F5]" : "text-[#121212]"
-        }`}
-      >
-        {children}
-      </h2>
-      {sub && (
-        <p
-          className={`mt-5 max-w-xl text-[15px] leading-relaxed sm:text-base ${
-            center ? "mx-auto" : ""
-          } ${light ? "text-[#FAF8F5]/70" : "text-[#121212]/65"}`}
+      <span className="block overflow-hidden mt-1 pb-[0.14em] -mb-[0.14em]">
+        <motion.h2
+          className="mt-3 cosmic-text-4xl font-bold leading-[1.1] tracking-[-0.025em] text-[#f5f5f7] sm:cosmic-text-4xl lg:cosmic-text-5xl"
+          initial={reduce ? false : { y: "105%" }}
+          whileInView={{ y: "0%" }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: EASE }}
         >
-          {sub}
-        </p>
+          {children}
+        </motion.h2>
+      </span>
+      {sub && (
+        <Reveal delay={0.12} y={12}>
+          <p className={`mt-3 max-w-xl cosmic-text-base leading-relaxed text-[#a1a1aa] ${center ? "mx-auto text-center" : ""}`}>
+            {sub}
+          </p>
+        </Reveal>
       )}
     </Reveal>
   )

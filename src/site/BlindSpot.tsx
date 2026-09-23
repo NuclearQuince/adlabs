@@ -1,63 +1,120 @@
 import { Reveal } from "../components/Reveal"
-import { SectionHeader } from "../components/SectionHeader"
 import { BLINDSPOT } from "../data/site"
+import { Eye, Users, DoorOpen, TrendingDown, Maximize2, Target } from "lucide-react"
+import { FlipCard, AnswerPanel } from "../components/FlipCard"
 
 export function BlindSpot() {
   const b = BLINDSPOT
+  
+  const cards = [
+    { 
+      icon: Users, 
+      metric: "2,481", 
+      label: "PASSED BY", 
+      desc: "People who walked past your store today — invisible to your POS",
+      color: "#8B7CF6", 
+      img: "/images/demo/street.jpg",
+      insight: "Your pavement is your biggest funnel. 2,481 potential customers. You only see the 39 who entered.",
+      chips: ["Pass-by count", "Peak hour breakdown", "Directional flow"]
+    },
+    { 
+      icon: Eye, 
+      metric: "186", 
+      label: "STOPPED", 
+      desc: "People who paused at your window display — intent measured",
+      color: "#3ECF8E", 
+      img: "/images/demo/store-interior.jpg",
+      insight: "A stop is a vote. 186 people gave you 4+ seconds. The sensor knows which display won.",
+      chips: ["Dwell time", "Gaze heatmap", "Return rate"]
+    },
+    { 
+      icon: DoorOpen, 
+      metric: "39", 
+      label: "ENTERED", 
+      desc: "People who crossed the threshold — 21% conversion from stop",
+      color: "#5ac8fa", 
+      img: "/images/demo/shoppers.jpg",
+      insight: "The threshold is truth. 39 entered. The sensor tracks the full funnel: pass → stop → enter → explore → buy.",
+      chips: ["Conversion rate", "Zone paths", "Basket size proxy"]
+    },
+  ]
+
   return (
-    <section id="blindspot" className="mx-auto max-w-[1200px] scroll-mt-24 px-6 py-24 sm:py-32">
-      <SectionHeader index={b.index} kicker={b.kicker} sub="">
-        {b.h2a}
-        <br />
-        <em className="italic text-[#121212]/75">{b.h2b}</em>
-      </SectionHeader>
+    <section id="blindspot" className="relative py-24 section-cosmic cosmic-bg" style={{ scrollMarginTop: "4rem" }}>
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        {/* Hook */}
+        <Reveal>
+          <div className="text-center mb-16">
+            <span className="badge-cosmic">The Problem</span>
+            <h2 className="mt-6 visual-headline">
+              {b.h2a}
+              <br />
+              <span style={{ color: "var(--cosmic-violet)" }}>{b.h2b}</span>
+            </h2>
+            <p className="mt-4 visual-sub max-w-[600px] mx-auto">
+              Every store counts who walked in. Almost no one knows who walked past. That's the blind spot.
+            </p>
+          </div>
+        </Reveal>
 
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
-        {b.cards.map((c, i) => (
-          <Reveal key={c.num} delay={i * 0.1}>
-            <article
-              className={`group flex h-full flex-col overflow-hidden rounded-3xl border bg-[#FFFFFF] transition-all duration-300 hover:-translate-y-1 ${
-                c.highlight
-                  ? "border-[#D4F53C] shadow-[0_0_35px_rgba(212,245,60,0.35)]"
-                  : "border-[rgba(18,18,18,0.1)] shadow-clay hover:shadow-clay-lg"
-              }`}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={c.image}
-                  alt={c.title}
-                  loading="lazy"
-                  className="aspect-[16/10] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                />
-                <span className="absolute left-4 top-4 rounded-full bg-black/65 px-3 py-1 font-mono text-[10px] tracking-[0.16em] text-[#FAF8F5] backdrop-blur-sm">
-                  {c.tag}
-                </span>
-                {c.highlight && (
-                  <span className="absolute right-4 top-4 rounded-full bg-[#D4F53C] px-3 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-black">
-                    CRUCIAL
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <span className="font-mono text-[11px] text-[#121212]/40">{c.num}</span>
-                <h3 className="mt-2 font-serif text-[26px] leading-tight tracking-[-0.01em] text-[#121212]">
-                  {c.title}
-                </h3>
-                <p className="mt-3 flex-1 text-[14.5px] leading-relaxed text-[#121212]/60">{c.desc}</p>
-                <p className="mt-5 border-t border-[rgba(18,18,18,0.08)] pt-4 font-mono text-[11px] tracking-[0.08em] text-[#121212]/50">
-                  {c.metric}
-                </p>
-              </div>
-            </article>
-          </Reveal>
-        ))}
+        {/* Visual cards with background images + flip cards */}
+        <div className="grid gap-6 md:grid-cols-3">
+          {cards.map((card, i) => (
+            <Reveal key={card.label} delay={i * 0.1}>
+              <FlipCard
+                back={
+                  <AnswerPanel 
+                    eyebrow="THE INSIGHT" 
+                    chips={card.chips}
+                    note={card.insight}
+                  />
+                }
+                front={
+                  <div className="cosmic-card-glow overflow-hidden text-center h-full">
+                    <div className="relative h-40 overflow-hidden">
+                      <img src={card.img} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--cosmic-surface)]" />
+                      <card.icon size={32} style={{ color: card.color }} className="absolute top-6 left-1/2 -translate-x-1/2" />
+                    </div>
+                    <div className="p-6 -mt-8 relative flex flex-col h-[calc(100%-40px)]">
+                      <div className="cosmic-text-4xl font-bold mb-1" style={{ color: card.color }}>
+                        {card.metric}
+                      </div>
+                      <div className="mt-2 cosmic-text-xs font-semibold tracking-[0.2em]" style={{ color: "rgba(255,255,255,0.5)" }}>
+                        {card.label}
+                      </div>
+                      <p className="mt-4 cosmic-text-sm flex-1" style={{ color: "rgba(255,255,255,0.6)" }}>{card.desc}</p>
+                      <div className="mt-4 pt-4 border-t border-white/10 text-center">
+                        <span className="cosmic-text-2xs font-medium" style={{ color: "var(--cosmic-violet)" }}>
+                          Hover or tap for insight →
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                }
+              />
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Verdict */}
+        <Reveal delay={0.3}>
+          <div className="mt-16 max-w-[800px] mx-auto">
+            <div className="cosmic-card-glow p-8">
+              <p className="cosmic-text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "var(--cosmic-violet)" }}>{b.verdictLabel}</p>
+              <p className="mt-4 cosmic-text-lg leading-relaxed" style={{ color: "rgba(255,255,255,0.8)" }}>{b.verdict}</p>
+              <ul className="mt-6 space-y-3">
+                {b.context.map((c) => (
+                  <li key={c} className="flex items-start gap-3 cosmic-text-sm" style={{ color: "rgba(255,255,255,0.6)" }}>
+                    <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full" style={{ background: "var(--cosmic-violet)" }} />
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Reveal>
       </div>
-
-      <Reveal delay={0.15}>
-        <p className="mx-auto mt-16 max-w-2xl text-center text-[18px] leading-relaxed text-[#121212]/60 sm:text-[20px]">
-          {b.closer} <strong className="font-semibold text-[#121212]">{b.closerBold}</strong>
-        </p>
-      </Reveal>
     </section>
   )
 }

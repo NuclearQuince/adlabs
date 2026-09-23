@@ -1,16 +1,22 @@
+"use client"
+
 import { useState } from "react"
 import { Nav } from "./Nav"
 import { Hero } from "./Hero"
+import { Demo } from "./Demo"
+import { Sensor } from "./Sensor"
 import { BlindSpot } from "./BlindSpot"
-import { Journey } from "./Journey"
-import { Atelier } from "./Atelier"
 import { Proof } from "./Proof"
-import { System } from "./System"
 import { Metrics } from "./Metrics"
-import { Sectors } from "./Sectors"
-import { Privacy } from "./Privacy"
-import { How } from "./How"
+import { Journey } from "./Journey"
+import { Flow } from "./Flow"
 import { Team } from "./Team"
+import { Mission } from "./Mission"
+import { How } from "./How"
+import { Pricing } from "./Pricing"
+import { Privacy } from "./Privacy"
+import { Faq } from "./Faq"
+import { Contact } from "./Contact"
 import { Footer } from "./Footer"
 import { PilotModal } from "./PilotModal"
 
@@ -19,23 +25,40 @@ export function SitePage() {
   const openPilot = () => setPilot(true)
 
   return (
-    <>
+    <div className="site-scope min-h-screen text-[var(--ds-text-primary)] page-in" style={{ background: "var(--ds-bg-primary)" }}>
       <Nav onPilot={openPilot} />
-      <main>
+      <main className="overflow-x-hidden">
+        {/* HOOK: The Problem */}
         <Hero onPilot={openPilot} />
+        
+        {/* MESSAGE: The Solution */}
+        <Sensor />
+        
+        {/* PROOF: The Story */}
+        <Demo />
+        
+        {/* EVIDENCE: The Data */}
         <BlindSpot />
         <Journey />
-        <Atelier />
         <Proof />
-        <System />
         <Metrics />
-        <Sectors />
+        
+        {/* HOW IT WORKS */}
+        <Flow />
         <Privacy />
-        <How onPilot={openPilot} />
+        
+        {/* THE TEAM */}
         <Team />
+        <Mission />
+        
+        {/* ACTION */}
+        <How onPilot={openPilot} />
+        <Pricing />
+        <Faq />
+        <Contact onPilot={openPilot} />
       </main>
       <Footer />
       <PilotModal open={pilot} onClose={() => setPilot(false)} />
-    </>
+    </div>
   )
 }

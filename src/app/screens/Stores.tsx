@@ -1,19 +1,23 @@
-import { ArrowRight, ArrowUpRight, TriangleAlert } from "lucide-react"
-import { Panel, Label, GradePill, DeltaPill } from "../ui"
+import { ArrowRight, ArrowUpRight, TriangleAlert, Store } from "lucide-react"
+import { Panel, Label, GradePill, DeltaPill, ScreenHeader } from "../ui"
 import { Sparkline, AreaChart, HBars } from "../charts"
 import { STORES, TRAFFIC_HOURS, ZONES, DEMOGRAPHICS } from "../../data/dashboard"
 
 export function Stores({ onOpen }: { onOpen: (id: string) => void }) {
   return (
     <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="font-inter text-[22px] font-bold tracking-[-0.01em] text-[var(--app-text)]">Stores</h1>
-        <p className="mt-0.5 font-inter text-[12.5px] text-[var(--app-faint)]">
-          Composite grade = stop rate, capture and dwell versus the anonymised peer set.
-        </p>
-      </div>
+      <ScreenHeader
+        icon={Store}
+        eyebrow="Store network"
+        title="Stores"
+        sub="Composite grade = stop rate, capture and dwell versus the anonymised peer set."
+      />
 
-      <Panel pad={false}>
+      <Panel
+        pad={false}
+        verified="Composite grade · measured over 7 days"
+        info="Rank per store · click a row to open the live day view."
+      >
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-left">
             <thead>
@@ -33,22 +37,22 @@ export function Stores({ onOpen }: { onOpen: (id: string) => void }) {
                   className="cursor-pointer border-b border-[var(--app-line)] transition-colors last:border-0 hover:bg-[var(--app-card)]"
                 >
                   <td className="px-5 py-4">
-                    <p className="font-inter text-[13.5px] font-semibold text-[var(--app-text)]">{s.name}</p>
-                    <p className="font-inter text-[11.5px] text-[var(--app-faint)]">{s.city}</p>
+                    <p className="font-inter cosmic-text-sm font-semibold text-[var(--app-text)]">{s.name}</p>
+                    <p className="font-inter cosmic-text-xs text-[var(--app-faint)]">{s.city}</p>
                   </td>
                   <td className="px-5 py-4">
                     <GradePill grade={s.grade} />
                   </td>
-                  <td className="px-5 py-4 font-inter text-[13.5px] font-semibold font-num text-[var(--app-text)]">
+                  <td className="px-5 py-4 font-inter cosmic-text-sm font-semibold font-num text-[var(--app-text)]">
                     {s.footfallToday.toLocaleString("en-US")}
                   </td>
                   <td className="px-5 py-4">
-                    <span className="font-inter text-[13.5px] font-semibold font-num text-[var(--app-text)]">
+                    <span className="font-inter cosmic-text-sm font-semibold font-num text-[var(--app-text)]">
                       {s.stopRate}
                     </span>
                     {s.flag && (
                       <span
-                        className="ml-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-inter text-[10px] font-semibold"
+                        className="ml-2 inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-inter cosmic-text-2xs font-semibold"
                         style={{ background: "color-mix(in srgb, var(--app-neg) 12%, transparent)", color: "var(--app-neg)" }}
                       >
                         <TriangleAlert size={10} strokeWidth={2.4} />
@@ -69,7 +73,7 @@ export function Stores({ onOpen }: { onOpen: (id: string) => void }) {
         </div>
       </Panel>
 
-      <p className="font-inter text-[11px] text-[var(--app-faint)]">
+      <p className="font-inter cosmic-text-xs text-[var(--app-faint)]">
         Adding your next location takes one sensor and under two hours on site.
       </p>
     </div>
@@ -84,8 +88,8 @@ export function StoreDetail({ storeId }: { storeId: string }) {
     <div className="flex flex-col gap-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="font-inter text-[22px] font-bold tracking-[-0.01em] text-[var(--app-text)]">{s.name}</h1>
-          <p className="mt-0.5 font-inter text-[12.5px] text-[var(--app-faint)]">
+          <h1 className="font-inter cosmic-text-xl font-bold tracking-[-0.01em] text-[var(--app-text)]">{s.name}</h1>
+          <p className="mt-0.5 font-inter cosmic-text-xs text-[var(--app-faint)]">
             {s.city} · Live day view · Edge device online
           </p>
         </div>
@@ -97,7 +101,7 @@ export function StoreDetail({ storeId }: { storeId: string }) {
           <AreaChart data={TRAFFIC_HOURS} peaks={[{ from: "15", to: "17" }]} height={190} />
           <div className="mt-4 flex flex-wrap gap-2">
             <DeltaPill delta="+6.2%" tone="pos" note="vs yesterday" />
-            <span className="font-inter text-[11.5px] text-[var(--app-faint)]">
+            <span className="font-inter cosmic-text-xs text-[var(--app-faint)]">
               Peak markers land inside the shaded band — staff accordingly.
             </span>
           </div>
@@ -108,18 +112,18 @@ export function StoreDetail({ storeId }: { storeId: string }) {
           <div className="mt-4 grid grid-cols-2 gap-3">
             <div className="rounded-xl border border-[var(--app-line)] p-3">
               <Label>Solo</Label>
-              <p className="mt-1 font-inter text-[18px] font-bold font-num text-[var(--app-text)]">
+              <p className="mt-1 font-inter cosmic-text-lg font-bold font-num text-[var(--app-text)]">
                 {DEMOGRAPHICS.dynamics.solo}%
               </p>
             </div>
             <div className="rounded-xl border border-[var(--app-line)] p-3">
               <Label>Pair</Label>
-              <p className="mt-1 font-inter text-[18px] font-bold font-num text-[var(--app-text)]">
+              <p className="mt-1 font-inter cosmic-text-lg font-bold font-num text-[var(--app-text)]">
                 {DEMOGRAPHICS.dynamics.pair}%
               </p>
             </div>
           </div>
-          <p className="mt-3 font-inter text-[10.5px] text-[var(--app-faint)]">{DEMOGRAPHICS.note}</p>
+          <p className="mt-3 font-inter cosmic-text-2xs text-[var(--app-faint)]">{DEMOGRAPHICS.note}</p>
         </Panel>
       </div>
 
@@ -131,7 +135,7 @@ export function StoreDetail({ storeId }: { storeId: string }) {
           title="Flag"
           action={
             <span
-              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-inter text-[10.5px] font-bold"
+              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-inter cosmic-text-2xs font-bold"
               style={{ background: "color-mix(in srgb, var(--app-neg) 10%, transparent)", color: "var(--app-neg)" }}
             >
               <TriangleAlert size={11} strokeWidth={2.4} />
@@ -139,14 +143,14 @@ export function StoreDetail({ storeId }: { storeId: string }) {
             </span>
           }
         >
-          <p className="font-inter text-[14px] font-medium leading-relaxed text-[var(--app-text)]">
+          <p className="font-inter cosmic-text-sm font-medium leading-relaxed text-[var(--app-text)]">
             {s.flag ?? "No flags today. Stop rate, dwell and staffing all inside the peer band."}
           </p>
-          <p className="mt-3 font-inter text-[12px] text-[var(--app-sub)]">
+          <p className="mt-3 font-inter cosmic-text-xs text-[var(--app-sub)]">
             Suggested move: rotate Vitrine West and re-measure over a 7-day A/B window.
           </p>
           <button
-            className="mt-5 inline-flex items-center gap-2 rounded-full px-4 py-2 font-inter text-[12px] font-semibold transition-transform hover:-translate-y-0.5"
+            className="mt-5 inline-flex items-center gap-2 rounded-full px-4 py-2 font-inter cosmic-text-xs font-semibold transition-transform hover:-translate-y-0.5"
             style={{ background: "var(--app-text)", color: "var(--app-card)" }}
           >
             Open in Weekly Brief <ArrowUpRight size={13} strokeWidth={2.5} />

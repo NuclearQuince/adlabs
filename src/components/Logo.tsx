@@ -1,13 +1,14 @@
-export function Logo({ dark = false, className = "" }: { dark?: boolean; className?: string }) {
-  const box = dark ? "#f5f5f7" : "#1d1d1f"
-  const ad = dark ? "#1d1d1f" : "#ffffff"
-  const wordA = dark ? "#f5f5f7" : "#1d1d1f"
-  const wordB = dark ? "#98989d" : "#6e6e73"
+export function Logo({ dark = true, className = "" }: { dark?: boolean; className?: string }) {
+  const box = dark ? "#8B7CF6" : "#16161f"
+  const ad = dark ? "#05050a" : "#ffffff"
+  const wordA = dark ? "#f5f5f7" : "#16161f"
+  const wordB = dark ? "#a1a1aa" : "#6e6e73"
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <span
-        className="grid h-9 w-9 place-items-center rounded-[11px] font-inter font-extrabold"
+        className="grid h-9 w-9 place-items-center rounded-[11px] font-inter font-extrabold transition-transform duration-200 hover:-translate-y-px"
         style={{ background: box, color: ad, fontSize: 15, letterSpacing: "-0.04em" }}
+        aria-hidden
       >
         Ad
       </span>

@@ -1,128 +1,133 @@
-import { CountUp } from "../components/CountUp"
+"use client"
+
 import { Reveal } from "../components/Reveal"
 import { HERO } from "../data/site"
+import Link from "next/link"
+import { ArrowRight, Eye, Zap, Shield } from "lucide-react"
 
 export function Hero({ onPilot }: { onPilot: () => void }) {
   return (
-    <section id="top" className="relative overflow-hidden pt-28 sm:pt-32">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[560px] w-[900px] -translate-x-1/2 rounded-full"
-        style={{ background: "radial-gradient(closest-side, rgba(212,245,60,0.10), transparent)" }}
-      />
-      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 pb-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pb-24">
-        <div>
-          <Reveal>
-            <span className="kicker text-[#121212]/50">{HERO.kicker}</span>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <h1 className="mt-6 font-serif text-[clamp(3.2rem,7.5vw,5.6rem)] leading-[0.98] tracking-[-0.03em] text-[#121212]">
-              {HERO.headlineA}{" "}
-              <em className="font-serif italic text-[#121212]/80">{HERO.headlineB}</em>
-            </h1>
-          </Reveal>
-          <Reveal delay={0.16}>
-            <p className="mt-7 max-w-md text-[16px] leading-relaxed text-[#121212]/65">{HERO.sub}</p>
-          </Reveal>
-          <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <button
-                onClick={onPilot}
-                className="rounded-full bg-[#121212] px-7 py-3.5 text-[14px] font-semibold text-[#FAF8F5] shadow-clay transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#D4F53C] hover:text-black active:scale-[0.98]"
-              >
-                {HERO.primaryCta}
-              </button>
-              <a
-                href="#journey"
-                className="rounded-full border border-[rgba(18,18,18,0.18)] px-7 py-3.5 text-[14px] font-semibold text-[#121212] transition-all duration-200 hover:border-[#121212] active:scale-[0.98]"
-              >
-                {HERO.secondaryCta}
-              </a>
-            </div>
-          </Reveal>
-          <Reveal delay={0.32}>
-            <dl className="mt-12 flex divide-x divide-[rgba(18,18,18,0.12)]">
-              {HERO.live.map((s, i) => (
-                <div key={s.label} className={i === 0 ? "pr-8" : "px-8"}>
-                  <dd className="font-mono text-2xl font-bold text-[#121212] sm:text-[28px]">
-                    <CountUp to={s.value} decimals={s.value % 1 !== 0 ? 1 : 0} />
-                    {s.suffix ?? ""}
-                  </dd>
-                  <dt className="mt-1 text-[12px] font-medium uppercase tracking-[0.1em] text-[#121212]/45">
-                    {s.label}
-                  </dt>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-        </div>
+    <section id="top" className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Cosmic background */}
+      <div className="absolute inset-0">
+        <img 
+          src="/images/cosmic/nebula1.jpg" 
+          alt="" 
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#05050a]/80 via-[#05050a]/60 to-[#05050a]" />
+      </div>
 
-        <Reveal delay={0.2} y={32}>
-          <figure className="group relative">
-            <div className="overflow-hidden rounded-3xl border border-[rgba(18,18,18,0.1)] shadow-clay-lg">
-              <img
-                src="/images/hero-storefront.jpg"
-                alt="Luxury storefront at dusk with passers-by"
-                className="aspect-[16/11] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-              />
-              <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
-                <div className="animate-scanline h-16 w-full bg-gradient-to-b from-transparent via-[#D4F53C]/10 to-transparent" />
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-[#8B7CF6]/40 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 6}s`,
+              animationDuration: `${4 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6 py-32">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          {/* Left: The Hook */}
+          <div>
+            <Reveal>
+              <span className="badge-cosmic">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#8B7CF6]" />
+                {HERO.kicker}
+              </span>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <h1 className="mt-8 visual-headline">
+                {HERO.headlineA}
+                <br />
+                <span className="text-[#8B7CF6]">{HERO.headlineB}</span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="mt-6 visual-sub max-w-[500px]">
+                {HERO.sub}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.3}>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/dashboard"
+                  className="group inline-flex items-center gap-3 rounded-full bg-[#8B7CF6] px-8 py-4 ds-text-base font-semibold text-white transition-all duration-300 hover:bg-[#6E5CE6] hover:shadow-[0_0_40px_rgba(139,124,246,0.4)] active:scale-[0.98]"
+                >
+                  {HERO.demoCta ?? "See it live"}
+                  <ArrowRight size={18} strokeWidth={2.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <button
+                  onClick={onPilot}
+                  className="inline-flex items-center gap-2 rounded-full border border-[#8B7CF6]/30 bg-[#8B7CF6]/10 px-8 py-4 ds-text-base font-medium text-[#8B7CF6] transition-all duration-300 hover:bg-[#8B7CF6]/20 hover:border-[#8B7CF6]/50 active:scale-[0.98]"
+                >
+                  {HERO.primaryCta}
+                </button>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Right: The Product */}
+          <Reveal delay={0.2} y={20} scale={0.98}>
+            <div className="relative">
+              {/* Glow effect */}
+              <div className="absolute -inset-10 bg-[radial-gradient(400px_400px_at_50%_50%,rgba(139,124,246,0.15),transparent_70%)]" />
+              
+              {/* Product card */}
+              <div className="relative overflow-hidden rounded-[24px] border border-[#8B7CF6]/20 bg-[#0c0c14]/80 backdrop-blur-xl p-8">
+                <img
+                  src="/images/product-edge-box.svg"
+                  alt="AD Labs Edge Observer"
+                  className="w-full max-w-[400px] mx-auto"
+                />
+                
+                {/* Live indicator */}
+                <div className="absolute top-4 right-4 flex items-center gap-2 rounded-full bg-[#8B7CF6]/20 px-3 py-1.5 cosmic-text-xs font-medium text-[#8B7CF6] backdrop-blur-sm border border-[#8B7CF6]/30">
+                  <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#3ECF8E]" />
+                  {HERO.cam}
+                </div>
+
+                {/* Product info */}
+                <div className="mt-6 text-center">
+                  <p className="cosmic-text-lg font-bold text-white">Edge Observer</p>
+                  <p className="mt-2 cosmic-text-sm text-white/60">
+                    12W · PoE · Your cameras · Zero faces
+                  </p>
+                </div>
               </div>
             </div>
-
-            <figcaption className="absolute left-4 top-4 rounded-full bg-black/70 px-3.5 py-1.5 font-mono text-[10.5px] tracking-[0.14em] text-[#FAF8F5] backdrop-blur-sm">
-              {HERO.badgeTenant}
-            </figcaption>
-            <figcaption className="absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-black/70 px-3.5 py-1.5 font-mono text-[10.5px] tracking-[0.1em] text-[#FAF8F5] backdrop-blur-sm">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-[#D4F53C]" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#D4F53C]" />
-              </span>
-              {HERO.badgePrivacy}
-            </figcaption>
-
-            <div className="absolute -left-3 top-1/2 hidden -translate-y-1/2 flex-col gap-2 sm:flex">
-              {HERO.ticker.map((t, i) => (
-                <span
-                  key={t}
-                  className="animate-subtle-float rounded-full border border-[rgba(18,18,18,0.1)] bg-[#FAF8F5]/90 px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] text-[#121212]/70 shadow-clay backdrop-blur-sm"
-                  style={{ animationDelay: `${i * 1.2}s`, marginLeft: `${i * 10}px` }}
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </figure>
-        </Reveal>
-      </div>
-
-      <div className="border-y border-[rgba(18,18,18,0.08)] bg-beige/60 py-3.5">
-        <div className="flex overflow-hidden" aria-hidden>
-          <div className="animate-marquee flex shrink-0 items-center gap-12 pr-12">
-            {[...HERO.marquee, ...HERO.marquee, ...HERO.marquee, ...HERO.marquee].map((m, i) => (
-              <span key={i} className="flex items-center gap-12 whitespace-nowrap font-mono text-[11px] tracking-[0.22em] text-[#121212]/45">
-                {m}
-                <span className="h-1 w-1 rounded-full bg-[#D4F53C]" />
-              </span>
-            ))}
-          </div>
-          <div className="animate-marquee flex shrink-0 items-center gap-12 pr-12">
-            {[...HERO.marquee, ...HERO.marquee, ...HERO.marquee, ...HERO.marquee].map((m, i) => (
-              <span key={i} className="flex items-center gap-12 whitespace-nowrap font-mono text-[11px] tracking-[0.22em] text-[#121212]/45">
-                {m}
-                <span className="h-1 w-1 rounded-full bg-[#D4F53C]" />
-              </span>
-            ))}
-          </div>
+          </Reveal>
         </div>
-      </div>
 
-      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center justify-center gap-x-8 gap-y-2 px-6 py-5">
-        {HERO.footline.map((f) => (
-          <span key={f} className="font-mono text-[10px] tracking-[0.18em] text-[#121212]/35">
-            {f}
-          </span>
-        ))}
+        {/* Visual metrics strip */}
+        <Reveal delay={0.4}>
+          <div className="mt-16 grid grid-cols-3 gap-4">
+            {[
+              { icon: Eye, value: "2,481", label: "People counted today", color: "#8B7CF6" },
+              { icon: Zap, value: "7.5%", label: "Stopped to look", color: "#3ECF8E" },
+              { icon: Shield, value: "0", label: "Faces stored", color: "#5ac8fa" },
+            ].map((m) => (
+              <div key={m.label} className="metric-visual">
+                <m.icon size={24} style={{ color: m.color }} />
+                <span className="value mt-3" style={{ background: `linear-gradient(135deg, ${m.color}, ${m.color}88)`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                  {m.value}
+                </span>
+                <span className="label">{m.label}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )

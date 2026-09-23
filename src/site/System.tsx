@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+"use client"
+
+import Link from "next/link"
 import { ArrowRight, TrendingUp } from "lucide-react"
 import { Reveal } from "../components/Reveal"
 import { SectionHeader } from "../components/SectionHeader"
@@ -17,7 +19,7 @@ function MiniTrend() {
       <polyline
         points={pts.join(" ")}
         fill="none"
-        stroke="#A9792B"
+        stroke="#8B7CF6"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -30,73 +32,74 @@ export function System() {
   const s = SYSTEM
   const itf = s.interface
   return (
-    <section id="system" className="mx-auto max-w-[1200px] scroll-mt-24 px-6 py-24 sm:py-32">
+    <section id="system" className="scroll-mt-24 py-12 sm:py-16 lg:py-20" style={{ background: "#05050a" }}>
+      <div className="mx-auto max-w-[1200px] px-6">
       <SectionHeader index={s.index} kicker={s.kicker} sub={s.sub}>
         {s.h2}
       </SectionHeader>
 
-      <div className="mt-14 grid gap-5 md:grid-cols-3">
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
         {s.trio.map((t, i) => (
           <Reveal key={t.k} delay={i * 0.1}>
-            <article className="h-full rounded-3xl border border-[rgba(18,18,18,0.1)] bg-[#FFFFFF] p-7 shadow-clay transition-all duration-300 hover:-translate-y-1 hover:shadow-clay-lg">
-              <span className="font-mono text-[11px] text-[#121212]/35">{t.k}</span>
-              <h3 className="mt-3 font-serif text-[26px] leading-tight text-[#121212]">{t.title}</h3>
-              <p className="mt-3 text-[14px] leading-relaxed text-[#121212]/60">{t.desc}</p>
+            <article className="site-card site-card-glare h-full p-7">
+              <span className="font-mono cosmic-text-xs text-[#86868b]">{t.k}</span>
+              <h3 className="mt-3 font-semibold cosmic-text-2xl leading-tight text-[#f5f5f7]">{t.title}</h3>
+              <p className="mt-3 cosmic-text-base leading-relaxed text-[#a1a1aa]">{t.desc}</p>
             </article>
           </Reveal>
         ))}
       </div>
 
       <Reveal delay={0.15}>
-        <div className="mt-16 grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
+        <div className="mt-8 grid items-center gap-8 lg:grid-cols-[1fr_1.1fr]">
           <div>
-            <span className="kicker text-[#121212]/45">{itf.kicker}</span>
-            <h3 className="mt-4 font-serif text-4xl leading-[1.05] tracking-[-0.02em] text-[#121212] sm:text-5xl">
+            <span className="cosmic-text-xs font-semibold uppercase tracking-[0.1em] text-[#a1a1aa]">{itf.kicker}</span>
+            <h3 className="mt-4 font-semibold text-4xl leading-[1.05] tracking-[-0.02em] text-[#f5f5f7] sm:text-5xl">
               {itf.h2}
             </h3>
-            <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-[#121212]/60">{itf.sub}</p>
+            <p className="mt-5 max-w-sm cosmic-text-base leading-relaxed text-[#a1a1aa]">{itf.sub}</p>
             <Link
-              to="/dashboard"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#121212] px-6 py-3 text-[13.5px] font-semibold text-[#FAF8F5] shadow-clay transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#D4F53C] hover:text-black"
+              href="/dashboard"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#8B7CF6] px-6 py-3 cosmic-text-sm font-semibold text-[#05050a] shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#6E5CE6]"
             >
               {itf.cta}
               <ArrowRight size={16} strokeWidth={2.4} />
             </Link>
           </div>
 
-          <div className="rounded-3xl border border-[rgba(18,18,18,0.1)] bg-[#F5F5F7] p-6 shadow-clay-lg sm:p-8">
+          <div className="rounded-[20px] border border-white/10 bg-[#12121a] p-6 shadow-lg sm:p-8 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[13px] font-semibold text-[#1D1D1F]">{itf.store}</p>
-                <p className="mt-0.5 flex items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-[#6E6E73]">
+                <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">{itf.store}</p>
+                <p className="mt-0.5 flex items-center gap-1.5 font-mono cosmic-text-2xs tracking-[0.14em] text-[#a1a1aa]">
                   <span className="relative flex h-1.5 w-1.5">
-                    <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-[#D4F53C]" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#A9792B]" />
+                    <span className="animate-pulse-ring absolute inline-flex h-full w-full rounded-full bg-[#8B7CF6]" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#8B7CF6]" />
                   </span>
                   {itf.live}
                 </p>
               </div>
-              <span className="font-mono text-[10px] tracking-[0.1em] text-[#86868B]">{itf.hours}</span>
+              <span className="font-mono cosmic-text-2xs tracking-[0.1em] text-[#86868b]">{itf.hours}</span>
             </div>
 
             <div className="mt-6 grid grid-cols-3 gap-4">
               {itf.stats.map((st) => (
-                <div key={st.label} className="rounded-2xl bg-[#FFFFFF] p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
-                  <p className="font-inter text-[22px] font-bold font-num text-[#1D1D1F]">
+                <div key={st.label} className="rounded-[14px] border border-white/8 bg-[#1a1a24]/80 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#8B7CF6]/40 hover:shadow-[0_4px_12px_rgba(139,124,246,0.1)]">
+                  <p className="font-inter cosmic-text-xl font-bold font-num text-[#f5f5f7]">
                     {typeof st.value === "number" ? st.value.toLocaleString("en-US") : st.value}
                     {st.suffix ?? ""}
                   </p>
-                  <p className="mt-1 text-[10.5px] font-medium uppercase tracking-[0.1em] text-[#86868B]">
+                  <p className="mt-1 cosmic-text-2xs font-medium uppercase tracking-[0.1em] text-[#86868b]">
                     {st.label}
                   </p>
                 </div>
               ))}
             </div>
 
-            <div className="mt-5 rounded-2xl bg-[#FFFFFF] p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)]">
+            <div className="mt-5 rounded-[14px] border border-white/8 bg-[#1a1a24]/80 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#8B7CF6]/40 hover:shadow-[0_4px_12px_rgba(139,124,246,0.1)]">
               <div className="flex items-center justify-between">
-                <p className="font-mono text-[9.5px] tracking-[0.16em] text-[#86868B]">{itf.trend}</p>
-                <p className="flex items-center gap-1 font-inter text-[12px] font-bold font-num text-[#1D8A4E]">
+                <p className="font-mono cosmic-text-2xs tracking-[0.16em] text-[#86868b]">{itf.trend}</p>
+                <p className="flex items-center gap-1 font-inter cosmic-text-xs font-bold font-num text-[#8B7CF6]">
                   <TrendingUp size={13} strokeWidth={2.5} />
                   {itf.trendDelta}
                 </p>
@@ -106,6 +109,7 @@ export function System() {
           </div>
         </div>
       </Reveal>
+      </div>
     </section>
   )
 }

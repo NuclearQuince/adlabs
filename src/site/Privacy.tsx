@@ -1,62 +1,100 @@
-import { ArrowRight, ShieldCheck } from "lucide-react"
+import { ShieldCheck, Lock, Eye, Database, WifiOff, Zap, BadgeCheck } from "lucide-react"
 import { Reveal } from "../components/Reveal"
+import { Section } from "../components/Section"
 import { SectionHeader } from "../components/SectionHeader"
+import { FlipCard, AnswerPanel } from "../components/FlipCard"
 import { PRIVACY } from "../data/site"
+
+const PRINCIPLE_ICONS = [Lock, Eye, Database]
 
 export function Privacy() {
   const p = PRIVACY
+
   return (
-    <section id="privacy" className="scroll-mt-24 bg-[#121212] py-24 text-[#FAF8F5] sm:py-32">
-      <div className="mx-auto max-w-[1200px] px-6">
+    <Section id="privacy" className="site-scope scroll-mt-24" bg="var(--cosmic-deep)">
+      <div className="mx-auto max-w-[1200px] px-6 relative z-10">
         <div className="max-w-2xl">
-          <SectionHeader index={p.index} kicker={p.kicker} sub={p.sub} light>
+          <SectionHeader index={p.index} kicker={p.kicker} sub={p.sub}>
             {p.h2}
           </SectionHeader>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-3">
-          {p.principles.map((pr, i) => (
-            <Reveal key={pr.num} delay={i * 0.1}>
-              <article className="h-full rounded-3xl border border-[#FAF8F5]/12 bg-[#FAF8F5]/[0.04] p-7 backdrop-blur-sm transition-colors duration-300 hover:border-[#D4F53C]/40">
-                <span className="font-mono text-[11px] text-[#FAF8F5]/40">{pr.num}</span>
-                <h3 className="mt-3 font-serif text-[26px] leading-tight text-[#FAF8F5]">{pr.title}</h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-[#FAF8F5]/60">{pr.desc}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal delay={0.15}>
-          <div className="mt-12 flex flex-col items-stretch gap-4 rounded-3xl border border-[#FAF8F5]/12 p-6 sm:flex-row sm:items-center sm:gap-0 sm:p-8">
-            {p.pipeline.map((st, i) => (
-              <div key={st.stage} className="flex flex-1 items-center gap-4">
-                <div className="flex-1">
-                  <p className="font-mono text-[9.5px] tracking-[0.2em] text-[#D4F53C]">{st.stage}</p>
-                  <p className="mt-1.5 font-serif text-[22px] leading-none text-[#FAF8F5]">{st.title}</p>
-                  <p className="mt-1.5 text-[12.5px] text-[#FAF8F5]/50">{st.desc}</p>
-                  {st.badge && (
-                    <span className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-[#D4F53C]/40 px-3 py-1 font-mono text-[9.5px] tracking-[0.12em] text-[#D4F53C]">
-                      <ShieldCheck size={11} strokeWidth={2.5} />
-                      {st.badge}
-                    </span>
-                  )}
-                </div>
-                {i < p.pipeline.length - 1 && (
-                  <span className="hidden shrink-0 text-[#FAF8F5]/30 sm:block" aria-hidden>
-                    <ArrowRight size={20} />
-                  </span>
-                )}
-              </div>
-            ))}
+        <Reveal delay={0.1}>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            {p.principles.map((pr, i) => {
+              const Icon = PRINCIPLE_ICONS[i]
+              return (
+                <FlipCard
+                  key={pr.num}
+                  back={
+                    <AnswerPanel
+                      eyebrow="IN PRACTICE"
+                      chips={pr.chips}
+                      note={pr.answer}
+                    />
+                  }
+                  front={
+                    <article className="cosmic-card group flex h-full flex-col rounded-[20px] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+                      <div className="flex items-start justify-between mb-6">
+                        <span className="grid h-14 w-14 place-items-center rounded-[16px] cosmic-gradient-violet/10 cosmic-border text-[#8B7CF6] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                          <Icon size={24} strokeWidth={1.8} />
+                        </span>
+                        <span className="cosmic-text-xs font-semibold" style={{ color: "var(--cosmic-text-muted)" }}>{pr.num}</span>
+                      </div>
+                      <h3 className="cosmic-text-xl font-semibold cosmic-text mb-3">{pr.title}</h3>
+                      <p className="cosmic-text-base leading-relaxed" style={{ color: "var(--cosmic-text-dim)" }}>{pr.desc}</p>
+                      <div className="mt-6 flex items-center gap-2 cosmic-text-xs font-medium" style={{ color: "var(--cosmic-violet)" }}>
+                        <span>Tap to reveal</span>
+                      </div>
+                    </article>
+                  }
+                  className="min-h-[280px]"
+                />
+              )
+            })}
           </div>
         </Reveal>
 
         <Reveal delay={0.2}>
-          <p className="mt-10 text-center font-mono text-[10px] tracking-[0.2em] text-[#FAF8F5]/35">
-            DPDP 2023 COMPLIANT BY DESIGN · GDPR-ALIGNED · ZERO BIOMETRICS
-          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            {[
+              { icon: ShieldCheck, label: "DPDP 2023 COMPLIANT", color: "#8B7CF6" },
+              { icon: Database, label: "GDPR-ALIGNED", color: "#8B7CF6" },
+              { icon: Eye, label: "ZERO BIOMETRICS", color: "#ff3b30" },
+              { icon: WifiOff, label: "OFFLINE-CAPABLE", color: "#8B7CF6" },
+              { icon: Zap, label: "12W EDGE", color: "#8B7CF6" },
+            ].map((badge) => (
+              <span
+                key={badge.label}
+                className="inline-flex items-center gap-2 rounded-full cosmic-border px-5 py-2.5 cosmic-text-xs font-semibold transition-all duration-300"
+                style={{
+                  borderColor: `${badge.color}30`,
+                  background: "var(--cosmic-gradient-card)",
+                  color: badge.color,
+                }}
+              >
+                <badge.icon size={14} strokeWidth={2} />
+                {badge.label}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.25}>
+          <div className="mx-auto mt-10 max-w-3xl cosmic-card-glow p-6 sm:p-8">
+            <p className="cosmic-text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: "var(--cosmic-violet)" }}>{p.dpdp.title}</p>
+            <p className="mt-3 cosmic-text-base leading-relaxed" style={{ color: "var(--cosmic-text-dim)" }}>{p.dpdp.body}</p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {p.dpdp.chips.map((c) => (
+                <span key={c} className="rounded-full cosmic-gradient-violet/10 cosmic-border px-4 py-2 cosmic-text-xs font-semibold" style={{ color: "var(--cosmic-violet)" }}>
+                  {c}
+                </span>
+              ))}
+            </div>
+            <p className="mt-4 cosmic-text-xs" style={{ color: "var(--cosmic-text-muted)" }}>{p.dpdp.source}</p>
+          </div>
         </Reveal>
       </div>
-    </section>
+    </Section>
   )
 }

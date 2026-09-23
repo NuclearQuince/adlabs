@@ -25,11 +25,10 @@ Every user-facing string and number lives in **two files**. Edit these — no co
 | `PRIVACY` | 3 principles, 3 pipeline stages |
 | `HOW` | 3 steps, wishlist form fields, success copy, feedback text |
 | `PILOT_FORM` | Modal form fields, options, success copy, note |
-| `MARQUEE` | Rotating text lines |
 
 **Images referenced (in `public/images/`):**
-- `hero-storefront.jpg`, `blindspot-pass.jpg`, `blindspot-stop.jpg`, `blindspot-enter.jpg`
-- `in-store-zones.jpg`, `window-before.jpg`, `window-after.jpg`
+- `hero-storefront.*`, `blindspot-pass.jpg`, `blindspot-stop.jpg`, `blindspot-enter.jpg`
+- `in-store-zones.jpg`, `window-before.jpg`, `window-after.jpg`, `mission-street.jpg`
 - `sector-fashion.jpg`, `sector-beauty.jpg`, `sector-jewellery.jpg`, `sector-premium-retail.jpg`
 
 ---
