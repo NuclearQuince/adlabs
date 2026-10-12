@@ -53,7 +53,7 @@ export function Sectors() {
                     <div className="pointer-events-none absolute inset-0" style={{
                       background: "linear-gradient(180deg, rgba(0,0,0,0.1) 0%, transparent 35%, rgba(0,0,0,0.5) 100%)"
                     }} />
-                    <div className="pointer-events-none absolute inset-0 rounded-[18px]" style={{
+                    <div className="pointer-events-none absolute inset-0 rounded-2xl" style={{
                       background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent 45%)"
                     }} />
 

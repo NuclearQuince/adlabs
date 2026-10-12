@@ -32,7 +32,7 @@ export function Atelier() {
 
         <Reveal delay={0.1}>
           <div
-            className={`relative overflow-hidden rounded-[20px] border border-white/10 transition-all duration-500 ${expanded ? "lg:fixed lg:inset-0 lg:z-50 lg:rounded-none lg:border-none" : ""}`}
+            className={`relative overflow-hidden rounded-2xl border border-white/10 transition-all duration-500 ${expanded ? "lg:fixed lg:inset-0 lg:z-50 lg:rounded-none lg:border-none" : ""}`}
             style={{
               background: "#1a1a24",
               boxShadow: expanded ? "0 50px 150px rgba(0,0,0,0.8)" : "0 4px 24px rgba(0,0,0,0.4)",
@@ -61,7 +61,7 @@ export function Atelier() {
                 <button
                   onClick={() => step(-1)}
                   aria-label="Previous view"
-                  className="grid h-8 w-8 place-items-center rounded-[10px] border border-white/15 text-[#f5f5f7] transition-all duration-200 hover:scale-105 hover:border-white/30"
+                  className="grid h-8 w-8 place-items-center rounded-xl border border-white/15 text-[#f5f5f7] transition-all duration-200 hover:scale-105 hover:border-white/30"
                 >
                   <ChevronLeft size={15} strokeWidth={2.3} />
                 </button>
@@ -71,7 +71,7 @@ export function Atelier() {
                 <button
                   onClick={() => step(1)}
                   aria-label="Next view"
-                  className="grid h-8 w-8 place-items-center rounded-[10px] border border-white/15 text-[#f5f5f7] transition-all duration-200 hover:scale-105 hover:border-white/30"
+                  className="grid h-8 w-8 place-items-center rounded-xl border border-white/15 text-[#f5f5f7] transition-all duration-200 hover:scale-105 hover:border-white/30"
                 >
                   <ChevronRight size={15} strokeWidth={2.3} />
                 </button>
@@ -80,7 +80,7 @@ export function Atelier() {
               <button
                 onClick={() => setExpanded(!expanded)}
                 aria-label={expanded ? "Minimize" : "Expand"}
-                className="grid h-8 w-8 place-items-center rounded-[10px] border border-white/15 text-[#f5f5f7] transition-all duration-200 hover:scale-105 hover:border-white/30"
+                className="grid h-8 w-8 place-items-center rounded-xl border border-white/15 text-[#f5f5f7] transition-all duration-200 hover:scale-105 hover:border-white/30"
               >
                 {expanded ? <Minimize2 size={16} strokeWidth={2.2} /> : <Maximize2 size={16} strokeWidth={2.2} />}
               </button>
@@ -171,7 +171,7 @@ export function Atelier() {
                 </button>
               ))}
 
-              <div className={`absolute bottom-4 left-4 max-w-[320px] rounded-[18px] p-4 shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-md animate-subtle-float ${expanded ? "bottom-8 left-8 sm:bottom-12 sm:left-12 sm:p-6 max-w-[380px]" : "sm:bottom-6 sm:left-6 sm:p-5"}`} style={{ background: "rgba(19,19,21,0.92)", border: "1px solid rgba(255,255,255,0.1)" }}>
+              <div className={`absolute bottom-4 left-4 max-w-[320px] rounded-2xl p-4 shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-md animate-subtle-float ${expanded ? "bottom-8 left-8 sm:bottom-12 sm:left-12 sm:p-6 max-w-[380px]" : "sm:bottom-6 sm:left-6 sm:p-5"}`} style={{ background: "rgba(19,19,21,0.92)", border: "1px solid rgba(255,255,255,0.1)" }}>
                 <p className="font-mono cosmic-text-2xs tracking-[0.18em] text-[#f5f5f7]/48">{active.overlay.tag}</p>
                 <p className="mt-2 font-mono cosmic-text-3xl font-bold text-[#f5f5f7]">{active.overlay.big}</p>
                 {active.overlay.lines.map((l) => (
@@ -183,7 +183,7 @@ export function Atelier() {
                 </div>
               </div>
 
-              <div className={`absolute bottom-4 right-4 hidden max-w-[280px] flex-col gap-2 rounded-[18px] border border-[#8B7CF6]/35 bg-black/80 p-4 backdrop-blur-md ${expanded ? "sm:flex sm:bottom-8 sm:right-8" : "sm:flex sm:bottom-6 sm:right-6"}`}>
+              <div className={`absolute bottom-4 right-4 hidden max-w-[280px] flex-col gap-2 rounded-2xl border border-[#8B7CF6]/35 bg-black/80 p-4 backdrop-blur-md ${expanded ? "sm:flex sm:bottom-8 sm:right-8" : "sm:flex sm:bottom-6 sm:right-6"}`}>
                 <p className="flex items-center gap-1.5 font-mono cosmic-text-2xs tracking-[0.18em] text-[#8B7CF6]">
                   WHAT HAPPENS NEXT <MoveRight size={11} strokeWidth={2.6} />
                 </p>

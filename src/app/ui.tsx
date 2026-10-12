@@ -20,7 +20,7 @@ export function ScreenHeader({
       <div className="flex min-w-0 items-start gap-3">
         {Icon && (
           <span
-            className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-[14px] border"
+            className="mt-0.5 grid h-10 w-10 shrink-0 place-items-center rounded-2xl border"
             style={{ background: "var(--app-accent-soft)", color: "var(--app-accent)", borderColor: "var(--app-line)" }}
           >
             <Icon size={18} strokeWidth={1.9} />
@@ -60,7 +60,7 @@ export function Panel({
 }) {
   return (
     <section
-      className={`app-panel min-w-0 rounded-[24px] border bg-[var(--app-card)] text-[var(--app-text)] ${
+      className={`app-panel min-w-0 rounded-3xl border bg-[var(--app-card)] text-[var(--app-text)] ${
         pad ? "p-6 sm:p-7" : ""
       } border-[var(--app-line)] ${className ?? ""}`}
       style={{ boxShadow: "var(--app-shadow)" }}

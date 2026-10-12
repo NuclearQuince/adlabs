@@ -464,12 +464,12 @@ export function DiscoveryPage() {
                 transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
                 className="relative w-full max-w-full overflow-hidden"
               >
-                <div className="overflow-hidden rounded-[24px] cosmic-border-strong shadow-[0_40px_90px_rgba(0,0,0,0.5)]">
+                <div className="overflow-hidden rounded-3xl cosmic-border-strong shadow-[0_40px_90px_rgba(0,0,0,0.5)]">
                   <div className="relative">
                     <img
                       src="/images/hero-storefront.jpg"
                       alt="A storefront as the Edge Observer sees it"
-                      className="aspect-[4/3] w-full object-cover"
+                      className="img-grade aspect-[4/3] w-full object-cover"
                     />
                     <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
 
@@ -508,7 +508,7 @@ export function DiscoveryPage() {
                   <EventStream rows={4} />
                 </div>
 
-                <div className="absolute -left-3 -top-3 rounded-full cosmic-gradient-violet px-3.5 py-1.5 font-mono cosmic-text-2xs font-bold tracking-[0.14em]" style={{ color: "var(--cosmic-void)", boxShadow: "0 8px 24px rgba(139,124,246,0.35)" }}>
+                <div className="absolute -left-3 -top-3 rounded-full cosmic-gradient-violet px-3.5 py-1.5 font-mono cosmic-text-2xs font-bold tracking-[0.14em]" style={{ color: "var(--cosmic-void)" }}>
                   ONE SENSOR · 12W · POE
                 </div>
               </motion.div>
@@ -579,12 +579,12 @@ export function DiscoveryPage() {
                     {d.visual === "edge" && (
                       <div className="overflow-hidden border-b border-white/10 bg-[#0d0d11] relative">
                         <img
-                          src="/images/product-edge-box.svg"
-                          alt="The Edge Observer edge-compute box"
-                          className="aspect-[16/7] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          src="/images/in-store-zones.jpg"
+                          alt="Live store zones as the Edge Observer reads them"
+                          className="img-grade aspect-[16/7] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                         />
                         <div className="absolute left-4 bottom-4 rounded-full bg-black/60 px-3 py-1 font-mono cosmic-text-2xs tracking-[0.14em] text-white/90 backdrop-blur-sm">
-                          THE EDGE OBSERVER
+                          LIVE STORE ZONES
                         </div>
                       </div>
                     )}
@@ -679,7 +679,7 @@ export function DiscoveryPage() {
               const Icon = t.icon
               return (
                 <Reveal key={t.day} delay={i * 0.1}>
-                  <article className="relative flex h-full flex-col rounded-[20px] border border-white/10 bg-[#12121a] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
+                  <article className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-[#12121a] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
                     <div className="flex items-center justify-between">
                       <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#8B7CF6]/10 text-[#8B7CF6]">
                         <Icon size={18} strokeWidth={1.9} />
@@ -777,7 +777,7 @@ export function DiscoveryPage() {
                       type="button"
                       onClick={() => set("pain", p.id)}
                       aria-pressed={selected}
-                      className={`group relative flex flex-col overflow-hidden rounded-[24px] border p-6 text-left transition-all duration-300 ${
+                      className={`group relative flex flex-col overflow-hidden rounded-3xl border p-6 text-left transition-all duration-300 ${
                         selected
                           ? "border-[#8B7CF6] bg-[#8B7CF6]/12 shadow-[0_0_60px_rgba(139,124,246,0.18)]"
                           : "border-white/10 bg-[#12121a] hover:-translate-y-1 hover:border-[#8B7CF6]/40"
@@ -816,7 +816,7 @@ export function DiscoveryPage() {
                         type="button"
                         aria-pressed={selected}
                         onClick={() => set("tracking", t.id)}
-                        className={`group flex items-center gap-2.5 rounded-[14px] border px-4 py-3 text-left transition-all duration-200 ${
+                        className={`group flex items-center gap-2.5 rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
                           selected
                             ? "border-[#8B7CF6] bg-[#8B7CF6]/10"
                             : "border-white/10 bg-[#12121a] hover:-translate-y-0.5 hover:border-[#8B7CF6]/40"
@@ -871,7 +871,7 @@ export function DiscoveryPage() {
                         type="button"
                         aria-pressed={selected}
                         onClick={() => set("cameras", c.id)}
-                        className={`group rounded-[14px] border px-4 py-3 text-left transition-all duration-200 ${
+                        className={`group rounded-2xl border px-4 py-3 text-left transition-all duration-200 ${
                           selected
                             ? "border-[#8B7CF6] bg-[#8B7CF6]/10"
                             : "border-white/10 bg-[#12121a] hover:-translate-y-0.5 hover:border-[#8B7CF6]/40"
@@ -901,7 +901,7 @@ export function DiscoveryPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="mt-6 flex flex-col items-start justify-between gap-4 rounded-[20px] border border-[#8B7CF6]/30 bg-[#8B7CF6]/8 p-6 sm:flex-row sm:items-center"
+                  className="mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl border border-[#8B7CF6]/30 bg-[#8B7CF6]/8 p-6 sm:flex-row sm:items-center"
                 >
                   <p className="cosmic-text-base text-[#f5f5f7]/80">
                     Noted. <span className="font-semibold text-[#f5f5f7]">{PRIORITIES[answers.pain]}</span> is your top problem —{" "}
@@ -930,7 +930,7 @@ export function DiscoveryPage() {
               sub="Each capability ships with its own verdict engine. Mark must / nice / noise, then tell us the shape of your roll-out — your priorities set the launch build order."
             />
             <Reveal>
-              <div className="mt-8 overflow-hidden rounded-[20px] border border-white/10">
+              <div className="mt-8 overflow-hidden rounded-2xl border border-white/10">
                 {FEATURES.map((f, fi) => {
                   const p: Prio | null = answers.priorities[f.id] ?? null
                   const FeatureIcon = f.icon
@@ -984,7 +984,7 @@ export function DiscoveryPage() {
             </Reveal>
 
             <Reveal delay={0.05}>
-              <div className="mt-8 rounded-[20px] border border-white/10 bg-[#12121a] p-6 sm:p-8">
+              <div className="mt-8 rounded-2xl border border-white/10 bg-[#12121a] p-6 sm:p-8">
                 <div className="flex items-center justify-between gap-4">
                   <p className="cosmic-text-base font-semibold text-[#f5f5f7]">The store profile</p>
                   <span className="rounded-full bg-[#8B7CF6]/10 px-3 py-1 font-mono cosmic-text-2xs tracking-[0.12em] text-[#8B7CF6]">
@@ -1036,7 +1036,7 @@ export function DiscoveryPage() {
                           set("footfall", raw ? Math.min(1_000_000, Number(raw)) : null)
                         }}
                         placeholder="17,000"
-                        className="w-full rounded-[12px] border border-white/12 bg-[#1a1a24]/80 py-3 pl-4 pr-28 cosmic-text-base text-[#f5f5f7] outline-none transition-colors duration-200 placeholder:text-[#86868b] focus:border-[#8B7CF6]"
+                        className="w-full rounded-xl border border-white/12 bg-[#1a1a24]/80 py-3 pl-4 pr-28 cosmic-text-base text-[#f5f5f7] outline-none transition-colors duration-200 placeholder:text-[#86868b] focus:border-[#8B7CF6]"
                       />
                       <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 font-mono cosmic-text-2xs tracking-[0.12em] text-[#86868b]">
                         PEOPLE / WEEK
@@ -1045,7 +1045,7 @@ export function DiscoveryPage() {
                     <p className="mt-1.5 cosmic-text-xs text-[#86868b]">Rough is fine. This is the base for the read below.</p>
                   </div>
 
-                  <div className="rounded-[16px] border border-[#8B7CF6]/20 bg-[#8B7CF6]/5 p-4 sm:p-5">
+                  <div className="rounded-2xl border border-[#8B7CF6]/20 bg-[#8B7CF6]/5 p-4 sm:p-5">
                     <p className="flex items-center gap-2 cosmic-text-xs font-semibold uppercase tracking-[0.12em] text-[#8B7CF6]">
                       <TrendingUp size={13} strokeWidth={2.2} />
                       The street, read instantly
@@ -1111,7 +1111,7 @@ export function DiscoveryPage() {
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-8 rounded-[20px] border border-white/10 bg-[#12121a] p-6 sm:p-8">
+              <div className="mt-8 rounded-2xl border border-white/10 bg-[#12121a] p-6 sm:p-8">
                 <div className="flex items-center justify-between gap-4">
                   <p className="cosmic-text-base font-semibold text-[#f5f5f7]">
                     The shape of your roll-out
@@ -1129,7 +1129,7 @@ export function DiscoveryPage() {
                         type="button"
                         aria-pressed={on}
                         onClick={() => set("commitment", c.id)}
-                        className={`flex flex-col rounded-[16px] border p-5 text-left transition-all duration-300 ${
+                        className={`flex flex-col rounded-2xl border p-5 text-left transition-all duration-300 ${
                           on ? "border-[#8B7CF6] bg-[#8B7CF6]/10 shadow-[0_0_40px_rgba(139,124,246,0.14)]" : "border-white/10 bg-[#1a1a24] hover:-translate-y-0.5 hover:border-[#8B7CF6]/40"
                         }`}
                       >
@@ -1202,7 +1202,7 @@ function Seat({ answers, set: _set }: { answers: DiscoveryAnswers; set: Setter }
   }
 
   const inputCls =
-    "w-full rounded-[12px] border border-white/12 bg-[#1a1a24]/80 px-4 py-3 cosmic-text-base text-[#f5f5f7] outline-none transition-colors duration-200 placeholder:text-[#86868b] focus:border-[#8B7CF6]"
+    "w-full rounded-xl border border-white/12 bg-[#1a1a24]/80 px-4 py-3 cosmic-text-base text-[#f5f5f7] outline-none transition-colors duration-200 placeholder:text-[#86868b] focus:border-[#8B7CF6]"
   const labelCls = "mb-1.5 block cosmic-text-sm font-medium text-[#f5f5f7]"
 
   return (
@@ -1219,7 +1219,7 @@ function Seat({ answers, set: _set }: { answers: DiscoveryAnswers; set: Setter }
                 sub="We admit ten founding stores. Your answers above are already part of your application — just add the essentials to lock it in."
               />
 
-              <div className="rounded-[20px] border border-white/10 bg-[#12121a]/80 p-6">
+              <div className="rounded-2xl border border-white/10 bg-[#12121a]/80 p-6">
                 <p className="cosmic-text-xs font-semibold uppercase tracking-[0.14em] text-[#86868b]">Your application</p>
                 <dl className="mt-4 space-y-3">
                   <div className="flex items-start justify-between gap-3">
@@ -1300,7 +1300,7 @@ function Seat({ answers, set: _set }: { answers: DiscoveryAnswers; set: Setter }
 
           {/* Right — the form */}
           <Reveal delay={0.1}>
-            <div className="rounded-[20px] border border-white/10 bg-[#1a1a24]/80 p-6 sm:p-9">
+            <div className="rounded-2xl border border-white/10 bg-[#1a1a24]/80 p-6 sm:p-9">
               {sent ? (
                 <motion.div
                   className="flex min-h-[420px] flex-col items-center justify-center text-center"

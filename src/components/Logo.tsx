@@ -6,7 +6,7 @@ export function Logo({ dark = true, className = "" }: { dark?: boolean; classNam
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
       <span
-        className="grid h-9 w-9 place-items-center rounded-[11px] font-inter font-extrabold transition-transform duration-200 hover:-translate-y-px"
+        className="grid h-9 w-9 place-items-center rounded-xl font-inter font-extrabold transition-transform duration-200 hover:-translate-y-px"
         style={{ background: box, color: ad, fontSize: 15, letterSpacing: "-0.04em" }}
         aria-hidden
       >

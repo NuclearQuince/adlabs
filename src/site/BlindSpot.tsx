@@ -1,6 +1,6 @@
 import { Reveal } from "../components/Reveal"
 import { BLINDSPOT } from "../data/site"
-import { Eye, Users, DoorOpen, TrendingDown, Maximize2, Target } from "lucide-react"
+import { Eye, Users, DoorOpen } from "lucide-react"
 import { FlipCard, AnswerPanel } from "../components/FlipCard"
 
 export function BlindSpot() {
@@ -13,7 +13,7 @@ export function BlindSpot() {
       label: "PASSED BY", 
       desc: "People who walked past your store today — invisible to your POS",
       color: "#8B7CF6", 
-      img: "/images/demo/street.jpg",
+      img: "/images/blindspot-pass.jpg",
       insight: "Your pavement is your biggest funnel. 2,481 potential customers. You only see the 39 who entered.",
       chips: ["Pass-by count", "Peak hour breakdown", "Directional flow"]
     },
@@ -23,7 +23,7 @@ export function BlindSpot() {
       label: "STOPPED", 
       desc: "People who paused at your window display — intent measured",
       color: "#3ECF8E", 
-      img: "/images/demo/store-interior.jpg",
+      img: "/images/blindspot-stop.jpg",
       insight: "A stop is a vote. 186 people gave you 4+ seconds. The sensor knows which display won.",
       chips: ["Dwell time", "Gaze heatmap", "Return rate"]
     },
@@ -33,7 +33,7 @@ export function BlindSpot() {
       label: "ENTERED", 
       desc: "People who crossed the threshold — 21% conversion from stop",
       color: "#5ac8fa", 
-      img: "/images/demo/shoppers.jpg",
+      img: "/images/blindspot-enter.jpg",
       insight: "The threshold is truth. 39 entered. The sensor tracks the full funnel: pass → stop → enter → explore → buy.",
       chips: ["Conversion rate", "Zone paths", "Basket size proxy"]
     },
@@ -72,7 +72,7 @@ export function BlindSpot() {
                 front={
                   <div className="cosmic-card-glow overflow-hidden text-center h-full">
                     <div className="relative h-40 overflow-hidden">
-                      <img src={card.img} alt="" className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                      <img src={card.img} alt="" className="img-grade absolute inset-0 w-full h-full object-cover opacity-25" />
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[var(--cosmic-surface)]" />
                       <card.icon size={32} style={{ color: card.color }} className="absolute top-6 left-1/2 -translate-x-1/2" />
                     </div>

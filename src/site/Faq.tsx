@@ -22,7 +22,7 @@ export function Faq() {
             return (
               <Reveal key={item.q} delay={Math.min(i * 0.03, 0.25)}>
                 <div
-                  className={`faq-item my-2 rounded-[16px] border ${open ? 'border-[#8B7CF6]/40 bg-[#1a1a24]/80 shadow-[0_4px_16px_rgba(139,124,246,0.12)]' : 'border-white/10 bg-[#1a1a24]/80 hover:border-[#8B7CF6]/30 hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)]'} px-6 transition-all duration-300`}
+                  className={`faq-item my-2 rounded-2xl border ${open ? 'border-[#8B7CF6]/40 bg-[#1a1a24]/80 shadow-[0_4px_16px_rgba(139,124,246,0.12)]' : 'border-white/10 bg-[#1a1a24]/80 hover:border-[#8B7CF6]/30 hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)]'} px-6 transition-all duration-300`}
                   data-open={open}
                 >
                   <button
@@ -32,10 +32,10 @@ export function Faq() {
                     className="flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
                     <span className="flex items-baseline gap-4">
-                      <span className="shrink-0 font-mono ds-text-2xs tracking-[0.14em] text-[#86868b]">
+                      <span className="shrink-0 font-mono cosmic-text-2xs tracking-[0.14em] text-[#86868b]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="font-semibold ds-text-xl leading-snug text-[#f5f5f7] sm:ds-text-xl">
+                      <span className="font-semibold cosmic-text-xl leading-snug text-[#f5f5f7] sm:cosmic-text-xl">
                         {item.q}
                       </span>
                     </span>
@@ -51,7 +51,7 @@ export function Faq() {
                   </button>
                   <div className="faq-answer">
                     <div>
-                      <p className="pb-6 pl-10 pr-2 ds-text-base leading-relaxed text-[#a1a1aa]">{item.a}</p>
+                      <p className="pb-6 pl-10 pr-2 cosmic-text-base leading-relaxed text-[#a1a1aa]">{item.a}</p>
                     </div>
                   </div>
                 </div>

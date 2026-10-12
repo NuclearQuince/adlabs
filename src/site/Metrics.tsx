@@ -48,8 +48,8 @@ function MiniDonut({ value, stroke, label }: { value: number; stroke: string; la
         />
       </svg>
       <div>
-        <p className="ds-text-xl font-bold leading-none text-[#f5f5f7]">{value}%</p>
-        <p className="mt-1 ds-text-xs text-[#86868b]">{label}</p>
+        <p className="cosmic-text-xl font-bold leading-none text-[#f5f5f7]">{value}%</p>
+        <p className="mt-1 cosmic-text-xs text-[#86868b]">{label}</p>
       </div>
     </div>
   )
@@ -68,7 +68,7 @@ function MiniGauge({ value, max, stroke }: { value: number; max: number; stroke:
         />
         <text x="36" y="40" textAnchor="middle" fontSize="15" fontWeight="700" fill="#f5f5f7">{value} m/s</text>
       </svg>
-      <p className="ds-text-xs text-[#86868b]">deceleration<br />floor {max} m/s</p>
+      <p className="cosmic-text-xs text-[#86868b]">deceleration<br />floor {max} m/s</p>
     </div>
   )
 }
@@ -84,7 +84,7 @@ function MiniSplit({ parts, stroke }: { parts: { label: string; value: number }[
       </div>
       <div>
         {parts.map((p) => (
-          <p key={p.label} className="ds-text-xs text-[#a1a1aa]">
+          <p key={p.label} className="cosmic-text-xs text-[#a1a1aa]">
             <span className="font-bold text-[#f5f5f7]">{p.value}%</span> {p.label}
           </p>
         ))}
@@ -157,7 +157,7 @@ export function Metrics() {
   return (
     <section id="metrics" className="relative scroll-mt-24 overflow-hidden bg-[#0c0c14] py-12 sm:py-16 lg:py-20">
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <img src="/images/renders/dashboard-glow.jpg" alt="" className="w-full h-full object-cover opacity-[0.05]" />
+        <img src="/images/sector-beauty.jpg" alt="" className="w-full h-full object-cover opacity-[0.05]" />
         <div className="absolute inset-0" style={{ background: "var(--cosmic-gradient-void)" }} />
       </div>
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">

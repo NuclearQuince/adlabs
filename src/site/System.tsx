@@ -54,7 +54,7 @@ export function System() {
         <div className="mt-8 grid items-center gap-8 lg:grid-cols-[1fr_1.1fr]">
           <div>
             <span className="cosmic-text-xs font-semibold uppercase tracking-[0.1em] text-[#a1a1aa]">{itf.kicker}</span>
-            <h3 className="mt-4 font-semibold text-4xl leading-[1.05] tracking-[-0.02em] text-[#f5f5f7] sm:text-5xl">
+            <h3 className="mt-4 font-semibold cosmic-text-4xl leading-[1.05] tracking-[-0.02em] text-[#f5f5f7] sm:cosmic-text-5xl">
               {itf.h2}
             </h3>
             <p className="mt-5 max-w-sm cosmic-text-base leading-relaxed text-[#a1a1aa]">{itf.sub}</p>
@@ -67,7 +67,7 @@ export function System() {
             </Link>
           </div>
 
-          <div className="rounded-[20px] border border-white/10 bg-[#12121a] p-6 shadow-lg sm:p-8 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+          <div className="rounded-2xl border border-white/10 bg-[#12121a] p-6 shadow-lg sm:p-8 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">{itf.store}</p>
@@ -84,7 +84,7 @@ export function System() {
 
             <div className="mt-6 grid grid-cols-3 gap-4">
               {itf.stats.map((st) => (
-                <div key={st.label} className="rounded-[14px] border border-white/8 bg-[#1a1a24]/80 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#8B7CF6]/40 hover:shadow-[0_4px_12px_rgba(139,124,246,0.1)]">
+                <div key={st.label} className="rounded-2xl border border-white/8 bg-[#1a1a24]/80 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#8B7CF6]/40 hover:shadow-[0_4px_12px_rgba(139,124,246,0.1)]">
                   <p className="font-inter cosmic-text-xl font-bold font-num text-[#f5f5f7]">
                     {typeof st.value === "number" ? st.value.toLocaleString("en-US") : st.value}
                     {st.suffix ?? ""}
@@ -96,7 +96,7 @@ export function System() {
               ))}
             </div>
 
-            <div className="mt-5 rounded-[14px] border border-white/8 bg-[#1a1a24]/80 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#8B7CF6]/40 hover:shadow-[0_4px_12px_rgba(139,124,246,0.1)]">
+            <div className="mt-5 rounded-2xl border border-white/8 bg-[#1a1a24]/80 p-4 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-200 hover:border-[#8B7CF6]/40 hover:shadow-[0_4px_12px_rgba(139,124,246,0.1)]">
               <div className="flex items-center justify-between">
                 <p className="font-mono cosmic-text-2xs tracking-[0.16em] text-[#86868b]">{itf.trend}</p>
                 <p className="flex items-center gap-1 font-inter cosmic-text-xs font-bold font-num text-[#8B7CF6]">

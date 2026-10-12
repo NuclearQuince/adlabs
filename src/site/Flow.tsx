@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Plug, Brain, TrendingUp, RefreshCcw, Lightbulb, ArrowRight } from "lucide-react"
+import { Plug, Brain, TrendingUp, RefreshCcw, Lightbulb } from "lucide-react"
 import { Reveal } from "../components/Reveal"
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -75,17 +75,17 @@ export function Flow() {
   return (
     <section id="flow" className="relative scroll-mt-24 py-12 sm:py-16 lg:py-20 overflow-hidden" style={{ background: "#05050a" }}>
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <img src="/images/renders/data-flow.jpg" alt="" className="w-full h-full object-cover opacity-[0.06]" />
+        <img src="/images/in-store-zones.jpg" alt="" className="w-full h-full object-cover opacity-[0.06]" />
         <div className="absolute inset-0" style={{ background: "var(--cosmic-gradient-void)" }} />
       </div>
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">
         <Reveal>
           <div className="max-w-2xl">
-            <p className="ds-text-xs font-semibold uppercase tracking-[0.16em] text-[#8B7CF6]">The Intelligence Loop</p>
-            <h2 className="mt-2 ds-text-3xl font-bold leading-[1.08] tracking-[-0.025em] text-[#f5f5f7] sm:ds-text-4xl">
+            <p className="cosmic-text-xs font-semibold uppercase tracking-[0.16em] text-[#8B7CF6]">The Intelligence Loop</p>
+            <h2 className="mt-2 cosmic-text-3xl font-bold leading-[1.08] tracking-[-0.025em] text-[#f5f5f7] sm:cosmic-text-4xl">
               This is how the sensor gets smarter — every week.
             </h2>
-            <p className="mt-3 max-w-xl ds-text-base leading-relaxed text-[#a1a1aa]">
+            <p className="mt-3 max-w-xl cosmic-text-base leading-relaxed text-[#a1a1aa]">
               A sensor that only counts is useful. A sensor that learns, predicts, and recommends is a business partner. Here is how the loop works.
             </p>
           </div>
@@ -101,9 +101,9 @@ export function Flow() {
                     <span className="absolute left-5 top-5 grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${step.color}18` }}>
                       <Icon size={17} strokeWidth={2.2} style={{ color: step.color }} />
                     </span>
-                    <span className="mt-11 block ds-text-xs font-semibold text-[#86868b]">{step.t}</span>
-                    <h3 className="mt-1.5 ds-text-sm font-semibold leading-snug text-[#f5f5f7]">{step.d}</h3>
-                    <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/4 px-2.5 py-0.5 ds-text-2xs font-medium text-[#86868b]">{step.tag}</span>
+                    <span className="mt-11 block cosmic-text-xs font-semibold text-[#86868b]">{step.t}</span>
+                    <h3 className="mt-1.5 cosmic-text-sm font-semibold leading-snug text-[#f5f5f7]">{step.d}</h3>
+                    <span className="mt-2 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/4 px-2.5 py-0.5 cosmic-text-2xs font-medium text-[#86868b]">{step.tag}</span>
                   </div>
                 </Reveal>
                 {i < LOOP.length - 1 && <Arrow color={step.color} />}
@@ -122,9 +122,9 @@ export function Flow() {
                     <Icon size={17} strokeWidth={2.2} style={{ color: step.color }} />
                   </span>
                   <div>
-                    <span className="block ds-text-xs font-semibold text-[#86868b]">{step.t}</span>
-                    <h3 className="mt-1 ds-text-sm font-semibold leading-snug text-[#f5f5f7]">{step.d}</h3>
-                    <span className="mt-1.5 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/4 px-2.5 py-0.5 ds-text-2xs font-medium text-[#86868b]">{step.tag}</span>
+                    <span className="block cosmic-text-xs font-semibold text-[#86868b]">{step.t}</span>
+                    <h3 className="mt-1 cosmic-text-sm font-semibold leading-snug text-[#f5f5f7]">{step.d}</h3>
+                    <span className="mt-1.5 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/4 px-2.5 py-0.5 cosmic-text-2xs font-medium text-[#86868b]">{step.tag}</span>
                   </div>
                 </div>
               </Reveal>
@@ -140,7 +140,7 @@ export function Flow() {
               ))}
             </div>
             <div>
-              <p className="ds-text-sm font-semibold text-[#f5f5f7]">Every week, the loop tightens.</p>
+              <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">Every week, the loop tightens.</p>
               <p className="cosmic-text-xs text-[#86868b]">The more your store is measured, the sharper the next prediction becomes. This is how offline retail starts to learn — for the first time.</p>
             </div>
           </div>

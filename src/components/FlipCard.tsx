@@ -155,7 +155,7 @@ export function AnswerPanel({
   note: string
 }) {
   return (
-    <div className="flex min-h-0 flex-1 flex-col p-6 bg-[#1a1a24] border border-white/10 rounded-[24px]">
+    <div className="flex min-h-0 flex-1 flex-col p-6 bg-[#1a1a24] border border-white/10 rounded-3xl">
       <div className="flex items-center justify-between">
         <span className="cosmic-text-2xs font-semibold uppercase tracking-[0.08em] text-[#8B7CF6]">{eyebrow}</span>
         <span className="h-1.5 w-1.5 rounded-full bg-[#8B7CF6]" />

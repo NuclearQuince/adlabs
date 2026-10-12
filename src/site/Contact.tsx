@@ -8,7 +8,7 @@ import { submitViaEmail } from "../utils/mailto"
 import { CONTACT } from "../data/site"
 
 const inputCls =
-  "w-full rounded-[12px] border border-white/12 bg-[#1a1a24]/80 px-4 py-3 cosmic-text-base text-[#f5f5f7] outline-none transition-colors duration-200 placeholder:text-[#86868b] focus:border-[#8B7CF6]"
+  "w-full rounded-xl border border-white/12 bg-[#1a1a24]/80 px-4 py-3 cosmic-text-base text-[#f5f5f7] outline-none transition-colors duration-200 placeholder:text-[#86868b] focus:border-[#8B7CF6]"
 
 const labelCls = "mb-1.5 block cosmic-text-sm font-medium text-[#f5f5f7]"
 
@@ -49,39 +49,39 @@ export function Contact({ onPilot }: { onPilot: () => void }) {
         <div className="mt-8 grid items-start gap-8 lg:grid-cols-[1fr_1.4fr]">
           <Reveal>
             <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-4 rounded-[16px] border border-white/10 bg-[#12121a] p-5 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#12121a] p-5 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgba(139,124,246,0.1)] text-[#8B7CF6]">
                   <Mail size={18} strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
-                  <p className="ds-text-xs font-medium uppercase tracking-normal text-[#86868b]">Email</p>
-                  <a href={`mailto:${c.email}`} className="mt-0.5 block truncate ds-text-base font-medium text-[#f5f5f7] hover:text-[#8B7CF6]">
+                  <p className="cosmic-text-xs font-medium uppercase tracking-normal text-[#86868b]">Email</p>
+                  <a href={`mailto:${c.email}`} className="mt-0.5 block truncate cosmic-text-base font-medium text-[#f5f5f7] hover:text-[#8B7CF6]">
                     {c.email}
                   </a>
                 </div>
               </div>
-              <div className="flex items-center gap-4 rounded-[16px] border border-white/10 bg-[#12121a] p-5 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#12121a] p-5 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgba(139,124,246,0.1)] text-[#8B7CF6]">
                   <MapPin size={18} strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
-                  <p className="ds-text-xs font-medium uppercase tracking-normal text-[#86868b]">The Lab</p>
-                  <p className="mt-0.5 ds-text-base font-medium text-[#f5f5f7]">{c.city}</p>
+                  <p className="cosmic-text-xs font-medium uppercase tracking-normal text-[#86868b]">The Lab</p>
+                  <p className="mt-0.5 cosmic-text-base font-medium text-[#f5f5f7]">{c.city}</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4 rounded-[16px] border border-white/10 bg-[#12121a] p-5 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+              <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-[#12121a] p-5 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[rgba(139,124,246,0.1)] text-[#8B7CF6]">
                   <Clock size={18} strokeWidth={2} />
                 </span>
                 <div className="min-w-0">
-                  <p className="ds-text-xs font-medium uppercase tracking-normal text-[#86868b]">Response time</p>
-                  <p className="mt-0.5 ds-text-base font-medium text-[#f5f5f7]">{c.response}</p>
+                  <p className="cosmic-text-xs font-medium uppercase tracking-normal text-[#86868b]">Response time</p>
+                  <p className="mt-0.5 cosmic-text-base font-medium text-[#f5f5f7]">{c.response}</p>
                 </div>
               </div>
               <button
                 type="button"
                 onClick={onPilot}
-                className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-[#8B7CF6] px-7 py-3.5 ds-text-base font-semibold text-[#05050a] transition-all duration-200 hover:bg-[#6E5CE6] active:scale-[0.98]"
+                className="mt-2 flex w-full items-center justify-center gap-2 rounded-full bg-[#8B7CF6] px-7 py-3.5 cosmic-text-base font-semibold text-[#05050a] transition-all duration-200 hover:bg-[#6E5CE6] active:scale-[0.98]"
               >
                 Book a store pilot
                 <ArrowRight size={16} strokeWidth={2.5} />
@@ -90,7 +90,7 @@ export function Contact({ onPilot }: { onPilot: () => void }) {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="rounded-[16px] border border-white/10 bg-[#1a1a24]/80 p-7 sm:p-9 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+            <div className="rounded-2xl border border-white/10 bg-[#1a1a24]/80 p-7 sm:p-9 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
               {sent ? (
                 <motion.div
                   className="flex min-h-[360px] flex-col items-center justify-center text-center"
@@ -106,8 +106,8 @@ export function Contact({ onPilot }: { onPilot: () => void }) {
                   >
                     <Send size={22} strokeWidth={2.5} />
                   </motion.span>
-                  <h3 className="mt-6 ds-text-2xl font-bold text-[#f5f5f7]">{c.successTitle}</h3>
-                  <p className="mt-3 max-w-sm whitespace-pre-line ds-text-base leading-relaxed text-[#a1a1aa]">
+                  <h3 className="mt-6 cosmic-text-2xl font-bold text-[#f5f5f7]">{c.successTitle}</h3>
+                  <p className="mt-3 max-w-sm whitespace-pre-line cosmic-text-base leading-relaxed text-[#a1a1aa]">
                     {c.successBody}
                   </p>
                   <button
@@ -116,7 +116,7 @@ export function Contact({ onPilot }: { onPilot: () => void }) {
                       setSent(false)
                       setForm({ name: "", email: "", brand: "", sector: "", message: "" })
                     }}
-                    className="mt-8 ds-text-sm font-medium text-[#8B7CF6] underline-offset-4 hover:underline"
+                    className="mt-8 cosmic-text-sm font-medium text-[#8B7CF6] underline-offset-4 hover:underline"
                   >
                     Send another message
                   </button>

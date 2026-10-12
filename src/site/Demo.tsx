@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState, useCallback } from "react"
 import { Play, Pause, ChevronLeft, ChevronRight } from "lucide-react"
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 const SCENES = [
   {
-    img: "/images/demo/street.jpg",
+    img: "/images/hero-storefront.jpg",
     color: "#8B7CF6",
     subtitle: "Every morning, thousands walk past your store. You only see the ones who buy.",
     headline: "2,481",
@@ -20,7 +20,7 @@ const SCENES = [
     hud: "LIVE FEED · CAM-01 · EDGE OBSERVER v2.1",
   },
   {
-    img: "/images/demo/store-interior.jpg",
+    img: "/images/sector-beauty.jpg",
     color: "#3ECF8E",
     subtitle: "186 paused. Stopped. Looked. The window spoke — or didn't. The sensor heard every word.",
     headline: "186",
@@ -34,7 +34,7 @@ const SCENES = [
     hud: "GAZE ANALYSIS · ZONE 03 · WINDOW DISPLAY",
   },
   {
-    img: "/images/demo/shoppers.jpg",
+    img: "/images/sector-fashion.jpg",
     color: "#5ac8fa",
     subtitle: "39 crossed the threshold. From looking to entering — the moment truth lives.",
     headline: "39",
@@ -48,7 +48,7 @@ const SCENES = [
     hud: "THRESHOLD SENSOR · ZONE 02 · REAL-TIME",
   },
   {
-    img: "/images/demo/sensor.jpg",
+    img: "/images/sector-premium-retail.jpg",
     color: "#FF9500",
     subtitle: "One box. Twelve watts. Zero faces watched. Intelligence runs on your wall, not the cloud.",
     headline: "12W",
@@ -62,7 +62,7 @@ const SCENES = [
     hud: "DEVICE STATUS · EDGE OBSERVER · HEALTHY",
   },
   {
-    img: "/images/demo/calibration.jpg",
+    img: "/images/sector-jewellery.jpg",
     color: "#AF52DE",
     subtitle: "Five minutes to map your store. Door, window, display, checkout. The sensor learns your layout like staff would.",
     headline: "93%",
@@ -76,7 +76,7 @@ const SCENES = [
     hud: "SPATIAL MODEL · 6 ZONES · CALIBRATED",
   },
   {
-    img: "/images/demo/dashboard.jpg",
+    img: "/images/window-before.jpg",
     color: "#FF2D55",
     subtitle: "Monday morning. Three decisions. Numbers behind each one. The loop closes — every week.",
     headline: "24/7",
@@ -89,10 +89,29 @@ const SCENES = [
     caption: "Intelligence loop: Data → Insight → Action → Result → Better data",
     hud: "DASHBOARD · MONDAY BRIEF · READY",
   },
+  {
+    img: "/images/window-after.jpg",
+    color: "#8B7CF6",
+    subtitle: "Fourteen days later the verdict lands: treatment B moved the needle. Keep-or-kill, decided by data not opinion.",
+    headline: "+14.6%",
+    label: "VERDICT · TREATMENT B WINS",
+    details: [
+      { t: "A/B Result", v: "B beats A · 14 days", c: "#8B7CF6" },
+      { t: "Confidence", v: "95% · 12k samples", c: "#a1a1aa" },
+      { t: "Next Move", v: "roll B to all windows", c: "#a1a1aa" },
+    ],
+    caption: "Keep-or-kill resolved by the street. Window treatment B ships.",
+    hud: "A/B ENGINE · VERDICT 14D · B WINS",
+  },
 ]
 
 const SCENE_MS = 9000
 const FADE = 0.8
+
+const hash01 = (i: number, salt: number) => {
+  const x = Math.sin(i * 127.1 + salt * 311.7) * 43758.5453
+  return x - Math.floor(x)
+}
 
 export function Demo() {
   const [idx, setIdx] = useState(0)
@@ -160,7 +179,6 @@ export function Demo() {
   }, [next, prev, toggle])
 
   const s = SCENES[idx]
-  const Icon = s.color === "#8B7CF6" ? "eye" : s.color === "#FF9500" ? "zap" : s.color === "#5ac8fa" ? "users" : "target"
 
   return (
     <section
@@ -200,15 +218,15 @@ export function Demo() {
             key={`p-${idx}-${i}`}
             className="absolute rounded-full"
             style={{
-              width: 1.5 + Math.random() * 2,
-              height: 1.5 + Math.random() * 2,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              width: `${1.5 + hash01(i, 5) * 2}px`,
+              height: `${1.5 + hash01(i, 6) * 2}px`,
+              left: `${hash01(i, 1) * 100}%`,
+              top: `${hash01(i, 2) * 100}%`,
               background: s.color,
               opacity: 0,
             }}
-            animate={{ opacity: [0, 0.4 + Math.random() * 0.3, 0], y: [0, -40 - Math.random() * 80] }}
-            transition={{ duration: 3 + Math.random() * 3, delay: Math.random() * 2, repeat: Infinity }}
+            animate={{ opacity: [0, 0.4 + hash01(i, 3) * 0.3, 0], y: [0, -40 - hash01(i, 4) * 80] }}
+            transition={{ duration: 3 + hash01(i, 7) * 3, delay: hash01(i, 8) * 2, repeat: Infinity }}
           />
         ))}
       </div>
@@ -362,6 +380,7 @@ function TypewriterText({ text, color }: { text: string; color: string }) {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   useEffect(() => {
+    // oxlint-disable-next-line react/set-state-in-effect
     setVisible(0)
     let i = 0
     timerRef.current = setInterval(() => {

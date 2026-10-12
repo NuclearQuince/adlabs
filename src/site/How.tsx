@@ -9,7 +9,7 @@ const HOW_ICONS = [Plug, Focus, FileText]
 const HOW_TIMES = ["Live measurement", "First full week", "Weekly verdicts"]
 
 const inputCls =
-  "w-full rounded-[12px] border border-white/15 bg-[#1a1a24]/80 px-4 py-3 cosmic-text-base text-[#f5f5f7] placeholder:text-[#86868b] transition-colors duration-150 focus:border-[#8B7CF6] focus:outline-none"
+  "w-full rounded-xl border border-white/15 bg-[#1a1a24]/80 px-4 py-3 cosmic-text-base text-[#f5f5f7] placeholder:text-[#86868b] transition-colors duration-150 focus:border-[#8B7CF6] focus:outline-none"
 
 export function How({ onPilot }: { onPilot: () => void }) {
   const h = HOW
@@ -35,20 +35,20 @@ export function How({ onPilot }: { onPilot: () => void }) {
           return (
           <Reveal key={s.num} delay={i * 0.1}>
             <article className="site-card group relative h-full overflow-hidden p-8">
-              <span className="absolute -right-3 -top-6 ds-text-6xl font-bold leading-none text-[#f5f5f7]/[0.03]">
+              <span className="absolute -right-3 -top-6 cosmic-text-6xl font-bold leading-none text-[#f5f5f7]/[0.03]">
                 {s.num}
               </span>
               <div className="flex items-center gap-3">
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[#8B7CF6]/10 text-[#8B7CF6] transition-transform duration-300 group-hover:scale-110">
                   {HowIcon && <HowIcon size={22} strokeWidth={1.9} />}
                 </span>
-                <span className="rounded-full border border-[#8B7CF6]/30 bg-[#8B7CF6]/10 px-3 py-1 ds-text-2xs font-semibold uppercase tracking-wide text-[#8B7CF6]">
+                <span className="rounded-full border border-[#8B7CF6]/30 bg-[#8B7CF6]/10 px-3 py-1 cosmic-text-2xs font-semibold uppercase tracking-wide text-[#8B7CF6]">
                   {HOW_TIMES[i]}
                 </span>
               </div>
-              <h3 className="mt-6 ds-text-2xl font-semibold text-[#f5f5f7]">{s.title}</h3>
-              <p className="mt-3 ds-text-base leading-relaxed text-[#a1a1aa]">{s.desc}</p>
-              <p className="mt-5 border-t border-white/8 pt-4 ds-text-sm leading-relaxed text-[#86868b]">
+              <h3 className="mt-6 cosmic-text-2xl font-semibold text-[#f5f5f7]">{s.title}</h3>
+              <p className="mt-3 cosmic-text-base leading-relaxed text-[#a1a1aa]">{s.desc}</p>
+              <p className="mt-5 border-t border-white/8 pt-4 cosmic-text-sm leading-relaxed text-[#86868b]">
                 {s.answer}
               </p>
             </article>
@@ -58,21 +58,21 @@ export function How({ onPilot }: { onPilot: () => void }) {
       </div>
 
       <Reveal delay={0.15}>
-        <div className="mt-8 grid gap-8 rounded-[20px] border border-white/10 bg-[#12121a] p-8 sm:p-10 lg:grid-cols-[1fr_1.1fr] transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+        <div className="mt-8 grid gap-8 rounded-2xl border border-white/10 bg-[#12121a] p-8 sm:p-10 lg:grid-cols-[1fr_1.1fr] transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
           <div className="flex flex-col justify-center">
-            <span className="ds-text-xs font-medium uppercase tracking-normal text-[#86868b]">{h.wishlist.kicker}</span>
-            <h3 className="mt-4 ds-text-3xl font-bold leading-[1.1] tracking-[-0.02em] text-[#f5f5f7]">
+            <span className="cosmic-text-xs font-medium uppercase tracking-normal text-[#86868b]">{h.wishlist.kicker}</span>
+            <h3 className="mt-4 cosmic-text-3xl font-bold leading-[1.1] tracking-[-0.02em] text-[#f5f5f7]">
               What happens outside your store matters.
               <br />
               Start understanding it.
             </h3>
-            <p className="mt-5 max-w-md ds-text-lg leading-relaxed text-[#a1a1aa]">{h.wishlist.sub}</p>
-            <p className="mt-6 ds-text-xs leading-relaxed text-[#86868b]">
+            <p className="mt-5 max-w-md cosmic-text-lg leading-relaxed text-[#a1a1aa]">{h.wishlist.sub}</p>
+            <p className="mt-6 cosmic-text-xs leading-relaxed text-[#86868b]">
               {h.compat}
             </p>
             <button
               onClick={onPilot}
-              className="mt-8 w-fit rounded-full border border-white/15 bg-[#1a1a24]/80 px-6 py-3 ds-text-sm font-medium text-[#f5f5f7] transition-all duration-200 hover:border-[#8B7CF6]/50 hover:text-[#8B7CF6] active:scale-[0.98]"
+              className="mt-8 w-fit rounded-full border border-white/15 bg-[#1a1a24]/80 px-6 py-3 cosmic-text-sm font-medium text-[#f5f5f7] transition-all duration-200 hover:border-[#8B7CF6]/50 hover:text-[#8B7CF6] active:scale-[0.98]"
             >
               Or book a full pilot →
             </button>
@@ -145,7 +145,7 @@ export function How({ onPilot }: { onPilot: () => void }) {
               </p>
             </form>
           ) : (
-            <div className="flex flex-col items-start justify-center rounded-[16px] bg-[#1a1a24]/80 p-8 shadow-lg">
+            <div className="flex flex-col items-start justify-center rounded-2xl bg-[#1a1a24]/80 p-8 shadow-lg">
               <span className="grid h-12 w-12 place-items-center rounded-full bg-[#8B7CF6] text-[#05050a] font-bold">
                 <Check size={22} strokeWidth={2.5} />
               </span>

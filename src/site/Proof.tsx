@@ -1,4 +1,4 @@
-import { ArrowUpRight, BadgeCheck, BarChart2, TrendingUp } from "lucide-react"
+import { ArrowUpRight, BadgeCheck } from "lucide-react"
 import { Reveal } from "../components/Reveal"
 import { SectionHeader } from "../components/SectionHeader"
 import { PROOF } from "../data/site"
@@ -63,7 +63,7 @@ export function Proof() {
 
           <Reveal delay={0.1}>
             <div className="flex items-center justify-center">
-              <span className="grid h-14 w-14 place-items-center rounded-full cosmic-gradient-violet text-[var(--cosmic-void)] font-bold transition-transform duration-300 hover:scale-110 cosmic-glow">
+              <span className="grid h-14 w-14 place-items-center rounded-full cosmic-gradient-violet text-[var(--cosmic-void)] font-bold transition-transform duration-300 hover:scale-110">
                 <ArrowUpRight size={26} strokeWidth={2.5} />
               </span>
             </div>

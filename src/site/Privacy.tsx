@@ -1,4 +1,4 @@
-import { ShieldCheck, Lock, Eye, Database, WifiOff, Zap, BadgeCheck } from "lucide-react"
+import { ShieldCheck, Lock, Eye, Database, WifiOff, Zap } from "lucide-react"
 import { Reveal } from "../components/Reveal"
 import { Section } from "../components/Section"
 import { SectionHeader } from "../components/SectionHeader"
@@ -34,9 +34,9 @@ export function Privacy() {
                     />
                   }
                   front={
-                    <article className="cosmic-card group flex h-full flex-col rounded-[20px] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+                    <article className="cosmic-card group flex h-full flex-col rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
                       <div className="flex items-start justify-between mb-6">
-                        <span className="grid h-14 w-14 place-items-center rounded-[16px] cosmic-gradient-violet/10 cosmic-border text-[#8B7CF6] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                        <span className="grid h-14 w-14 place-items-center rounded-2xl cosmic-gradient-violet/10 cosmic-border text-[#8B7CF6] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                           <Icon size={24} strokeWidth={1.8} />
                         </span>
                         <span className="cosmic-text-xs font-semibold" style={{ color: "var(--cosmic-text-muted)" }}>{pr.num}</span>

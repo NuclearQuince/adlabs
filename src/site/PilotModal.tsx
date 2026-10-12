@@ -70,7 +70,7 @@ export function PilotModal({ open, onClose }: { open: boolean; onClose: () => vo
 
         {!sent ? (
           <div className="p-6 sm:p-8">
-            <h3 className="text-3xl font-semibold leading-tight tracking-[-0.01em] text-[#f5f5f7]">{f.h2}</h3>
+            <h3 className="cosmic-text-3xl font-semibold leading-tight tracking-[-0.01em] text-[#f5f5f7]">{f.h2}</h3>
             <p className="mt-3 cosmic-text-sm leading-relaxed text-[#a1a1aa]">{f.sub}</p>
 
             <form onSubmit={submit} className="mt-7 flex flex-col gap-4">
@@ -117,7 +117,7 @@ export function PilotModal({ open, onClose }: { open: boolean; onClose: () => vo
               <button
                 type="submit"
                 disabled={sending}
-                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#8B7CF6] px-7 py-3.5 cosmic-text-sm font-semibold text-[#05050a] shadow-[0_8px_28px_rgba(139,124,246,0.3)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#6E5CE6] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+                className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#8B7CF6] px-7 py-3.5 cosmic-text-sm font-semibold text-[#05050a] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#6E5CE6] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {sending ? (
                   <>
@@ -136,7 +136,7 @@ export function PilotModal({ open, onClose }: { open: boolean; onClose: () => vo
             <span className="grid h-12 w-12 place-items-center rounded-full bg-[#8B7CF6] text-[#05050a]">
               <Check size={22} strokeWidth={2.6} />
             </span>
-            <h3 className="mt-5 text-3xl font-semibold text-[#f5f5f7]">{f.successTitle}</h3>
+            <h3 className="mt-5 cosmic-text-3xl font-semibold text-[#f5f5f7]">{f.successTitle}</h3>
             <p className="mt-3 cosmic-text-sm leading-relaxed text-[#a1a1aa]">{f.successBody}</p>
             <button
               onClick={onClose}

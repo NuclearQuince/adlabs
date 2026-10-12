@@ -31,7 +31,7 @@ return (
         {/* 01 — Hero */}
         <section className="relative overflow-hidden cosmic-bg pb-10 pt-24 text-[#f5f5f7] sm:pt-28">
           <div aria-hidden className="pointer-events-none absolute inset-0">
-            <img src="/images/demo/street.jpg" alt="" className="w-full h-full object-cover opacity-[0.08]" />
+            <img src="/images/hero-storefront.jpg" alt="" className="w-full h-full object-cover opacity-[0.08]" />
             <div className="absolute inset-0" style={{ background: "var(--cosmic-gradient-void)" }} />
           </div>
           <div aria-hidden className="pointer-events-none absolute inset-0 opacity-[0.03]" style={{
@@ -71,8 +71,8 @@ return (
               <dl className="mt-10 grid grid-cols-1 gap-6 border-t border-white/10 pt-8 sm:grid-cols-3 sm:gap-8">
                 {a.hero.stats.map((s) => (
                   <div key={s.label}>
-                    <dd className="font-mono ds-text-3xl font-bold text-[#f5f5f7]">{s.value}</dd>
-                    <dt className="mt-2 ds-text-xs leading-snug text-[#f5f5f7]/50">{s.label}</dt>
+                    <dd className="font-mono cosmic-text-3xl font-bold text-[#f5f5f7]">{s.value}</dd>
+                    <dt className="mt-2 cosmic-text-xs leading-snug text-[#f5f5f7]/50">{s.label}</dt>
                   </div>
                 ))}
               </dl>
@@ -85,9 +85,9 @@ return (
           <div className="mx-auto max-w-[1200px] px-6">
             <Reveal>
               <div className="grid gap-6 lg:grid-cols-2">
-                <article className="site-card overflow-hidden rounded-[24px] p-8 sm:p-10">
+                <article className="site-card overflow-hidden rounded-3xl p-8 sm:p-10">
                   <div className="relative -mx-8 -mt-8 mb-6 overflow-hidden sm:-mx-10 sm:-mt-10 h-40">
-                    <img src="/images/demo/store-interior.jpg" alt="" className="w-full h-full object-cover opacity-50" />
+                    <img src="/images/sector-beauty.jpg" alt="" className="img-grade w-full h-full object-cover opacity-35" />
                     <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent, var(--cosmic-surface))" }} />
                   </div>
                   <span className="section-kicker text-[#8B7CF6]">VISION</span>
@@ -97,9 +97,9 @@ return (
                   <p className="mt-4 cosmic-text-base leading-relaxed text-[#a1a1aa]">{a.vision.body}</p>
                 </article>
 
-                <article className="site-card-featured overflow-hidden rounded-[24px] p-8 sm:p-10">
+                <article className="site-card-featured overflow-hidden rounded-3xl p-8 sm:p-10">
                   <div className="relative -mx-8 -mt-8 mb-6 overflow-hidden sm:-mx-10 sm:-mt-10 h-40">
-                    <img src="/images/demo/calibration.jpg" alt="" className="w-full h-full object-cover opacity-50" />
+                    <img src="/images/sector-jewellery.jpg" alt="" className="img-grade w-full h-full object-cover opacity-35" />
                     <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, transparent, #16161f)" }} />
                   </div>
                   <span className="section-kicker text-[#8B7CF6]">MISSION</span>
@@ -114,13 +114,13 @@ return (
             <Reveal delay={0.15}>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
-                  { img: "/images/demo/sensor.jpg", label: "The Instrument" },
-                  { img: "/images/tech2/edge-compute.jpg", label: "On-Device AI" },
-                  { img: "/images/retail2/store-analytics.jpg", label: "Store-Ready" },
+                  { img: "/images/in-store-zones.jpg", label: "The Instrument" },
+                  { img: "/images/sector-fashion.jpg", label: "On-Device AI" },
+                  { img: "/images/window-after.jpg", label: "Store-Ready" },
                 ].map((c) => (
-                  <div key={c.label} className="cosmic-card group overflow-hidden rounded-[16px]">
+                  <div key={c.label} className="cosmic-card group overflow-hidden rounded-2xl">
                     <div className="relative h-36 overflow-hidden">
-                      <img src={c.img} alt={c.label} className="w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-105" />
+                      <img src={c.img} alt={c.label} className="img-grade w-full h-full object-cover opacity-40 transition-transform duration-500 group-hover:scale-105" />
                       <div className="absolute inset-0 flex items-end p-4">
                         <span className="cosmic-text-xs font-semibold tracking-[0.12em] uppercase cosmic-text">{c.label}</span>
                       </div>
@@ -137,7 +137,7 @@ return (
           <div className="mx-auto max-w-[1200px] px-6 relative z-10">
             <div className="grid gap-6 lg:grid-cols-2">
               <Reveal>
-                <article className="cosmic-card rounded-[24px] p-8 sm:p-10 h-full">
+                <article className="cosmic-card rounded-3xl p-8 sm:p-10 h-full">
                   <span className="section-kicker" style={{ color: "var(--cosmic-violet)" }}>THE PROBLEM</span>
                   <h2 className="mt-4 cosmic-text-2xl sm:cosmic-text-3xl font-semibold leading-tight tracking-[-0.01em] cosmic-text">
                     {a.problem.title} — {a.problem.lead}
@@ -158,7 +158,7 @@ return (
               </Reveal>
 
               <Reveal delay={0.1}>
-                <article className="cosmic-card-glow rounded-[24px] p-8 sm:p-10 h-full">
+                <article className="cosmic-card-glow rounded-3xl p-8 sm:p-10 h-full">
                   <span className="section-kicker" style={{ color: "var(--cosmic-violet)" }}>THE SOLUTION</span>
                   <h2 className="mt-4 cosmic-text-2xl sm:cosmic-text-3xl font-semibold leading-tight tracking-[-0.01em] cosmic-text">
                     {a.solution.title}
@@ -205,7 +205,7 @@ return (
                     <FlipCard
                       back={<AnswerPanel eyebrow="THE BASIS" note={c.answer} />}
                       front={
-                        <article className="cosmic-card group flex h-full flex-col rounded-[20px] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
+                        <article className="cosmic-card group flex h-full flex-col rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
                           <span className="font-mono cosmic-text-xs font-bold" style={{ color: "var(--cosmic-violet)" }}>{c.num}</span>
                           <h3 className="mt-4 cosmic-text-xl font-semibold leading-tight cosmic-text">{c.title}</h3>
                           <p className="mt-3 cosmic-text-sm leading-relaxed text-[#a1a1aa]">{c.desc}</p>
@@ -235,7 +235,7 @@ return (
               <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {principles.map((item, i) => (
                   <Reveal key={item.title} delay={i * 0.05}>
-                    <div className="site-card group rounded-[20px] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
+                    <div className="site-card group rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
                       <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[rgba(139,124,246,0.12)] text-[#8B7CF6] mb-4">
                         <item.icon size={20} strokeWidth={2} />
                       </span>
@@ -284,7 +284,7 @@ return (
           <div className="mx-auto max-w-[1200px] px-6">
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
               <Reveal>
-                <article className="site-card-featured rounded-[24px] p-8 sm:p-10 h-full">
+                <article className="site-card-featured rounded-3xl p-8 sm:p-10 h-full">
                   <div className="flex items-center gap-2 mb-4">
                     <span className="font-mono cosmic-text-xs tracking-[0.18em] text-[#f5f5f7]/50">{a.status.index} /</span>
                     <span className="section-kicker text-[#8B7CF6]">{a.status.kicker}</span>
@@ -306,7 +306,7 @@ return (
                   <div className="mt-8 flex flex-wrap gap-3">
                     <button
                       onClick={openPilot}
-                      className="inline-flex items-center gap-2 rounded-full bg-[#8B7CF6] px-7 py-3.5 cosmic-text-base font-semibold text-[#05050a] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(139,124,246,0.3)] active:scale-[0.98]"
+                      className="inline-flex items-center gap-2 rounded-full bg-[#8B7CF6] px-7 py-3.5 cosmic-text-base font-semibold text-[#05050a] transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.98]"
                     >
                       {a.status.cta} <ArrowRight size={16} strokeWidth={2.4} />
                     </button>
@@ -315,7 +315,7 @@ return (
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="site-card rounded-[24px] p-8 sm:p-10 h-full flex flex-col">
+                <div className="site-card rounded-3xl p-8 sm:p-10 h-full flex flex-col">
                   <span className="section-kicker text-[#8B7CF6]">{a.team.kicker}</span>
                   <h2 className="mt-4 cosmic-text-3xl font-semibold leading-tight tracking-[-0.01em] text-[#f5f5f7]">
                     {a.team.title}

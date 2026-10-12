@@ -30,23 +30,23 @@ export function Journey() {
                   1 day · live
                 </span>
               </div>
-              <p className="ds-text-xs font-medium text-[#86868b] mb-6">{j.funnelSub}</p>
+              <p className="cosmic-text-xs font-medium text-[#86868b] mb-6">{j.funnelSub}</p>
               <div className="flex flex-col gap-4">
                 {j.bars.map((b, i) => (
                   <div key={b.label} className="flex items-center gap-4">
                     <div className="w-14 shrink-0">
-                      <span className="block text-right ds-text-xs font-semibold uppercase tracking-normal text-[#a1a1aa]">
+                      <span className="block text-right cosmic-text-xs font-semibold uppercase tracking-normal text-[#a1a1aa]">
                         {b.label}
                       </span>
                       {i > 0 && (
-                        <span className="mt-0.5 block text-right ds-text-2xs font-semibold tracking-wide text-[#8B7CF6]/80">
+                        <span className="mt-0.5 block text-right cosmic-text-2xs font-semibold tracking-wide text-[#8B7CF6]/80">
                           {rates[i]}
                         </span>
                       )}
                     </div>
-                    <div className="h-8 flex-1 overflow-hidden rounded-[10px] bg-white/5">
+                    <div className="h-8 flex-1 overflow-hidden rounded-xl bg-white/5">
                       <motion.div
-                        className="flex h-full items-center justify-end rounded-[10px] pr-3"
+                        className="flex h-full items-center justify-end rounded-xl pr-3"
                         initial={reduce ? false : { width: "6%" }}
                         whileInView={{ width: `${Math.max((b.value / max) * 100, 8)}%` }}
                         viewport={{ once: true, margin: "-40px" }}
@@ -57,7 +57,7 @@ export function Journey() {
                             : `rgba(139,124,246,${0.4 + i * 0.12})`,
                         }}
                       >
-                        <span className="ds-text-xs font-bold text-[#05050a]">
+                        <span className="cosmic-text-xs font-bold text-[#05050a]">
                           {b.value.toLocaleString("en-US")}
                         </span>
                       </motion.div>
@@ -65,7 +65,7 @@ export function Journey() {
                   </div>
                 ))}
               </div>
-              <p className="mt-5 border-t border-white/8 pt-4 ds-text-2xs font-medium tracking-wide text-[#86868b]">
+              <p className="mt-5 border-t border-white/8 pt-4 cosmic-text-2xs font-medium tracking-wide text-[#86868b]">
                 Rate = conversion from the stage above · pass → stop → enter → explore → engage
               </p>
             </div>
@@ -82,10 +82,10 @@ export function Journey() {
                   <span className="grid h-11 w-11 place-items-center rounded-xl bg-[#8B7CF6]/10 text-[#8B7CF6] transition-all duration-300 group-hover:scale-110">
                     {StepIcon && <StepIcon size={19} strokeWidth={1.9} />}
                   </span>
-                  <span className="ds-text-xs font-semibold text-[#86868b]">{s.step}</span>
+                  <span className="cosmic-text-xs font-semibold text-[#86868b]">{s.step}</span>
                 </div>
                 <div className="mt-4 flex items-baseline justify-between">
-                  <h3 className="ds-text-xl font-bold text-[#f5f5f7]">{s.name}</h3>
+                  <h3 className="cosmic-text-xl font-bold text-[#f5f5f7]">{s.name}</h3>
                 </div>
                 <p className="mt-1 cosmic-text-xs font-medium uppercase tracking-normal text-[#a1a1aa]">
                   {s.countLabel}

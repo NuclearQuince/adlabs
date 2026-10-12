@@ -53,18 +53,18 @@ const founderCards = FOUNDERS.map((f, i) => (
       front={
         <article className="site-card site-card-glare group h-full p-8">
           <div className="flex flex-col items-center text-center h-full">
-            <div className="flex w-fit items-center justify-center rounded-[20px] bg-[#12121a] p-4 ring-1 ring-white/10 transition-all duration-500 group-hover:ring-[#8B7CF6]/30">
+            <div className="flex w-fit items-center justify-center rounded-2xl bg-[#12121a] p-4 ring-1 ring-white/10 transition-all duration-500 group-hover:ring-[#8B7CF6]/30">
               <FounderAvatar f={f} idx={i} />
             </div>
-            <h3 className="mt-8 ds-text-2xl font-bold text-[#f5f5f7]">{f.name}</h3>
+            <h3 className="mt-8 cosmic-text-2xl font-bold text-[#f5f5f7]">{f.name}</h3>
             <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#8B7CF6]/08 px-4 py-2">
-              <span className="ds-text-xs font-semibold text-[#8B7CF6]">{f.role}</span>
+              <span className="cosmic-text-xs font-semibold text-[#8B7CF6]">{f.role}</span>
             </div>
-            <p className="mt-6 max-w-xs mx-auto ds-text-sm leading-relaxed text-[#a1a1aa] flex-1">
+            <p className="mt-6 max-w-xs mx-auto cosmic-text-sm leading-relaxed text-[#a1a1aa] flex-1">
               {f.focus.split(" — ")[0] || f.focus.slice(0, 80)}…
             </p>
             <div className="mt-6 pt-5 border-t border-white/8 w-full">
-              <span className="ds-text-xs font-medium text-[#8B7CF6] flex items-center justify-center gap-2">
+              <span className="cosmic-text-xs font-medium text-[#8B7CF6] flex items-center justify-center gap-2">
                 Hover or tap to learn more
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
               </span>
@@ -94,12 +94,12 @@ const valueCards = [
   },
 ].map((v, i) => (
   <Reveal key={v.title} delay={0.08 * i}>
-    <div className="group rounded-[20px] border border-white/8 bg-[#1a1a24]/80 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+    <div className="group rounded-2xl border border-white/8 bg-[#1a1a24]/80 p-8 transition-all duration-500 hover:-translate-y-2 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
       <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#8B7CF6]/10 text-[#8B7CF6] mb-5 transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3">
         <v.icon size={24} strokeWidth={1.8} />
       </span>
-      <h4 className="ds-text-xl font-semibold text-[#f5f5f7] mb-3">{v.title}</h4>
-      <p className="ds-text-sm leading-relaxed text-[#a1a1aa]">{v.desc}</p>
+      <h4 className="cosmic-text-xl font-semibold text-[#f5f5f7] mb-3">{v.title}</h4>
+      <p className="cosmic-text-sm leading-relaxed text-[#a1a1aa]">{v.desc}</p>
     </div>
   </Reveal>
 ))
@@ -118,13 +118,10 @@ export function Team() {
 
         <Reveal delay={0.1}>
           <div className="mt-8 max-w-3xl mx-auto text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#8B7CF6]/08 px-4 py-2 ds-text-xs font-semibold text-[#8B7CF6]">
-              OUR ORIGIN
-            </span>
-            <h3 className="mt-6 ds-text-3xl font-bold text-[#f5f5f7] sm:ds-text-4xl leading-tight">
+            <h3 className="cosmic-text-3xl font-bold text-[#f5f5f7] sm:cosmic-text-4xl leading-tight">
               One question started the company the industry couldn't answer:
             </h3>
-            <p className="mt-8 max-w-2xl mx-auto ds-text-lg leading-relaxed text-[#a1a1aa]">
+            <p className="mt-8 max-w-2xl mx-auto cosmic-text-lg leading-relaxed text-[#a1a1aa]">
               <span className="text-[#f5f5f7] font-semibold">"Did the window work?"</span> — and nobody could prove it.
               Not with footfall. Not with sales. The decision happened at the glass, and the tools only counted who came inside.
             </p>
@@ -154,12 +151,9 @@ export function Team() {
         </Reveal>
 
         <Reveal delay={0.2}>
-          <div className="mt-8 rounded-[24px] border border-white/10 bg-[#1a1a24]/80 p-8 sm:p-12 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
+          <div className="mt-8 rounded-3xl border border-white/10 bg-[#1a1a24]/80 p-8 sm:p-12 transition-all duration-300 hover:border-[#8B7CF6]/40 hover:shadow-[0_12px_36px_rgba(139,124,246,0.15)]">
             <div className="text-center mb-12">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#8B7CF6]/08 px-4 py-2 cosmic-text-xs font-semibold text-[#8B7CF6]">
-                HOW WE OPERATE
-              </span>
-              <h3 className="mt-6 cosmic-text-2xl font-bold text-[#f5f5f7] sm:cosmic-text-3xl">Three Principles That Guide Every Decision</h3>
+              <h3 className="cosmic-text-2xl font-bold text-[#f5f5f7] sm:cosmic-text-3xl">Three Principles That Guide Every Decision</h3>
               <p className="mt-4 max-w-xl mx-auto cosmic-text-base text-[#a1a1aa]">Not values on a wall. Constraints we design into the product.</p>
             </div>
 

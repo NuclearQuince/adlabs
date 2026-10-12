@@ -43,8 +43,8 @@ export function Nav({ onPilot }: { onPilot: () => void }) {
   // exports served from file:// (where pathname is the filesystem path) hydrate cleanly.
   const [onHome, setOnHome] = useState(true)
   useEffect(() => {
-    // oxlint-disable-next-line react/set-state-in-effect
     const clean = (pathname || "/").replace(/\/(index\.html)?\/?$/, "")
+    // oxlint-disable-next-line react/set-state-in-effect
     setOnHome(clean === "" || clean === "/")
   }, [pathname])
   const { scrollYProgress } = useScroll()
@@ -159,7 +159,7 @@ export function Nav({ onPilot }: { onPilot: () => void }) {
       } else if (onHome) {
         scrollToHash(href.slice(1))
       } else {
-        window.location.href = `${fileRel("")}#${href.slice(1)}`
+        window.location.assign(`${fileRel("")}#${href.slice(1)}`)
       }
     } else {
       const [path, hash] = href.split("#")
@@ -168,7 +168,7 @@ export function Nav({ onPilot }: { onPilot: () => void }) {
       } else if (!exported) {
         router.push(href)
       } else {
-        window.location.href = fileRel(href)
+        window.location.assign(fileRel(href))
       }
     }
   }

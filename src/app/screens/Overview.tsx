@@ -72,7 +72,7 @@ export function Overview({ onNavigate }: { onNavigate?: (screen: string) => void
         <Panel pad={false} className="overflow-hidden">
           <div className="relative">
             <img
-              src="/images/hero-storefront.jpg"
+              src="/images/in-store-zones.jpg"
               alt={`${TENANT.name} storefront — ${TENANT.store}`}
               loading="lazy"
               className="h-52 w-full object-cover sm:h-60"

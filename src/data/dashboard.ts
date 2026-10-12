@@ -684,7 +684,7 @@ export const ADS: AdCampaign[] = [
     attributedRate: "0.31%",
     convertRate: "47%",
     uplift: "+12.4% vs unexposed",
-    flowImage: "/images/hero-storefront.jpg",
+    flowImage: "/images/sector-premium-retail.jpg",
     redirect: [
       { zone: "L2", name: "Leather Goods Island", pct: 41 },
       { zone: "H3", name: "Accessories Hero", pct: 33 },
@@ -733,7 +733,7 @@ export const ADS: AdCampaign[] = [
 
 export const AD_FLOW = {
   steps: [
-    { key: "saw", title: "Saw the ad", desc: "People passing the placement during the flight. Counted anonymously.", image: "/images/hero-storefront.jpg", value: "18,800" },
+    { key: "saw", title: "Saw the ad", desc: "People passing the placement during the flight. Counted anonymously.", image: "/images/blindspot-pass.jpg", value: "18,800" },
     { key: "entered", title: "Entered the store", desc: "Of those, the ones who walked in inside the attribution window.", image: "/images/blindspot-enter.jpg", value: "52" },
     { key: "zone", title: "Reached a zone", desc: "Which fixture area the attributed visitor first went to.", image: "/images/in-store-zones.jpg", value: "H3 · 48%" },
     { key: "converted", title: "Engaged & converted", desc: "High-intent touch on a product — the ad's real revenue signal.", image: "/images/sector-fashion.jpg", value: "52% · 27 buyers" },

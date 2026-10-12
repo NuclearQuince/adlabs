@@ -30,7 +30,7 @@ export function PresentMode({ theme, onClose }: { theme: "light" | "dark"; onClo
     <div className="app-scope fixed inset-0 z-50 flex flex-col" data-theme={theme} style={{ background: "var(--app-bg)" }}>
       <header className="flex items-center justify-between border-b border-[var(--app-line)] px-6 py-4">
         <div className="flex items-center gap-3">
-          <span className="grid h-8 w-8 place-items-center rounded-[9px] font-inter cosmic-text-sm font-extrabold" style={{ background: theme === "dark" ? "#f5f5f7" : "#16161f", color: theme === "dark" ? "#16161f" : "#fff" }}>
+          <span className="grid h-8 w-8 place-items-center rounded-xl font-inter cosmic-text-sm font-extrabold" style={{ background: theme === "dark" ? "#f5f5f7" : "#16161f", color: theme === "dark" ? "#16161f" : "#fff" }}>
             Ad
           </span>
           <span className="font-inter cosmic-text-sm font-bold text-[var(--app-text)]">AD Labs · Present</span>

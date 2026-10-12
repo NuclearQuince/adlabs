@@ -61,7 +61,7 @@ export function WhyUs() {
         </div>
 
         <Reveal delay={0.15}>
-          <div className="mt-12 rounded-[24px] border border-white/10 bg-[#12121a] p-7 lg:p-9">
+          <div className="mt-12 rounded-3xl border border-white/10 bg-[#12121a] p-7 lg:p-9">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
               <div className="max-w-md">
                 <h3 className="cosmic-text-xl font-bold leading-tight tracking-[-0.02em] text-[#f5f5f7]">{w.kpi.title}</h3>
@@ -80,7 +80,7 @@ export function WhyUs() {
         </Reveal>
 
         <Reveal delay={0.2}>
-          <div className="mt-8 flex flex-col gap-5 rounded-[24px] border border-white/10 p-7 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mt-8 flex flex-col gap-5 rounded-3xl border border-white/10 p-7 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <h3 className="cosmic-text-base font-semibold text-[#f5f5f7]">{w.ip.title}</h3>
               <div className="mt-4 flex flex-wrap gap-2">

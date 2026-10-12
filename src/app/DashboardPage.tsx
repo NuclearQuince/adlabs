@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import {
   LayoutDashboard, Store, Megaphone, Map, FileText, ClipboardList,
   Sun, Moon, Play, Presentation, ArrowLeft, ShieldCheck,
-  TrendingUp, BarChart3, Users, Package, Sparkles, ChartPie, History as HistoryIcon, Search,
-  Eye, Zap, Target, Activity, Globe, Layers, Settings, HelpCircle, MessageSquare,
+  BarChart3, Users, Package, Sparkles, ChartPie, History as HistoryIcon, Search,
+  Eye,
 } from "lucide-react"
 import Link from "next/link"
 import { Logo } from "../components/Logo"
@@ -207,7 +207,7 @@ export function DashboardPage() {
                         key={n.id}
                         onClick={() => setScreen(n.id)}
                         aria-current={active}
-                        className="relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-left font-inter ds-text-sm font-medium transition-all duration-200 hover:bg-[var(--app-card)] hover:shadow-sm"
+                        className="relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-left font-inter cosmic-text-sm font-medium transition-all duration-200 hover:bg-[var(--app-card)] hover:shadow-sm"
                         style={{ color: active ? "var(--app-text)" : "var(--app-sub)" }}
                       >
                         {active && (

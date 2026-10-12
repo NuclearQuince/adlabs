@@ -84,7 +84,7 @@ export function Pillars() {
 
           {/* CTA tile completes the grid */}
           <Reveal delay={0.35}>
-            <div className="flex h-full flex-col justify-between overflow-hidden rounded-[24px] border border-[#8B7CF6]/25 bg-[#1a1a24] p-6">
+            <div className="flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-[#8B7CF6]/25 bg-[#1a1a24] p-6">
               <div>
                 <p className="font-mono cosmic-text-2xs tracking-[0.16em] text-[#8B7CF6]">ONE EDGE BOX · ALL FIVE</p>
                 <h3 className="mt-3 font-serif cosmic-text-xl font-semibold leading-snug text-[#f5f5f7]">

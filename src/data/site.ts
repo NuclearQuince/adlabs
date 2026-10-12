@@ -507,7 +507,7 @@ export const PROOF = {
     value: "7.3%",
     metric: "Window Stop Rate",
     desc: "Statistically measured over a 14-Day A/B Rotation.",
-    image: "/images/hero-storefront.jpg",
+    image: "/images/window-after.jpg",
   },
   uplift: "↑ +14.6% observed uplift",
   demoNote: "Illustrative pilot scenario — sample window rotation, fourteen-day cycle. Your baseline, rotation and verdict are computed from your own window on your own street.",
