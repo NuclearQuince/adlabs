@@ -56,6 +56,7 @@ export const CYCLE_NAV: { label: string; href: string }[] = [
   { label: "Plans", href: "#plans" },
   { label: "Floor", href: "#floor" },
   { label: "Outcomes", href: "#metrics" },
+  { label: "Intelligence", href: "#intelligence" },
   { label: "Privacy", href: "#privacy" },
   { label: "How", href: "#how" },
   { label: "Talk to us", href: "#contact" },
@@ -366,9 +367,9 @@ export const JOURNEY = {
       rate: "87.2%",
       rateLabel: "Active Browsing",
       desc: "Visitors moving through zones with deliberate engagement.",
-      metrics: ["Top Zone: Leather Goods Island · 68% traffic share"],
+      metrics: ["Top zone: Leather Goods Island · 68% visit rate"],
       share: 87.2,
-      answer: "87.2% of visitors browse deliberately — most flow to the Leather Goods Island, which takes 68% of in-store traffic.",
+      answer: "87.2% of visitors browse deliberately — Leather Island’s 68% visit rate means most entered that zone (zones overlap; rates need not sum to 100%).",
     },
     {
       step: "STEP 05",
@@ -410,17 +411,17 @@ export const ATELIER = {
       label: "1. Zone Heatmaps",
       overlay: {
         tag: "ZONE 01 · APPAREL",
-        big: "41% Traffic",
+        big: "41% visit rate",
         lines: ["Avg Dwell: 6m 12s", "182 Shoppers"],
-        note: "Zone H3 commands 55% of traffic; Zone F1 stays under-lit at 9% — a lighting problem, not a layout one.",
+        note: "H3 visit rate 55% and L2 68% can both be true — zones overlap, so rates need not sum to 100%. F1 at 9% is under-lit (lighting, not layout).",
         move: "Relight Zone F1 and re-measure for 7 days — dead light reads as dead floor.",
       },
       pin: { title: "Hero Handbag Vitrine", value: "8.4s Gaze Time · 42% Touch Rate" },
       markers: [
-        { title: "Zone H3 · Hero Rotunda", value: "55% traffic · 9m 45s", x: 62, y: 32 },
-        { title: "Zone L2 · Leather Island", value: "68% traffic · 7m 04s", x: 34, y: 58 },
-        { title: "Zone A1 · Apparel", value: "41% traffic · 6m 12s", x: 80, y: 68 },
-        { title: "Zone F1 · Vitrine West", value: "9% traffic · under-lit", x: 18, y: 38 },
+        { title: "Zone H3 · Hero Rotunda", value: "55% visit rate · 9m 45s", x: 62, y: 32 },
+        { title: "Zone L2 · Leather Island", value: "68% visit rate · 7m 04s", x: 34, y: 58 },
+        { title: "Zone A1 · Apparel", value: "41% visit rate · 6m 12s", x: 80, y: 68 },
+        { title: "Zone F1 · Vitrine West", value: "9% visit rate · under-lit", x: 18, y: 38 },
       ],
     },
     {
@@ -612,6 +613,71 @@ export type MetricCard = {
   max?: number
   parts?: { label: string; value: number }[]
   hours?: number[]
+}
+
+/** Four pillars + patterns/predictions — concise, honest maturity, no face-ID product. */
+export const INTELLIGENCE = {
+  kicker: "Intelligence",
+  h2: "What the cameras tell you.",
+  sub: "From today’s floor to patterns that learn with history. CCTV only — no face recognition.",
+  pillars: [
+    {
+      id: "retail",
+      num: "01",
+      title: "Retail",
+      desc: "Pass → stop → enter → zone → queue, with window stop-rate for A/B.",
+      chips: [
+        { label: "Funnel live", maturity: "live" },
+        { label: "Window stop next", maturity: "next" },
+      ],
+    },
+    {
+      id: "visitor",
+      num: "02",
+      title: "Visitor",
+      desc: "Privacy-safe cohorts, solo vs group, and dwell journeys.",
+      chips: [
+        { label: "Cohorts live", maturity: "live" },
+        { label: "Paths next", maturity: "next" },
+      ],
+    },
+    {
+      id: "store",
+      num: "03",
+      title: "Store",
+      desc: "Occupancy, zone heat, staffing windows, and under-lit spots.",
+      chips: [
+        { label: "Heat live", maturity: "live" },
+        { label: "Multi-cam next", maturity: "next" },
+      ],
+    },
+    {
+      id: "shelf",
+      num: "04",
+      title: "Shelf",
+      desc: "Near-display attention from CCTV — not barcode POS.",
+      chips: [
+        { label: "Interest live", maturity: "live" },
+        { label: "Fixture next", maturity: "next" },
+      ],
+    },
+  ],
+  depth: [
+    {
+      title: "Patterns",
+      maturity: "learns",
+      maturityLabel: "After months",
+      desc: "Weekly motifs from anonymous rollups — peak hours, quiet zones.",
+    },
+    {
+      title: "Predictions",
+      maturity: "learns",
+      maturityLabel: "4–12 weeks+",
+      desc: "Footfall and queue forecasts for staffing; improves with history.",
+    },
+  ],
+  footer: "See each view in the dashboard — labeled by maturity.",
+  cta: "Open dashboard",
 }
 
 export const METRICS: { index: string; kicker: string; h2: string; sub: string; note: string; items: MetricCard[] } = {
