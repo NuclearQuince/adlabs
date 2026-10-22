@@ -6,7 +6,8 @@ import {
   LayoutDashboard, Store, Megaphone, Map, FileText, ClipboardList,
   Sun, Moon, Play, Presentation, ArrowLeft, ShieldCheck,
   BarChart3, Users, Package, Sparkles, History as HistoryIcon, Search,
-  Eye, Timer,
+  Eye, Timer, ShoppingBag, Building2, Repeat, LineChart as LineIcon,
+  UserCog, ShieldAlert,
 } from "lucide-react"
 import Link from "next/link"
 import { Logo } from "../components/Logo"
@@ -27,6 +28,14 @@ import { Product } from "./screens/Product"
 import { Alerts } from "./screens/Alerts"
 import { Tour } from "./screens/Tour"
 import { Ads } from "./screens/Ads"
+import { Retail } from "./screens/Retail"
+import { Visitor } from "./screens/Visitor"
+import { StoreIntel } from "./screens/StoreIntel"
+import { Shelf } from "./screens/Shelf"
+import { Patterns } from "./screens/Patterns"
+import { Forecasts } from "./screens/Forecasts"
+import { Staff } from "./screens/Staff"
+import { Safety } from "./screens/Safety"
 import { PresentMode } from "./PresentMode"
 import { VoiceAssistant } from "./VoiceAssistant"
 import { CmdPalette } from "./CmdPalette"
@@ -48,6 +57,15 @@ type Screen =
   | "alerts"
   | "tour"
   | "ads"
+  | "retail"
+  | "visitor"
+  | "storeIntel"
+  | "shelf"
+  | "patterns"
+  | "forecasts"
+  | "staff"
+  | "safety"
+
 type Role = "Brand" | "Store"
 type Theme = "light" | "dark"
 
@@ -76,17 +94,30 @@ const NAV_SECTIONS_BRAND: { label: string; items: NavItem[] }[] = [
     ],
   },
   {
-    label: "Performance",
+    label: "Owner actions",
     items: [
+      { id: "staff", label: "Staff", icon: UserCog, color: "#34C759" },
+      { id: "safety", label: "Safety · cautions", icon: ShieldAlert, color: "#FF9500" },
       { id: "campaigns", label: "Window performance", icon: Megaphone, color: "#AF52DE" },
-      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
-      { id: "compare", label: "Compare stores", icon: BarChart3, color: "#5856D6" },
-      { id: "history", label: "History", icon: HistoryIcon, color: "#007AFF" },
     ],
   },
   {
-    label: "More",
+    label: "Intelligence",
     items: [
+      { id: "retail", label: "Retail", icon: ShoppingBag, color: "#8B7CF6" },
+      { id: "visitor", label: "Visitor", icon: Users, color: "#FF9500" },
+      { id: "storeIntel", label: "Store", icon: Building2, color: "#5ac8fa" },
+      { id: "shelf", label: "Shelf / display", icon: Package, color: "#34C759" },
+      { id: "patterns", label: "Patterns", icon: Repeat, color: "#AF52DE" },
+      { id: "forecasts", label: "Forecasts", icon: LineIcon, color: "#007AFF" },
+    ],
+  },
+  {
+    label: "Performance",
+    items: [
+      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
+      { id: "compare", label: "Compare stores", icon: BarChart3, color: "#5856D6" },
+      { id: "history", label: "History", icon: HistoryIcon, color: "#007AFF" },
       { id: "brief", label: "Monday brief", icon: FileText, badge: 3, color: "#FF3B30" },
       { id: "demographics", label: "Age & groups", icon: Users, color: "#FF9500" },
       { id: "product", label: "Display interest", icon: Package, color: "#34C759" },
@@ -103,6 +134,8 @@ const NAV_SECTIONS_STORE: { label: string; items: NavItem[] }[] = [
       { id: "queues", label: "Queues", icon: Timer, color: "#5ac8fa" },
       { id: "zones", label: "Floor zones", icon: Map, color: "#FF9500" },
       { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: ALERT_COUNT, color: "#FF3B30" },
+      { id: "staff", label: "Staff", icon: UserCog, color: "#34C759" },
+      { id: "safety", label: "Safety · cautions", icon: ShieldAlert, color: "#FF9500" },
     ],
   },
   {
@@ -131,11 +164,17 @@ const PAGE_TITLES: Record<Screen, string> = {
   alerts: "Alerts",
   tour: "How to read this",
   ads: "Out-of-home",
+  retail: "Retail intelligence",
+  visitor: "Visitor intelligence",
+  storeIntel: "Store intelligence",
+  shelf: "Shelf / display",
+  patterns: "Patterns",
+  forecasts: "Forecasts",
+  staff: "Staff",
+  safety: "Safety · cautions",
 }
 
 export function DashboardPage() {
-  // Always start dark on SSR + first client paint to avoid hydration mismatch;
-  // restore saved preference after mount.
   const [theme, setTheme] = useState<Theme>("dark")
   const [role, setRole] = useState<Role>("Brand")
   const [screen, setScreen] = useState<Screen>("overview")
@@ -173,7 +212,9 @@ export function DashboardPage() {
 
   const changeRole = (r: Role) => {
     setRole(r)
-    const storeOk: Screen[] = ["stores", "store", "manager", "queues", "zones", "alerts", "tour"]
+    const storeOk: Screen[] = [
+      "stores", "store", "manager", "queues", "zones", "alerts", "tour", "staff", "safety",
+    ]
     if (r === "Store" && !storeOk.includes(screen)) {
       setScreen("manager")
     }
@@ -202,6 +243,14 @@ export function DashboardPage() {
       case "alerts": return <Alerts />
       case "tour": return <Tour />
       case "ads": return <Ads />
+      case "retail": return <Retail />
+      case "visitor": return <Visitor />
+      case "storeIntel": return <StoreIntel />
+      case "shelf": return <Shelf />
+      case "patterns": return <Patterns />
+      case "forecasts": return <Forecasts />
+      case "staff": return <Staff />
+      case "safety": return <Safety />
       default: return <Overview />
     }
   }
@@ -210,7 +259,6 @@ export function DashboardPage() {
     <div className="app-scope page-in relative min-h-screen" data-theme={theme} style={{ background: "var(--app-bg)" }}>
       <div aria-hidden className="app-glow" />
       <div className="relative mx-auto flex max-w-[1400px]">
-        {/* Sidebar */}
         <aside className="sticky top-0 hidden h-screen w-[260px] shrink-0 flex-col border-r border-[var(--app-line)] px-4 py-6 lg:flex">
           <Link href="/" aria-label="Back to AD Labs website" className="px-2">
             <Logo dark={theme === "dark"} />
@@ -287,9 +335,7 @@ export function DashboardPage() {
           </div>
         </aside>
 
-        {/* Main */}
         <div className="min-w-0 flex-1">
-          {/* Topbar */}
           <header className="sticky top-0 z-30 border-b border-[var(--app-line)] backdrop-blur-xl" style={{ background: "color-mix(in srgb, var(--app-bg) 82%, transparent)" }}>
             <div className="flex flex-wrap items-center gap-3 px-5 py-3.5 sm:px-7">
               <Link
@@ -314,95 +360,44 @@ export function DashboardPage() {
                   </motion.p>
                 </AnimatePresence>
               </div>
-              <div className="hidden min-w-0 items-center gap-2.5 sm:flex">
-                <span className="h-5 w-px shrink-0" style={{ background: "var(--app-line)" }} />
-                <span
-                  className="grid h-8 w-8 shrink-0 place-items-center rounded-full font-inter cosmic-text-xs font-bold"
-                  style={{ background: "var(--app-gold-soft)", color: "var(--app-gold)" }}
-                  title={`${greeting()}, ${OWNER_NAME} · ${OWNER_ROLE}`}
-                >
-                  {OWNER_NAME[0]}
-                </span>
-              </div>
-              <div className="ml-auto flex flex-wrap items-center gap-2.5">
-                <span className="hidden items-center gap-1.5 font-mono cosmic-text-xs font-semibold font-num text-[var(--app-sub)] md:inline-flex">
-                  <span className="h-1.5 w-1.5 animate-pulse rounded-full" style={{ background: "#8B7CF6" }} />
-                  {now && now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: false })}
-                </span>
-                <Chip tone="live">Live</Chip>
-                <Chip tone="gold" title={SIMULATED_NOTE}>
-                  Demo
-                </Chip>
+
+              <div className="ml-auto flex flex-wrap items-center gap-2">
                 <Segmented options={["Brand", "Store"] as const} value={role} onChange={changeRole} />
                 <button
+                  type="button"
                   onClick={() => setCmd(true)}
-                  aria-label="Jump to a screen"
-                  className="hidden h-9 items-center gap-2 rounded-full border border-[var(--app-line)] px-3 font-inter cosmic-text-xs font-semibold text-[var(--app-faint)] transition-colors hover:text-[var(--app-text)] md:flex"
+                  className="hidden items-center gap-2 rounded-full border border-[var(--app-line)] px-3 py-1.5 font-inter cosmic-text-xs text-[var(--app-faint)] sm:inline-flex"
                 >
-                  <Search size={13} strokeWidth={2.2} />
-                  Jump
-                  <kbd className="rounded border border-[var(--app-line)] px-1 font-inter cosmic-text-2xs">⌘K</kbd>
+                  <Search size={13} />
+                  ⌘K
                 </button>
                 <button
-                  onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                  type="button"
+                  onClick={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
+                  className="grid h-9 w-9 place-items-center rounded-full border border-[var(--app-line)] text-[var(--app-sub)]"
                   aria-label="Toggle theme"
-                  className="grid h-9 w-9 place-items-center rounded-full border border-[var(--app-line)] text-[var(--app-sub)] transition-colors hover:text-[var(--app-text)]"
                 >
-                  {theme === "light" ? <Moon size={15} /> : <Sun size={15} />}
+                  {theme === "dark" ? <Sun size={15} /> : <Moon size={15} />}
                 </button>
-                <button
-                  onClick={() => setPresent(true)}
-                  aria-label="Enter present mode"
-                  className="hidden h-9 items-center gap-2 rounded-full px-4 font-inter cosmic-text-xs font-semibold text-[var(--app-card)] transition-transform hover:-translate-y-0.5 sm:flex"
-                  style={{ background: "var(--app-text)" }}
-                >
-                  <Play size={13} strokeWidth={2.6} />
-                  Present
-                </button>
+                <Chip tone="neutral" title={SIMULATED_NOTE}>Demo</Chip>
               </div>
             </div>
-            {/* Mobile nav */}
-            <div className="flex gap-2 overflow-x-auto px-4 pb-2.5 lg:hidden" style={{ scrollBehavior: "smooth", scrollbarWidth: "none" }}>
-              {navSections.flatMap((s) => s.items).map((n) => {
-                const active = screen === n.id || (n.id === "stores" && screen === "store")
-                return (
-                  <button
-                    key={n.id}
-                    onClick={() => setScreen(n.id)}
-                    className="shrink-0 flex items-center gap-2 rounded-full px-3.5 py-2 font-inter cosmic-text-xs font-medium transition-all duration-200"
-                    style={{
-                      background: active ? `${n.color}20` : "var(--app-card)",
-                      color: active ? n.color : "var(--app-sub)",
-                      boxShadow: active ? "var(--app-shadow)" : "none",
-                    }}
-                  >
-                    <n.icon size={14} strokeWidth={2.2} />
-                    {n.label}
-                  </button>
-                )
-              })}
+            <div className="flex items-center justify-between gap-3 border-t border-[var(--app-line)] px-5 py-2 sm:px-7">
+              <p className="truncate font-inter cosmic-text-xs text-[var(--app-faint)]">
+                {greeting()}, {OWNER_NAME} · {OWNER_ROLE}
+                {now ? ` · ${now.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}` : ""}
+              </p>
+              <button
+                type="button"
+                onClick={() => setPresent(true)}
+                className="inline-flex items-center gap-1.5 font-inter cosmic-text-xs font-semibold text-[var(--app-sub)] lg:hidden"
+              >
+                <Play size={12} /> Present
+              </button>
             </div>
           </header>
 
-          <main className="px-5 py-6 sm:px-7 sm:py-8">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={screen + role}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.24, ease: "easeOut" }}
-              >
-                {renderScreen()}
-              </motion.div>
-            </AnimatePresence>
-          </main>
-
-          <footer className="border-t border-[var(--app-line)] px-5 py-5 sm:px-7">
-            <p className="font-inter cosmic-text-xs text-[var(--app-faint)]">
-              AD Labs Dashboard · {SIMULATED_NOTE} · © 2026 Ad Labs Tech Pvt Ltd
-            </p>
-          </footer>
+          <main className="px-5 py-6 sm:px-7 sm:py-8">{renderScreen()}</main>
         </div>
       </div>
 
@@ -413,7 +408,7 @@ export function DashboardPage() {
             setSelectedStore(storeId)
             setScreen("store")
           } else {
-            setScreen(s)
+            setScreen(s as Screen)
           }
         }}
       />

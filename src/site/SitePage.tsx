@@ -7,6 +7,7 @@ import { BlindSpot } from "./BlindSpot"
 import { Plans } from "./Plans"
 import { FloorStrip } from "./FloorStrip"
 import { Metrics } from "./Metrics"
+import { Intelligence } from "./Intelligence"
 import { How } from "./How"
 import { Privacy } from "./Privacy"
 import { Faq } from "./Faq"
@@ -27,6 +28,7 @@ export function SitePage() {
         <Plans onPilot={openPilot} />
         <FloorStrip />
         <Metrics />
+        <Intelligence />
         <Privacy />
         <How onPilot={openPilot} />
         <Faq />
