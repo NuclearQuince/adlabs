@@ -50,54 +50,40 @@ export const FOUNDERS: Founder[] = [
   },
 ]
 
-export const NAV = [
+/** Precise home cycle — labels match mounted sections only. No dead anchors. */
+export const CYCLE_NAV: { label: string; href: string }[] = [
   { label: "Problem", href: "#blindspot" },
   { label: "Plans", href: "#plans" },
+  { label: "Floor", href: "#floor" },
   { label: "Outcomes", href: "#metrics" },
   { label: "Privacy", href: "#privacy" },
   { label: "How", href: "#how" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
+  { label: "Talk to us", href: "#contact" },
 ]
 
-export const PRIMARY_NAV: { label: string; href: string }[] = [
-  { label: "Plans", href: "#plans" },
-  { label: "Privacy", href: "#privacy" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
-]
+/** @deprecated use CYCLE_NAV — kept for Footer fallback */
+export const NAV = CYCLE_NAV
+
+export const PRIMARY_NAV = CYCLE_NAV
 
 export type NavLinkDef = { label: string; href: string; desc?: string; new?: boolean }
 export type NavGroup = { label: string; id: string; links: NavLinkDef[] }
 
+/** Compact footer groups — every href is live. */
 export const NAV_GROUPS: NavGroup[] = [
   {
-    label: "Product",
-    id: "product",
-    links: [
-      { label: "The Problem", href: "#blindspot", desc: "Passers-by you never counted" },
-      { label: "Edge vs Cloud", href: "#plans", desc: "Two ways to deploy" },
-      { label: "See the floor", href: "#floor", desc: "Zones that make the store readable" },
-      { label: "Outcomes", href: "#metrics", desc: "Six EdgeSight-class signals" },
-      { label: "Live Dashboard", href: "/dashboard", desc: "What’s happening now" },
-    ],
+    label: "Cycle",
+    id: "cycle",
+    links: CYCLE_NAV.map((l) => ({ label: l.label, href: l.href })),
   },
   {
-    label: "Company",
-    id: "company",
+    label: "More",
+    id: "more",
     links: [
-      { label: "About AD Labs", href: "/about", desc: "Vision, dual deployment, compliance" },
-      { label: "Discover", href: "/discover", desc: "Pick Edge, Cloud, or not sure" },
-      { label: "Privacy", href: "#privacy", desc: "DPDP + GDPR on both paths" },
-    ],
-  },
-  {
-    label: "Start",
-    id: "support",
-    links: [
-      { label: "How it works", href: "#how", desc: "Three steps to a Monday Brief" },
-      { label: "FAQ", href: "#faq", desc: "Straight answers" },
-      { label: "Talk to us", href: "#contact", desc: "A human replies" },
+      { label: "Live dashboard", href: "/dashboard" },
+      { label: "Discover", href: "/discover" },
+      { label: "About", href: "/about" },
+      { label: "FAQ", href: "#faq" },
     ],
   },
 ]
@@ -116,7 +102,7 @@ export const HERO = {
   cam: "RTSP CAM 01 · BANDRA W · 09:14:07",
   tracking: [
     { label: "PASSER 07", meta: "1.4 m/s → window", x: 62, y: 28 },
-    { label: "STOP", meta: "gaze 4.8s", x: 79, y: 56 },
+    { label: "STOP", meta: "dwell 4.8s", x: 79, y: 56 },
   ],
   live: [
     { label: "people on the street", value: 2481 },
@@ -631,13 +617,13 @@ export type MetricCard = {
 export const METRICS: { index: string; kicker: string; h2: string; sub: string; note: string; items: MetricCard[] } = {
   index: "03",
   kicker: "Outcomes",
-  h2: "Six signals EdgeSight can produce.",
-  sub: "Plain-language metrics from cameras you already own — Edge or Cloud.",
-  note: "Demo sample for Organic Clothing Co., Bandra. Live numbers come from tripwires, zones, and rollups on your path.",
+  h2: "Six signals the stack can produce.",
+  sub: "Grounded in EdgeSight (YOLO26s + ByteTrack + tripwires/zones). Demo numbers for Organic Clothing Co., Bandra.",
+  note: "Stop rate needs a window zone (≥4s). Engaged dwell is head-facing + dwell — not pupil gaze. No POS sales claims.",
   items: [
     {
       title: "Window stop rate",
-      desc: "How many passers-by paused at your window.",
+      desc: "Share of passers paused ≥4s in the window zone (needs street-facing cam).",
       stat: "7.5%",
       delta: "+0.4pp today",
       deltaTone: "pos",
@@ -648,19 +634,19 @@ export const METRICS: { index: string; kicker: string; h2: string; sub: string; 
     },
     {
       title: "Engaged dwell",
-      desc: "Time facing the zone (attention + dwell). Not a face ID.",
+      desc: "Share facing the zone (head-pose proxy + dwell). Not eye tracking or face ID.",
       stat: "39%",
       delta: "deep > 4s",
       deltaTone: "pos",
       hint: "vs last week",
-      why: "Deep attention predicts purchase better than raw footfall.",
+      why: "Engaged dwell beats raw footfall for display decisions.",
       viz: "donut",
       value: 39,
       spark: [30, 32, 34, 37, 38, 39],
     },
     {
       title: "Stop → entry",
-      desc: "Of those who stopped, how many crossed the door.",
+      desc: "Of window stops, how many then crossed the entrance tripwire.",
       stat: "21%",
       delta: "+1.2pp this wk",
       deltaTone: "pos",
@@ -671,7 +657,7 @@ export const METRICS: { index: string; kicker: string; h2: string; sub: string; 
     },
     {
       title: "Passes at glass",
-      desc: "People tracked past the window camera, by hour.",
+      desc: "Tracks past the window/outdoor camera — hourly rollup.",
       stat: "2,481",
       delta: "today · peak 15–17",
       deltaTone: "flat",
@@ -682,7 +668,7 @@ export const METRICS: { index: string; kicker: string; h2: string; sub: string; 
     },
     {
       title: "Zone dwell",
-      desc: "Where attention lives inside the store.",
+      desc: "Mean time in a floor polygon (foot-point in zone).",
       stat: "9m 45s",
       delta: "hero rotunda",
       deltaTone: "pos",
@@ -693,12 +679,12 @@ export const METRICS: { index: string; kicker: string; h2: string; sub: string; 
     },
     {
       title: "Window A/B uplift",
-      desc: "Before/after stop rate on a 14-day rotation.",
+      desc: "Stop-rate delta across a 14-day schedule (same metric, two periods).",
       stat: "+14.6%",
-      delta: "verified A/B · 14d",
+      delta: "demo A/B · 14d",
       deltaTone: "pos",
-      hint: "verified A/B",
-      why: "Keep or kill, decided by the street.",
+      hint: "schedule A/B",
+      why: "Keep or kill, decided by the street — not POS.",
       viz: "bars",
       spark: [10.2, 10.8, 11.5, 12.1, 12.6, 13.1, 12.0],
     },

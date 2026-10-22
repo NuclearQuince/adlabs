@@ -98,67 +98,41 @@ export function Hero({ onPilot }: { onPilot: () => void }) {
             <div className="relative">
               <div className="absolute -inset-10 bg-[radial-gradient(500px_420px_at_50%_50%,rgba(139,124,246,0.18),transparent_70%)]" />
 
-              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b12]/90 shadow-[0_0_80px_rgba(0,0,0,0.6)] backdrop-blur-md">
-                <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.02] px-4 py-3">
-                  <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
-                  <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
-                  <span className="h-2 w-2 rounded-full bg-[#28c840]" />
-                  <span className="ml-2 truncate font-mono cosmic-text-2xs text-white/40">edge · cloud · adlabs.in</span>
-                  <span className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-[#3ECF8E]/40 bg-[#3ECF8E]/10 px-2.5 py-1 font-mono cosmic-text-2xs text-[#6effb0]">
-                    <span className="h-1 w-1 animate-pulse rounded-full bg-[#3ECF8E]" />
-                    LIVE
-                  </span>
-                </div>
-
-                <div className="space-y-5 px-5 py-5">
-                  {[
-                    { k: "PASS", v: "2,481", sub: "walked past today", bar: 78, color: "#8B7CF6" },
-                    { k: "STOP", v: "186", sub: "paused ≥ 4 seconds", bar: 41, color: "#3ECF8E" },
-                    { k: "ENTER", v: "39", sub: "crossed the threshold", bar: 9, color: "#5ac8fa" },
-                  ].map((r) => (
-                    <div key={r.k}>
-                      <div className="flex items-baseline justify-between">
-                        <span className="font-mono cosmic-text-2xs tracking-[0.18em] text-white/40">{r.k}</span>
-                        <span className="font-mono cosmic-text-2xl font-bold leading-none" style={{ color: r.color }}>{r.v}</span>
-                      </div>
-                      <p className="mt-1 cosmic-text-xs" style={{ color: "rgba(255,255,255,0.4)" }}>{r.sub}</p>
-                      <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/5">
-                        <div className="h-full rounded-full" style={{ width: `${r.bar}%`, background: r.color, opacity: 0.75 }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t border-white/10 px-5 py-4">
-                  <div className="flex items-center justify-between">
-                    <p className="font-mono cosmic-text-2xs tracking-[0.18em] text-white/40">FOOTFALL · 14 DAYS</p>
-                    <p className="font-mono cosmic-text-2xs text-[#8B7CF6]">+12%</p>
+              <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b12] shadow-[0_0_80px_rgba(0,0,0,0.6)]">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src="/images/hero-storefront.jpg"
+                    alt="Organic Clothing Co. Bandra storefront"
+                    className="h-full w-full object-cover"
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0b0b12] via-[#0b0b12]/55 to-transparent" />
+                  <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-[#3ECF8E]/40 bg-[#0b0b12]/70 px-2.5 py-1 font-mono cosmic-text-2xs text-[#6effb0] backdrop-blur-sm">
+                    <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#3ECF8E]" />
+                    LIVE · BANDRA
                   </div>
-                  <div className="mt-3 flex h-14 items-end gap-1.5">
-                    {RHYTHM.map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-sm"
-                        style={{
-                          height: `${h}%`,
-                          background: i >= 12 ? "#3ECF8E" : "rgba(139,124,246,0.55)",
-                          opacity: 0.85,
-                        }}
-                      />
+                  <div className="absolute bottom-0 left-0 right-0 grid grid-cols-3 gap-2 p-4 sm:p-5">
+                    {[
+                      { k: "Pass", v: "2,481" },
+                      { k: "Stop", v: "186" },
+                      { k: "Enter", v: "39" },
+                    ].map((r) => (
+                      <div key={r.k} className="rounded-xl border border-white/12 bg-[#0b0b12]/75 px-3 py-2.5 backdrop-blur-sm">
+                        <p className="font-mono cosmic-text-2xs tracking-[0.12em] text-white/45">{r.k}</p>
+                        <p className="mt-0.5 font-num cosmic-text-lg font-bold text-[#f5f5f7]">{r.v}</p>
+                      </div>
                     ))}
                   </div>
                 </div>
-
-                <div className="grid grid-cols-3 border-t border-white/10" style={{ background: "rgba(255,255,255,0.02)" }}>
-                  {[
-                    ["PATH", "EDGE / CLOUD", "#8B7CF6"],
-                    ["NEXT BRIEF", "MON 07:01", "#3ECF8E"],
-                    ["FACES", "0 STORED", "#5ac8fa"],
-                  ].map(([k, v, c]) => (
-                    <div key={k} className="px-4 py-3.5">
-                      <p className="font-mono cosmic-text-2xs tracking-[0.14em] text-white/35">{k}</p>
-                      <p className="mt-1 font-mono cosmic-text-sm font-bold" style={{ color: c }}>{v}</p>
-                    </div>
+                <div className="flex h-10 items-end gap-1 border-t border-white/10 px-4 py-2.5">
+                  {RHYTHM.map((h, i) => (
+                    <div
+                      key={i}
+                      className="flex-1 rounded-sm"
+                      style={{
+                        height: `${Math.max(h * 0.55, 12)}%`,
+                        background: i >= 12 ? "#3ECF8E" : "rgba(139,124,246,0.55)",
+                      }}
+                    />
                   ))}
                 </div>
               </div>

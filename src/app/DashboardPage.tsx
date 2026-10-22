@@ -134,19 +134,20 @@ const PAGE_TITLES: Record<Screen, string> = {
 }
 
 export function DashboardPage() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("adlabs-theme")
-      if (saved === "light" || saved === "dark") return saved
-    }
-    return "dark"
-  })
+  // Always start dark on SSR + first client paint to avoid hydration mismatch;
+  // restore saved preference after mount.
+  const [theme, setTheme] = useState<Theme>("dark")
   const [role, setRole] = useState<Role>("Brand")
   const [screen, setScreen] = useState<Screen>("overview")
   const [present, setPresent] = useState(false)
   const [selectedStore, setSelectedStore] = useState("madison")
   const [cmd, setCmd] = useState(false)
   const [now, setNow] = useState<Date | null>(null)
+
+  useEffect(() => {
+    const saved = localStorage.getItem("adlabs-theme")
+    if (saved === "light" || saved === "dark") setTheme(saved)
+  }, [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

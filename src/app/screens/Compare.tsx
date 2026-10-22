@@ -29,16 +29,20 @@ export function Compare() {
           <table className="w-full min-w-[640px] text-left">
             <thead>
               <tr className="border-b border-[var(--app-line)]">
-                {["Rank", "Store", "City", "Stop rate", "vs cohort", "Trend", ""].map((h) => (
-                  <th key={h} className="px-5 py-3.5">
-                    <Label>{h}</Label>
+                {["Rank", "Store", "Grade", "Stop rate", "vs cohort", "Trend", ""].map((h) => (
+                  <th key={h || "go"} className="px-5 py-3.5">
+                    <Label>{h || " "}</Label>
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {ranked.map((s, i) => (
-                <tr key={s.id} className="border-b border-[var(--app-line)] transition-colors hover:bg-[var(--app-card)]">
+              {ranked.map((s, i) => {
+                const you = parseFloat(s.stopRate)
+                const gap = +(you - COHORT_STOP).toFixed(1)
+                const gapLabel = `${gap >= 0 ? "+" : ""}${gap}pp`
+                return (
+                <tr key={s.id} className="border-b border-[var(--app-line)] transition-colors hover:bg-[var(--app-raise)]">
                   <td className="px-5 py-4 font-inter cosmic-text-sm font-bold font-num text-[var(--app-faint)]">#{i + 1}</td>
                   <td className="px-5 py-4">
                     <p className="font-inter cosmic-text-sm font-semibold text-[var(--app-text)]">{s.name}</p>
@@ -47,20 +51,19 @@ export function Compare() {
                   <td className="px-5 py-4"><GradePill grade={s.grade} /></td>
                   <td className="px-5 py-4 font-inter cosmic-text-sm font-semibold font-num text-[var(--app-text)]">{s.stopRate}</td>
                   <td className="px-5 py-4">
-                    {i === 0 ? (
-                      <span className="font-inter cosmic-text-xs font-semibold font-num" style={{ color: "var(--app-pos)" }}>+2.5pp</span>
-                    ) : i === 1 ? (
-                      <span className="font-inter cosmic-text-xs font-semibold font-num" style={{ color: "var(--app-neg)" }}>−2.7pp</span>
-                    ) : (
-                      <span className="font-inter cosmic-text-xs font-semibold font-num" style={{ color: "var(--app-neg)" }}>−4.8pp</span>
-                    )}
+                    <span
+                      className="font-inter cosmic-text-xs font-semibold font-num"
+                      style={{ color: gap >= 0 ? "var(--app-pos)" : "var(--app-neg)" }}
+                    >
+                      {gapLabel}
+                    </span>
                   </td>
                   <td className="px-5 py-4">
                     <Sparkline data={s.spark} tone={s.trend === "up" ? "pos" : s.trend === "down" ? "neg" : "gold"} />
                   </td>
                   <td className="px-5 py-4 text-right text-[var(--app-faint)]"><ArrowRight size={16} /></td>
                 </tr>
-              ))}
+              )})}
             </tbody>
           </table>
         </div>

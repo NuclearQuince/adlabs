@@ -49,6 +49,7 @@ export function Panel({
   pad = true,
   info,
   verified,
+  sub,
 }: {
   title?: string
   action?: ReactNode
@@ -57,7 +58,10 @@ export function Panel({
   pad?: boolean
   info?: string
   verified?: string
+  /** Plain-language definition under the title */
+  sub?: string
 }) {
+  const headPad = !pad && (title || action || info || verified || sub) ? "px-6 pt-5 sm:px-7" : ""
   return (
     <section
       className={`app-panel min-w-0 rounded-3xl border bg-[var(--app-card)] text-[var(--app-text)] ${
@@ -65,12 +69,17 @@ export function Panel({
       } border-[var(--app-line)] ${className ?? ""}`}
       style={{ boxShadow: "var(--app-shadow)" }}
     >
-      {(title || action || info || verified) && (
-        <header className="mb-6 flex items-center justify-between gap-3">
-          <div className="flex min-w-0 items-center gap-2">
-            {title && <h3 className="card-title text-[var(--app-text)]">{title}</h3>}
-            {info && <InfoTip text={info} />}
-            {verified && <VerifiedTag note={verified} />}
+      {(title || action || info || verified || sub) && (
+        <header className={`mb-5 flex items-start justify-between gap-3 ${headPad}`}>
+          <div className="min-w-0">
+            <div className="flex min-w-0 items-center gap-2">
+              {title && <h3 className="card-title text-[var(--app-text)]">{title}</h3>}
+              {info && <InfoTip text={info} />}
+              {verified && <VerifiedTag note={verified} />}
+            </div>
+            {sub && (
+              <p className="mt-1 font-inter cosmic-text-xs leading-snug text-[var(--app-faint)]">{sub}</p>
+            )}
           </div>
           {action}
         </header>
@@ -80,25 +89,42 @@ export function Panel({
   )
 }
 
+/** KPI label + plain-language hint (tooltip + visible sublabel). */
+export function MetricLabel({
+  label,
+  hint,
+}: {
+  label: string
+  hint?: string
+}) {
+  return (
+    <div className="min-w-0">
+      <div className="flex items-center gap-1.5">
+        <Label>{label}</Label>
+        {hint && <InfoTip text={hint} />}
+      </div>
+      {hint && (
+        <p className="mt-1 line-clamp-2 font-inter cosmic-text-2xs leading-snug text-[var(--app-faint)]">{hint}</p>
+      )}
+    </div>
+  )
+}
+
 export function InfoTip({ text }: { text: string }) {
   return (
-    <span className="group relative inline-flex cursor-help">
+    <span className="group relative inline-flex shrink-0 cursor-help">
       <CircleHelp
         size={14}
         strokeWidth={2}
-        aria-label="More info"
+        aria-label={text}
         className="text-[var(--app-faint)] transition-colors group-hover:text-[var(--app-gold)]"
       />
       <span
         role="tooltip"
-        className="pointer-events-none absolute bottom-[calc(100%+8px)] left-1/2 z-40 w-56 -translate-x-1/2 rounded-xl border border-[var(--app-line)] p-3 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100"
+        className="pointer-events-none absolute bottom-[calc(100%+8px)] left-0 z-50 w-52 rounded-xl border border-[var(--app-line)] p-3 opacity-0 shadow-lg transition-opacity duration-150 group-hover:opacity-100 sm:left-1/2 sm:-translate-x-1/2 sm:w-56"
         style={{ background: "var(--app-card)" }}
       >
         <span className="block font-inter cosmic-text-xs leading-relaxed text-[var(--app-sub)]">{text}</span>
-        <span
-          className="absolute left-1/2 top-full h-2 w-2 -translate-x-1/2 -translate-y-1 rotate-45 border-b border-r border-[var(--app-line)]"
-          style={{ background: "var(--app-card)" }}
-        />
       </span>
     </span>
   )

@@ -92,23 +92,27 @@ export function History() {
       </Panel>
 
       {/* Weekly data table */}
-      <Panel pad={false} title="Weekly detail">
+      <Panel
+        pad={false}
+        title="Weekly detail"
+        sub="Rollups from camera history — demo sample. Dashed forecast on the chart above is illustrative, not a shipped Prophet model."
+      >
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] text-left">
             <thead>
               <tr className="border-b border-[var(--app-line)]">
-                {["Week", "Footfall", "Stop rate", "Walk-ins", "Dwell", "Event"].map((h) => (
+                {["Week", "Passes", "Stop rate", "Entries", "Dwell", "Event"].map((h) => (
                   <th key={h} className="px-5 py-3.5"><Label>{h}</Label></th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {WEEKLY_HISTORY.map((w) => (
-                <tr key={w.week} className="border-b border-[var(--app-line)] transition-colors hover:bg-[var(--app-card)]">
+                <tr key={w.week} className="border-b border-[var(--app-line)] transition-colors hover:bg-[var(--app-raise)]">
                   <td className="px-5 py-3.5 font-inter cosmic-text-sm font-semibold font-num text-[var(--app-text)]">{w.week}</td>
-                  <td className="px-5 py-3.5 font-inter cosmic-text-sm font-num text-[var(--app-text)]">{w.footfall.toLocaleString("en-US")}</td>
+                  <td className="px-5 py-3.5 font-inter cosmic-text-sm font-num text-[var(--app-text)]">{w.footfall.toLocaleString("en-IN")}</td>
                   <td className="px-5 py-3.5 font-inter cosmic-text-sm font-num text-[var(--app-text)]">{w.stopRate}%</td>
-                  <td className="px-5 py-3.5 font-inter cosmic-text-sm font-num text-[var(--app-text)]">{w.walkins}</td>
+                  <td className="px-5 py-3.5 font-inter cosmic-text-sm font-num text-[var(--app-text)]">{w.walkins.toLocaleString("en-IN")}</td>
                   <td className="px-5 py-3.5 font-inter cosmic-text-sm font-num text-[var(--app-text)]">{w.dwell}</td>
                   <td className="px-5 py-3.5 font-inter cosmic-text-xs text-[var(--app-faint)]">{w.event ?? "—"}</td>
                 </tr>

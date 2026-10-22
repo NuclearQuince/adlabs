@@ -27,9 +27,9 @@ export function Product() {
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {([
           { label: "Avg stop rate", value: INDUSTRY_OVERVIEW.avgStopRate, delta: "+0.8pp", tone: "pos" as const },
-          { label: "Avg conversion", value: INDUSTRY_OVERVIEW.avgConversion, delta: "+2.1pp", tone: "pos" as const },
+          { label: "Near-display interest", value: INDUSTRY_OVERVIEW.avgNearInterest, delta: "proximity + dwell", tone: "flat" as const },
           { label: "Top performer", value: "Fashion", delta: INDUSTRY_OVERVIEW.topPerformer, tone: "pos" as const },
-          { label: "Sectors tracked", value: `${INDUSTRY_OVERVIEW.totalSectors}`, delta: "all live", tone: "flat" as const },
+          { label: "Sectors tracked", value: `${INDUSTRY_OVERVIEW.totalSectors}`, delta: "demo sectors", tone: "flat" as const },
         ] as { label: string; value: string; delta: string; tone: "pos" | "neg" | "flat" }[]).map((k) => (
           <div key={k.label} className="rounded-xl border border-[var(--app-line)] p-3.5" style={{ background: "color-mix(in srgb, var(--app-card) 100%, transparent)" }}>
             <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.12em] text-[var(--app-faint)]">{k.label}</p>
@@ -47,7 +47,7 @@ export function Product() {
           <span className="rounded-full px-2 py-0.5 font-inter cosmic-text-2xs font-bold uppercase tracking-[0.08em]" style={{ background: "color-mix(in srgb, var(--app-gold) 12%, transparent)", color: "var(--app-gold)" }}>
             Key Insight
           </span>
-          <InfoTip text="Derived from fixture-level gaze and touch data across all 8 sectors." />
+          <InfoTip text="Derived from near-display proximity + dwell (YOLO-World categories). Not pupil gaze or POS conversion." />
         </div>
         <p className="mt-3 font-inter cosmic-text-sm font-medium leading-relaxed text-[var(--app-text)]">
           {INDUSTRY_OVERVIEW.bestInsight}
@@ -113,7 +113,7 @@ export function Product() {
                   <p className="mt-1 font-num cosmic-text-lg font-bold text-[var(--app-text)]">{sectorData.avgDwell}</p>
                 </div>
                 <div className="rounded-xl border border-[var(--app-line)] p-3.5">
-                  <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.12em] text-[var(--app-faint)]">Conversion</p>
+                  <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.12em] text-[var(--app-faint)]">Near interest</p>
                   <p className="mt-1 font-num cosmic-text-lg font-bold" style={{ color: "var(--app-pos)" }}>{sectorData.avgConversion}</p>
                 </div>
               </div>
@@ -129,7 +129,7 @@ export function Product() {
             <Panel
               title={`${sectorData.label} — fixture breakdown`}
               action={<Label>{sectorData.items.length} fixtures</Label>}
-              info="Gaze = average attention duration · touch = interaction rate · trend = 4-week trajectory."
+              info="Engaged dwell = head-facing + dwell proxy · near interest = proximity dwell · not POS conversion."
             >
               <div className="flex flex-col gap-3">
                 {sectorData.items.map((item, i) => (
@@ -153,16 +153,16 @@ export function Product() {
                     </div>
                     <div className="mt-3 ml-7 grid grid-cols-3 gap-3">
                       <div>
-                        <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.1em] text-[var(--app-faint)]">Gaze</p>
+                        <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.1em] text-[var(--app-faint)]">Engaged dwell</p>
                         <p className="mt-0.5 font-num cosmic-text-sm font-bold text-[var(--app-text)]">{item.gaze}</p>
                       </div>
                       <div>
-                        <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.1em] text-[var(--app-faint)]">Touch</p>
+                        <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.1em] text-[var(--app-faint)]">Near interest</p>
                         <p className="mt-0.5 font-num cosmic-text-sm font-bold text-[var(--app-text)]">{item.touch}</p>
                       </div>
                       {item.conversion && (
                         <div>
-                          <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.1em] text-[var(--app-faint)]">Conversion</p>
+                          <p className="font-inter cosmic-text-2xs font-bold uppercase tracking-[0.1em] text-[var(--app-faint)]">Interest share</p>
                           <p className="mt-0.5 font-num cosmic-text-sm font-bold" style={{ color: "var(--app-pos)" }}>{item.conversion}</p>
                         </div>
                       )}
@@ -189,7 +189,7 @@ export function Product() {
           <Panel
             title="Cross-sector benchmark"
             action={<Label>8 industries</Label>}
-            info="Average dwell time and conversion rate compared across all tracked sectors."
+            info="Average zone dwell and near-display interest across demo sectors — not POS conversion."
           >
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {INDUSTRY_SECTORS.map((s) => {
@@ -213,7 +213,7 @@ export function Product() {
                         <p className="font-num cosmic-text-sm font-bold text-[var(--app-text)]">{s.avgDwell}</p>
                       </div>
                       <div>
-                        <p className="font-inter cosmic-text-2xs font-bold uppercase text-[var(--app-faint)]">Conv.</p>
+                        <p className="font-inter cosmic-text-2xs font-bold uppercase text-[var(--app-faint)]">Interest</p>
                         <p className="font-num cosmic-text-sm font-bold" style={{ color: "var(--app-pos)" }}>{s.avgConversion}</p>
                       </div>
                     </div>

@@ -8,7 +8,7 @@ import {
   TrendingUp, Store, Megaphone, Map, FileText, Users,
   Eye, DoorOpen, Timer, Footprints, Clock, Clock3,
 } from "lucide-react"
-import { Panel, Label, DeltaPill, PeerDot, Segmented, Chip, ScreenHeader } from "../ui"
+import { Panel, Label, DeltaPill, PeerDot, Segmented, Chip, ScreenHeader, MetricLabel } from "../ui"
 import { AreaChart, FunnelBars, Sparkline } from "../charts"
 import {
   KPIS, FUNNEL, TRAFFIC_HOURS, TENANT,
@@ -103,20 +103,20 @@ export function Overview({ onNavigate }: { onNavigate?: (screen: string) => void
               >
                 <Panel className="h-full">
                   <div className="flex items-start justify-between gap-2">
-                    <div className="flex items-center gap-2">
+                    <div className="flex min-w-0 items-start gap-2">
                       {(() => {
                         const meta = KPI_ICONS[k.id]
                         const Icon = meta ? meta.icon : TrendingUp
                         return (
                           <span
-                            className="grid h-7 w-7 shrink-0 place-items-center rounded-lg"
+                            className="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg"
                             style={{ background: "var(--app-accent-soft)", color: meta ? meta.tint : "var(--app-accent)" }}
                           >
                             <Icon size={14} strokeWidth={2.1} />
                           </span>
                         )
                       })()}
-                      <Label>{k.label}</Label>
+                      <MetricLabel label={k.label} hint={k.hint} />
                     </div>
                     {k.peer && <PeerDot peer={k.peer} />}
                   </div>

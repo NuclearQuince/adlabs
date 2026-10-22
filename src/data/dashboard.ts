@@ -130,7 +130,7 @@ export const PEER_BENCHMARK = {
   sub: "Bandra flagship vs anonymised peer cohort (40 fashion doors across Bengaluru, Mumbai, Delhi NCR, Hyderabad).",
   rows: [
     { id: "stop", label: "Window stop rate", you: 11.4, peer: 8.9, unit: "%", suffix: "pp", better: "higher" },
-    { id: "look", label: "Deep look time", you: 39, peer: 31, unit: "%", suffix: "pp", better: "higher" },
+    { id: "look", label: "Engaged dwell share", you: 39, peer: 31, unit: "%", suffix: "pp", better: "higher" },
     { id: "enter", label: "Stop-to-enter rate", you: 21, peer: 16, unit: "%", suffix: "pp", better: "higher" },
     { id: "dwell", label: "In-store dwell", you: 6.2, peer: 4.75, unit: "min", suffix: " min", better: "higher" },
     { id: "occupancy", label: "Peak occupancy", you: 71, peer: 57, unit: "%", suffix: "pp", better: "higher" },
@@ -145,14 +145,14 @@ export const FUNNEL = {
     { stage: "Stop", value: 186, rate: "7.5%", label: "Stopped ≥4s" },
     { stage: "Enter", value: 39, rate: "21.0%", label: "Entries (tripwire)" },
     { stage: "Explore", value: 34, rate: "87.2%", label: "Zone visits" },
-    { stage: "Engage", value: 18, rate: "52.9%", label: "Near-display dwell" },
+    { stage: "Engage", value: 18, rate: "52.9%", label: "Near-display interest" },
   ],
   week: [
     { stage: "Pass", value: 16340, rate: "100%", label: "Passes at glass" },
     { stage: "Stop", value: 1861, rate: "11.4%", label: "Stopped ≥4s" },
     { stage: "Enter", value: 391, rate: "21.0%", label: "Entries (tripwire)" },
     { stage: "Explore", value: 341, rate: "87.2%", label: "Zone visits" },
-    { stage: "Engage", value: 180, rate: "52.9%", label: "Near-display dwell" },
+    { stage: "Engage", value: 180, rate: "52.9%", label: "Near-display interest" },
   ],
 }
 
@@ -274,7 +274,7 @@ export const CAMPAIGNS: Campaign[] = [
     name: "Hero Sash Installation",
     week: "Wk 8",
     type: "Display change",
-    metricLabel: "Avg Hero Gaze",
+    metricLabel: "Hero engaged dwell",
     before: "8.4s",
     after: "9.6s",
     window: "7-Day A/B Rotation",
@@ -294,7 +294,7 @@ export const CAMPAIGN_TIMELINE = [
 ]
 
 export const CAMPAIGN_VERDICT =
-  "The Wk 4 rotation worked — stop rate beat baseline by +14.6% and held for three weeks. The Wk 8 sash lifted hero gaze by 1.2s. Keep the layout; test the offer next."
+  "The Wk 4 rotation worked — stop rate beat baseline by +14.6% and held for three weeks. The Wk 8 sash lifted hero engaged dwell by 1.2s (head-facing + dwell proxy). Keep the layout; test the offer next."
 
 export const BRIEF = {
   week: "Wk 12",
@@ -644,8 +644,8 @@ export const INDUSTRY_OVERVIEW = {
   totalSectors: 8,
   topPerformer: "Fashion & Apparel",
   avgStopRate: "10.2%",
-  avgConversion: "22.8%",
-  bestInsight: "Hero fixtures in the top 20% of the store own 68% of dwell time — but 80% of stores don't know which fixture that is.",
+  avgNearInterest: "38%",
+  bestInsight: "Hero fixtures in the top 20% of the store own 68% of zone dwell — proximity + dwell, not pupil gaze.",
 }
 
 export const ALERTS = [
