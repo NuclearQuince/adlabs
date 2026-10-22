@@ -163,7 +163,7 @@ export function Overview({ onNavigate }: { onNavigate?: (screen: string) => void
                 >
                   <p className="truncate font-inter cosmic-text-2xs font-semibold text-[var(--app-text)]">{z.name}</p>
                   <p className="mt-0.5 font-num cosmic-text-xs text-[var(--app-faint)]">
-                    {z.traffic}% · {z.dwell}
+                    {z.traffic}% entered · {z.dwell}
                   </p>
                 </div>
               ))}

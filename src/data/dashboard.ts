@@ -205,6 +205,7 @@ export const STORES: Store[] = [
 export interface Zone {
   code: string
   name: string
+  /** % of store visitors who entered this zone (overlapping — need not sum to 100%). */
   traffic: number
   dwell: string
   heat: number
@@ -212,16 +213,20 @@ export interface Zone {
   flag?: string
 }
 
+/** Visit rate = % of visitors who entered the zone. Zones overlap; rates can exceed 100% combined. */
+export const ZONE_METRIC_NOTE =
+  "Visit rate = % of visitors who entered this zone. Zones overlap, so rates need not sum to 100%."
+
 export const ZONES: Zone[] = [
-  { code: "E0", name: "Entrance Gallery", traffic: 100, dwell: "0m 48s", heat: 0.42, note: "Threshold velocity 0.8 m/s" },
+  { code: "E0", name: "Entrance Gallery", traffic: 100, dwell: "0m 48s", heat: 0.42, note: "Threshold velocity 0.8 m/s · all who entered" },
   { code: "A1", name: "Apparel Zone", traffic: 41, dwell: "6m 12s", heat: 0.62 },
-  { code: "L2", name: "Leather Goods Island", traffic: 68, dwell: "7m 04s", heat: 0.86, note: "Top zone · 68% traffic share" },
-  { code: "H3", name: "Accessories Hero · Rotunda", traffic: 55, dwell: "9m 45s", heat: 0.95, note: "Highest store density" },
-  { code: "F1", name: "Window West", traffic: 9, dwell: "1m 02s", heat: 0.12, flag: "Under-lit after 18:00 — dwell 2.1× below floor average" },
+  { code: "L2", name: "Leather Goods Island", traffic: 68, dwell: "7m 04s", heat: 0.86, note: "Highest visit rate · 68% entered this zone" },
+  { code: "H3", name: "Accessories Hero · Rotunda", traffic: 55, dwell: "9m 45s", heat: 0.95, note: "Highest dwell density" },
+  { code: "F1", name: "Window West", traffic: 9, dwell: "1m 02s", heat: 0.12, flag: "Under-lit after 18:00 — dwell 2.1× below floor average · 9% visit rate" },
   { code: "D4", name: "Denim Wall", traffic: 27, dwell: "3m 38s", heat: 0.38 },
   { code: "S5", name: "Footwear Alcove", traffic: 22, dwell: "2m 54s", heat: 0.3 },
-  { code: "R6", name: "Fitting Rooms", traffic: 12, dwell: "8m 10s", heat: 0.58, note: "Conversion: 74%" },
-  { code: "V7", name: "Advisory Salon", traffic: 15, dwell: "5m 26s", heat: 0.44, note: "Conversion: 38%" },
+  { code: "R6", name: "Fitting Rooms", traffic: 12, dwell: "8m 10s", heat: 0.58, note: "Fitting conversion: 74%" },
+  { code: "V7", name: "Advisory Salon", traffic: 15, dwell: "5m 26s", heat: 0.44, note: "Near-interest: 38%" },
   { code: "T8", name: "Transit Corridor", traffic: 83, dwell: "0m 22s", heat: 0.18, note: "1.3 m/s pace — cold transit" },
 ]
 
@@ -305,7 +310,7 @@ export const BRIEF = {
   actions: [
     {
       title: "Move the Leather Island 1.5m into the window sightline",
-      why: "Zone F1 dwell is 2.1× the floor average after 18:00. The island already owns 68% traffic share — give it the glass.",
+      why: "Zone F1 dwell is 2.1× below floor average after 18:00. Leather Island already has 68% visit rate — give it the glass.",
       priority: "High",
       tag: "Layout",
     },
@@ -403,8 +408,8 @@ export const INSIGHTS: Insight[] = [
   {
     id: "4", type: "recommendation",
     title: "Leather Island deserves the glass",
-    description: "Zone L2 owns 68% traffic share but is 1.5m back from the window sightline. Moving it could lift stop rate by an estimated 0.3–0.5pp.",
-    confidence: "medium", basis: "Traffic share vs window proximity analysis",
+    description: "Zone L2 has 68% visit rate but sits 1.5m back from the window sightline. Moving it could lift stop rate by an estimated 0.3–0.5pp.",
+    confidence: "medium", basis: "Visit rate vs window proximity",
     action: "Move Leather Island 1.5m into the window sightline. Test for 7 days.", screen: "brief",
   },
   {
@@ -448,7 +453,7 @@ export const WEEKLY_PLAN = {
     { title: "Keep the current window rotation", category: "visual", priority: "high", impact: "Projected +0.3pp stop rate continuation", cost: "free", evidence: "Stop rate trended up 4 consecutive weeks" },
     { title: "Rotate Window West creative", category: "visual", priority: "high", impact: "Recover 2pp dwell in Zone F1", cost: "low", evidence: "Deep attention fell 6pp over 2 weeks" },
     { title: "Staff up 2 for Saturday 15:00–18:00", category: "staffing", priority: "medium", impact: "Convert estimated 120 additional walk-ins", cost: "free", evidence: "Saturday footfall +40% vs weekday average" },
-    { title: "Test a new hero product in Accessories Hero zone", category: "product", priority: "medium", impact: "Potential +5% touch rate on hero", cost: "medium", evidence: "Zone H3 owns 68% traffic but touch rate flat" },
+    { title: "Test a new hero product in Accessories Hero zone", category: "product", priority: "medium", impact: "Potential +5% near-interest on hero", cost: "medium", evidence: "Zone H3 visit rate 55% · near-interest flat" },
     { title: "Relight Zone F1 at 18:00", category: "maintenance", priority: "low", impact: "Prevent further dwell decline", cost: "free", evidence: "Under-lit after 18:00, dwell 2.1× below average" },
   ],
 }
@@ -511,7 +516,7 @@ export const INDUSTRY_SECTORS: IndustrySector[] = [
     keyInsight: "Hero handbags own 42% of window attention. Move them to the glass.",
     items: [
       { name: "Hero Handbag Vitrine", gaze: "8.4s", touch: "42%", trend: [7.8, 8.0, 8.2, 8.4], conversion: "34%", note: "Peak 15:00–17:00" },
-      { name: "Leather Goods Island", gaze: "7m 04s", touch: "68%", trend: [6.8, 6.9, 7.0, 7.0], conversion: "41%", note: "Top zone · 68% traffic share" },
+      { name: "Leather Goods Island", gaze: "7m 04s", touch: "68%", trend: [6.8, 6.9, 7.0, 7.0], conversion: "41%", note: "Top zone · 68% visit rate" },
       { name: "Capsule Runway Rail", gaze: "5.2s", touch: "24%", trend: [5.0, 5.1, 5.1, 5.2], conversion: "18%", note: "Low touch · high dwell" },
       { name: "Denim Wall", gaze: "3m 38s", touch: "38%", trend: [3.5, 3.6, 3.7, 3.8], conversion: "22%", note: "Weekend peak" },
       { name: "Accessories Rotunda", gaze: "9m 45s", touch: "55%", trend: [9.0, 9.2, 9.4, 9.6], conversion: "38%", note: "Highest store density" },
@@ -648,13 +653,224 @@ export const INDUSTRY_OVERVIEW = {
   bestInsight: "Hero fixtures in the top 20% of the store own 68% of zone dwell — proximity + dwell, not pupil gaze.",
 }
 
-export const ALERTS = [
-  { id: "0", severity: "critical", zone: "Checkout", message: "Queue congestion — length 3, wait 2m 14s over soft threshold", time: "12m ago", action: "Open second till or pull floor staff to checkout", screen: "queues" },
-  { id: "1", severity: "critical", zone: "F1", message: "Under-lit after 18:00 — dwell 2.1× below average", time: "2h ago", action: "Relight at 18:00, re-measure in 7 days", screen: "zones" },
-  { id: "2", severity: "high", store: "Koregaon Park", message: "Stop rate 4.1% vs 8.9% cohort — declining 0.3pp/week", time: "4h ago", action: "Audit window display, benchmark cohort", screen: "stores" },
-  { id: "3", severity: "medium", zone: "V7", message: "Advisory Salon near-display interest dropped 3pp this week", time: "1d ago", action: "Review consultant placement, re-measure", screen: "zones" },
-  { id: "4", severity: "low", zone: "T8", message: "Transit Corridor pace 1.3 m/s — cold transit", time: "2d ago", action: "Add visual anchor, re-measure in 14 days", screen: "zones" },
+export type AlertCategory = "ops" | "loss-risk" | "safety" | "merch" | "staff"
+
+export interface OwnerAlert {
+  id: string
+  severity: "critical" | "high" | "medium" | "low"
+  category: AlertCategory
+  zone?: string
+  store?: string
+  title: string
+  message: string
+  time: string
+  action: string
+  screen: string
+  source: string
+}
+
+export const ALERTS: OwnerAlert[] = [
+  {
+    id: "0",
+    severity: "critical",
+    category: "ops",
+    zone: "Checkout",
+    title: "Queue congestion",
+    message: "Length 3, wait 2m 14s over soft threshold in checkout zone (≥5s dwell).",
+    time: "12m ago",
+    action: "Open second till or pull floor staff to checkout",
+    screen: "queues",
+    source: "QueueAnalyzer · live today",
+  },
+  {
+    id: "1",
+    severity: "critical",
+    category: "merch",
+    zone: "F1",
+    title: "Under-lit zone",
+    message: "Window West after 18:00 — dwell 2.1× below floor average; entered-zone rate 9%.",
+    time: "2h ago",
+    action: "Relight at 18:00, re-measure for 7 days",
+    screen: "zones",
+    source: "Zone heat + dwell · live today",
+  },
+  {
+    id: "2",
+    severity: "high",
+    category: "merch",
+    store: "Koregaon Park",
+    title: "Window underperforming",
+    message: "Stop rate 4.1% vs 8.9% cohort — declining 0.3pp/week.",
+    time: "4h ago",
+    action: "Audit window display; benchmark cohort median",
+    screen: "campaigns",
+    source: "Window stop rate · schedule A/B",
+  },
+  {
+    id: "3",
+    severity: "high",
+    category: "loss-risk",
+    zone: "H3",
+    title: "Prolonged dwell · high-value zone",
+    message: "Track dwell >12m in Accessories Hero with no staff tag nearby. Suspicious pattern — not proof of theft.",
+    time: "28m ago",
+    action: "Send floor associate to hero rotunda; review edge clip if policy allows",
+    screen: "safety",
+    source: "Zone dwell + staff exclusion · heuristic, not FR",
+  },
+  {
+    id: "4",
+    severity: "high",
+    category: "safety",
+    zone: "E0",
+    title: "Exit path dense",
+    message: "Entrance Gallery occupancy spike — person-density near door above soft threshold for 3+ minutes.",
+    time: "45m ago",
+    action: "Clear doorway staging; hold entries if needed",
+    screen: "safety",
+    source: "Occupancy / zone density · ops caution, not fire-cert",
+  },
+  {
+    id: "5",
+    severity: "medium",
+    category: "loss-risk",
+    zone: "L2",
+    title: "Unattended high-value island",
+    message: "Leather Island visit activity with zero staff-tagged presence for 18 minutes during peak.",
+    time: "1h ago",
+    action: "Reposition one associate to L2 for the peak window",
+    screen: "staff",
+    source: "Staff zone / appearance tag · not facial identity",
+  },
+  {
+    id: "6",
+    severity: "medium",
+    category: "safety",
+    title: "After-hours presence",
+    message: "Motion / active tracks after close (21:40) on Cam 02 — 1–2 people estimated.",
+    time: "Yesterday",
+    action: "Verify closing checklist; escalate if unexpected",
+    screen: "safety",
+    source: "After-hours occupancy · schedule-gated",
+  },
+  {
+    id: "7",
+    severity: "medium",
+    category: "merch",
+    zone: "V7",
+    title: "Near-display interest dip",
+    message: "Advisory Salon near-display interest dropped 3pp this week.",
+    time: "1d ago",
+    action: "Review consultant placement; re-measure",
+    screen: "product",
+    source: "YOLO-World + proximity · category interest",
+  },
+  {
+    id: "8",
+    severity: "low",
+    category: "ops",
+    zone: "T8",
+    title: "Cold transit",
+    message: "Transit Corridor pace 1.3 m/s — little dwell.",
+    time: "2d ago",
+    action: "Add visual anchor; re-measure in 14 days",
+    screen: "zones",
+    source: "Velocity / dwell · live today",
+  },
+  {
+    id: "9",
+    severity: "medium",
+    category: "staff",
+    title: "Saturday peak understaffed",
+    message: "Sat 15–18 entries historically +40% vs weekday; roster shows 3 on floor vs need 5.",
+    time: "Plan",
+    action: "Add 2 staff for next Saturday 15:00–18:00",
+    screen: "staff",
+    source: "Entry rollups + roster · pattern after weeks",
+  },
 ]
+
+export const STAFF_INTEL = {
+  title: "Staff",
+  sub: "Who’s covering the floor — staff zones and appearance tags, never face recognition.",
+  onFloor: 4,
+  visitorsNow: 34,
+  staffShare: "11%",
+  method: "Staff polygon (min dwell) today · appearance / badge cluster next — no FR.",
+  windows: [
+    { window: "11:00 – 14:00", need: 3, on: 3, note: "Lunch cover OK", tone: "ok" as const },
+    { window: "15:00 – 17:00", need: 4, on: 3, note: "Window attention peak — short 1", tone: "warn" as const },
+    { window: "16:30 – 18:45", need: 5, on: 4, note: "Entry cluster — pull from back", tone: "warn" as const },
+    { window: "Sat 15:00 – 18:00", need: 5, on: 3, note: "Plan +2 from pattern history", tone: "crit" as const },
+  ],
+  zones: [
+    { code: "H3", name: "Hero rotunda", staffMin: "1+", present: true, note: "Covered" },
+    { code: "L2", name: "Leather island", staffMin: "1", present: false, note: "Unattended 18m — see alert" },
+    { code: "Checkout", name: "Tills", staffMin: "1–2", present: true, note: "1 till open · queue risk" },
+    { code: "E0", name: "Entrance", staffMin: "0–1", present: true, note: "Greet OK" },
+  ],
+  doNext: [
+    "Move one associate to L2 for the next 30 minutes",
+    "Open second till if queue wait stays >2m",
+    "Lock Saturday +2 into next week’s roster",
+  ],
+}
+
+export const SAFETY_CAUTIONS = {
+  title: "Safety · cautions",
+  sub: "CCTV/ops cautions a store owner can act on — not a certified fire or security alarm replacement.",
+  honesty:
+    "Pure CV: occupancy, after-hours presence, exit-path density, prolonged dwell. Integrations (smoke, access control) labeled separately when available.",
+  items: [
+    {
+      id: "s1",
+      severity: "high",
+      title: "Exit / entrance density",
+      detail: "Person density near E0 above soft threshold for 3+ minutes.",
+      do: "Clear doorway staging; pause entries if needed",
+      kind: "cv" as const,
+      label: "CCTV occupancy",
+    },
+    {
+      id: "s2",
+      severity: "medium",
+      title: "After-hours occupancy",
+      detail: "Active tracks after scheduled close on Cam 02.",
+      do: "Verify closing checklist; escalate if unexpected",
+      kind: "cv" as const,
+      label: "Schedule-gated CV",
+    },
+    {
+      id: "s3",
+      severity: "medium",
+      title: "Store overcrowding risk",
+      detail: "Occupancy 57% now; Saturday peaks historically approach 71% of capacity.",
+      do: "Door control plan for Sat 15–18; optional queue at entrance",
+      kind: "cv" as const,
+      label: "Occupancy + history",
+    },
+    {
+      id: "s4",
+      severity: "low",
+      title: "Blocked-exit check (ops)",
+      detail: "No automatic obstruction detector on wide CCTV — use closing walk + optional door sensor.",
+      do: "Include exit clear in manager checklist",
+      kind: "ops" as const,
+      label: "Ops checklist · not CV claim",
+    },
+    {
+      id: "s5",
+      severity: "low",
+      title: "Fire / smoke",
+      detail: "Not inferred from retail CCTV analytics in this product.",
+      do: "Keep certified fire panel; future integration only if customer wires it",
+      kind: "integration" as const,
+      label: "Integration · not EdgeSight CV",
+    },
+  ],
+  lossRiskNote:
+    "Loss-risk rows flag prolonged dwell in high-value zones without staff nearby, or after-hours presence. Heuristics for owner action — not perfect theft detection and not facial recognition.",
+}
 
 export interface AdCampaign {
   id: string
@@ -743,6 +959,94 @@ export const AD_FLOW = {
 
 export const SIMULATED_NOTE = "Simulated showcase · Organic Clothing Co. · Bandra"
 export const PEER_NOTE = "Peer set: anonymised luxury cohort · n = 37 stores"
+
+/** Maturity labels — keep UI honest about EdgeSight vs ML timelines. */
+export const MATURITY = {
+  live: "Live today · EdgeSight",
+  next: "Integrate next",
+  learns: "Learns after 4–12 weeks+",
+  demoForecast: "Illustrative demo · not a shipped forecast model",
+} as const
+
+export const RETAIL_INTEL = {
+  title: "Retail intelligence",
+  sub: "Pass → stop → enter → zone → queue. Campaign uplift in stop-rate language — not POS ROI.",
+  funnelNote: "Engage = near-display interest (YOLO-World + proximity), not purchase.",
+  peaks: [
+    { label: "15:00 – 17:00", kind: "Window attention", action: "Staff visual / floor" },
+    { label: "16:30 – 18:45", kind: "Entry cluster", action: "3 on floor" },
+    { label: "Sat 15:00 – 18:00", kind: "Weekly motif", action: "+2 staff (after 4+ weeks history)" },
+  ],
+  campaign: {
+    name: "Winter Rotation",
+    before: "6.4%",
+    after: "7.3%",
+    uplift: "+14.6%",
+    window: "14-day A/B",
+    metric: "Window stop rate (≥4s)",
+  },
+}
+
+export const VISITOR_INTEL = {
+  title: "Visitor intelligence",
+  sub: "Privacy-safe cohorts and journeys. No facial identity product.",
+  cohorts: DEMOGRAPHICS,
+  journeys: [
+    { path: "Entrance → Leather → Hero", share: "28%", note: "Single-cam / fused when available" },
+    { path: "Entrance → Apparel → Fitting", share: "18%", note: "Zone sequence · not face ReID" },
+    { path: "Entrance → Footwear → Exit", share: "9%", note: "Short path · low dwell" },
+  ],
+  privacy: "Age/gender buckets k ≥ 10. Solo/group from proximity geometry. Repeat-visit motifs = statistical peaks, never face gallery.",
+  maturityPaths: MATURITY.next,
+}
+
+export const STORE_INTEL = {
+  title: "Store intelligence",
+  sub: "Occupancy, heat, staffing windows, under-lit / dead zones. Multi-cam consensus when fusion ships.",
+  occupancy: OCCUPANCY,
+  deadZones: ZONES.filter((z) => z.flag || z.heat < 0.25),
+  staffing: MANAGER.staffing,
+  consensusNote: "Today occupancy may sum cameras without dedup. Label stays honest until storewide consensus ships.",
+}
+
+export const SHELF_INTEL = {
+  title: "Shelf / display intelligence",
+  sub: "Near-shelf attention and category interest from CCTV — not barcode POS from distant cams.",
+  fixtures: [
+    { name: "Hero Handbag Vitrine", interest: "42%", dwell: "8.4s engaged", note: "Category · head-facing + proximity" },
+    { name: "Leather Goods Island", interest: "68%", dwell: "7m 04s zone", note: "Highest visit rate zone" },
+    { name: "Capsule Runway Rail", interest: "24%", dwell: "5.2s engaged", note: "Lower touch · still measurable" },
+    { name: "Denim Wall", interest: "38%", dwell: "3m 38s zone", note: "Weekend peak" },
+  ],
+  honesty: "No pupil gaze. No SKU OCR from wide CCTV. Engage funnel stage = near-display interest.",
+}
+
+export const PATTERN_INTEL = {
+  title: "Repeated patterns",
+  sub: "Weekly / seasonal motifs from anonymous rollups. Useful after weeks–months of monitoring.",
+  label: MATURITY.learns,
+  motifs: [
+    { id: "m1", title: "Tue AM quiet", detail: "Entries 35% below weekly hour average every Tue 10–12 for 8 weeks.", weeks: 8, strength: "Strong" },
+    { id: "m2", title: "Sat 15–18 surge", detail: "Saturday afternoon entries +40% vs weekday mean — staffing motif.", weeks: 12, strength: "Strong" },
+    { id: "m3", title: "F1 after 18:00 dark", detail: "Window West heat collapses after 18:00 — lighting, not layout.", weeks: 6, strength: "Medium" },
+    { id: "m4", title: "Festival week lift", detail: "Stop rate +1.1pp in festival weeks vs baseline (needs ≥1 season).", weeks: 16, strength: "Emerging" },
+  ],
+  note: "Not “we recognised this shopper.” Patterns are store-level aggregates only.",
+}
+
+export const FORECAST_INTEL = {
+  title: "Store predictions",
+  sub: "Footfall, occupancy, and queue risk — improves after 4–12 weeks of history.",
+  label: MATURITY.demoForecast,
+  honestBanner: "Improves after 4–12 weeks of monitoring. Demo dashed lines are illustrative until a forecast job is trained on your rollups.",
+  rows: [
+    { metric: "Entries tomorrow", current: "—", projected: "2,520–2,710", band: "Wide", method: "Seasonal naive (needs 4+ wks)", weeks: 12 },
+    { metric: "Peak occupancy Sat", current: "71%", projected: "68–76%", band: "Medium", method: "DOW-hour rollup", weeks: 12 },
+    { metric: "Queue risk 16:30–18:00", current: "Length 3", projected: "Elevated", band: "Medium", method: "History + threshold", weeks: 8 },
+    { metric: "Stop rate Wk 16", current: "11.4%", projected: "12.0%", band: "Illustrative", method: "Linear demo trend", weeks: 12 },
+  ],
+  methods: "Start: seasonal naive / rolling DOW-hour → Prophet-class with holiday calendar → TFT only for multi-store fleets with months of data.",
+}
 
 export interface StaffingDay {
   day: string

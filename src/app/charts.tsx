@@ -615,7 +615,7 @@ export function HeatGrid({
         return (
           <div
             key={z.code}
-            title={`${z.name} — ${z.traffic}% traffic · dwell ${z.dwell}${z.note ? ` · ${z.note}` : ""}${
+            title={`${z.name} — ${z.traffic}% entered zone · dwell ${z.dwell}${z.note ? ` · ${z.note}` : ""}${
               z.flag ? ` · ⚠ ${z.flag}` : ""
             }`}
             className={`relative flex min-h-[88px] flex-col rounded-xl border p-2.5 ${
@@ -636,7 +636,7 @@ export function HeatGrid({
             </p>
             <div className="mt-auto pt-2">
               <p className="font-inter cosmic-text-base font-bold font-num leading-none text-[var(--app-text)]">{z.traffic}%</p>
-              <p className="mt-0.5 font-inter cosmic-text-2xs text-[var(--app-faint)]">dwell {z.dwell}</p>
+              <p className="mt-0.5 font-inter cosmic-text-2xs text-[var(--app-faint)]">entered · dwell {z.dwell}</p>
             </div>
           </div>
         )

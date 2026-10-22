@@ -102,25 +102,68 @@ export function Hero({ onPilot }: { onPilot: () => void }) {
                 <div className="relative aspect-[16/10] overflow-hidden">
                   <img
                     src="/images/hero-storefront.jpg"
-                    alt="Organic Clothing Co. Bandra storefront"
+                    alt="Organic Clothing Co. Bandra storefront — pass / stop / enter from existing cameras"
                     className="h-full w-full object-cover"
                   />
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0b0b12] via-[#0b0b12]/55 to-transparent" />
+                  {/* Scene markings */}
                   <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-[#3ECF8E]/40 bg-[#0b0b12]/70 px-2.5 py-1 font-mono cosmic-text-2xs text-[#6effb0] backdrop-blur-sm">
                     <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#3ECF8E]" />
-                    LIVE · BANDRA
+                    LIVE · BANDRA · CAM 01
                   </div>
-                  <div className="absolute bottom-0 left-0 right-0 grid grid-cols-3 gap-2 p-4 sm:p-5">
-                    {[
-                      { k: "Pass", v: "2,481" },
-                      { k: "Stop", v: "186" },
-                      { k: "Enter", v: "39" },
-                    ].map((r) => (
-                      <div key={r.k} className="rounded-xl border border-white/12 bg-[#0b0b12]/75 px-3 py-2.5 backdrop-blur-sm">
-                        <p className="font-mono cosmic-text-2xs tracking-[0.12em] text-white/45">{r.k}</p>
-                        <p className="mt-0.5 font-num cosmic-text-lg font-bold text-[#f5f5f7]">{r.v}</p>
+                  <div
+                    className="absolute z-10 max-w-[40%] -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: "28%", top: "38%" }}
+                  >
+                    <div className="flex items-start gap-1.5">
+                      <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-white/90 font-mono cosmic-text-2xs font-bold text-[#111] ring-2 ring-white/30">1</span>
+                      <div className="rounded-lg border border-white/15 bg-[#0b0b12]/78 px-2 py-1 backdrop-blur-sm">
+                        <p className="font-inter cosmic-text-2xs font-semibold text-white/95">Street passers</p>
+                        <p className="mt-0.5 font-inter cosmic-text-2xs text-white/55">Tracks past glass</p>
                       </div>
-                    ))}
+                    </div>
+                  </div>
+                  <div
+                    className="absolute z-10 max-w-[40%] -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: "62%", top: "48%" }}
+                  >
+                    <div className="flex items-start gap-1.5">
+                      <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#8B7CF6] font-mono cosmic-text-2xs font-bold text-white ring-2 ring-[#8B7CF6]/40">2</span>
+                      <div className="rounded-lg border border-white/15 bg-[#0b0b12]/78 px-2 py-1 backdrop-blur-sm">
+                        <p className="font-inter cosmic-text-2xs font-semibold text-white/95">Window stop</p>
+                        <p className="mt-0.5 font-inter cosmic-text-2xs text-white/55">≥4s in zone</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="absolute z-10 max-w-[40%] -translate-x-1/2 -translate-y-1/2"
+                    style={{ left: "78%", top: "62%" }}
+                  >
+                    <div className="flex items-start gap-1.5">
+                      <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[#3ECF8E] font-mono cosmic-text-2xs font-bold text-[#062016] ring-2 ring-[#3ECF8E]/40">3</span>
+                      <div className="rounded-lg border border-white/15 bg-[#0b0b12]/78 px-2 py-1 backdrop-blur-sm">
+                        <p className="font-inter cosmic-text-2xs font-semibold text-white/95">Enter</p>
+                        <p className="mt-0.5 font-inter cosmic-text-2xs text-white/55">Tripwire IN</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
+                    <p className="mb-2 font-inter cosmic-text-2xs leading-snug text-white/50">
+                      Looking at: Bandra flagship glass from Cam 01. Numbers = demo funnel for today — passers, window stops, entries.
+                    </p>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { k: "Pass", v: "2,481", d: "at glass" },
+                        { k: "Stop", v: "186", d: "≥4s · 7.5%" },
+                        { k: "Enter", v: "39", d: "tripwire" },
+                      ].map((r) => (
+                        <div key={r.k} className="rounded-xl border border-white/12 bg-[#0b0b12]/75 px-3 py-2.5 backdrop-blur-sm">
+                          <p className="font-mono cosmic-text-2xs tracking-[0.12em] text-white/45">{r.k}</p>
+                          <p className="mt-0.5 font-num cosmic-text-lg font-bold text-[#f5f5f7]">{r.v}</p>
+                          <p className="mt-0.5 font-inter cosmic-text-2xs text-white/40">{r.d}</p>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div className="flex h-10 items-end gap-1 border-t border-white/10 px-4 py-2.5">
