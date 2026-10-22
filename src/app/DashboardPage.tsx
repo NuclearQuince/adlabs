@@ -5,17 +5,18 @@ import { motion, AnimatePresence } from "framer-motion"
 import {
   LayoutDashboard, Store, Megaphone, Map, FileText, ClipboardList,
   Sun, Moon, Play, Presentation, ArrowLeft, ShieldCheck,
-  BarChart3, Users, Package, Sparkles, ChartPie, History as HistoryIcon, Search,
-  Eye,
+  BarChart3, Users, Package, Sparkles, History as HistoryIcon, Search,
+  Eye, Timer,
 } from "lucide-react"
 import Link from "next/link"
 import { Logo } from "../components/Logo"
 import { Chip, Segmented } from "./ui"
-import { TENANT, SIMULATED_NOTE } from "../data/dashboard"
+import { TENANT, SIMULATED_NOTE, ALERTS } from "../data/dashboard"
 import { Overview } from "./screens/Overview"
 import { Stores, StoreDetail } from "./screens/Stores"
 import { Campaigns } from "./screens/Campaigns"
 import { Zones } from "./screens/Zones"
+import { Queues } from "./screens/Queues"
 import { Brief } from "./screens/Brief"
 import { Manager } from "./screens/Manager"
 import { Storefront } from "./screens/Storefront"
@@ -30,12 +31,29 @@ import { PresentMode } from "./PresentMode"
 import { VoiceAssistant } from "./VoiceAssistant"
 import { CmdPalette } from "./CmdPalette"
 
-type Screen = "overview" | "storefront" | "stores" | "store" | "campaigns" | "zones" | "brief" | "manager" | "compare" | "history" | "demographics" | "product" | "alerts" | "tour" | "ads"
+type Screen =
+  | "overview"
+  | "storefront"
+  | "stores"
+  | "store"
+  | "campaigns"
+  | "zones"
+  | "queues"
+  | "brief"
+  | "manager"
+  | "compare"
+  | "history"
+  | "demographics"
+  | "product"
+  | "alerts"
+  | "tour"
+  | "ads"
 type Role = "Brand" | "Store"
 type Theme = "light" | "dark"
 
 const OWNER_NAME = "Priya"
 const OWNER_ROLE = "Brand owner · Organic Clothing Co."
+const ALERT_COUNT = ALERTS.length
 
 function greeting() {
   const h = new Date().getHours()
@@ -48,30 +66,30 @@ type NavItem = { id: Screen; label: string; icon: typeof LayoutDashboard; badge?
 
 const NAV_SECTIONS_BRAND: { label: string; items: NavItem[] }[] = [
   {
-    label: "Today",
+    label: "Live now",
     items: [
       { id: "overview", label: "Today", icon: LayoutDashboard, color: "#8B7CF6" },
-      { id: "storefront", label: "Entrance & window", icon: Eye, color: "#3ECF8E" },
-      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
+      { id: "storefront", label: "Entrances", icon: Eye, color: "#3ECF8E" },
       { id: "zones", label: "Floor zones", icon: Map, color: "#FF9500" },
-      { id: "brief", label: "Monday brief", icon: FileText, badge: 3, color: "#FF3B30" },
+      { id: "queues", label: "Queues", icon: Timer, color: "#5ac8fa" },
+      { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: ALERT_COUNT, color: "#FF3B30" },
     ],
   },
   {
-    label: "Prove",
+    label: "Performance",
     items: [
-      { id: "campaigns", label: "Window A/B", icon: Megaphone, color: "#AF52DE" },
-      { id: "ads", label: "Out-of-home", icon: ChartPie, color: "#FF2D55" },
+      { id: "campaigns", label: "Window performance", icon: Megaphone, color: "#AF52DE" },
+      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
       { id: "compare", label: "Compare stores", icon: BarChart3, color: "#5856D6" },
       { id: "history", label: "History", icon: HistoryIcon, color: "#007AFF" },
     ],
   },
   {
-    label: "People",
+    label: "More",
     items: [
+      { id: "brief", label: "Monday brief", icon: FileText, badge: 3, color: "#FF3B30" },
       { id: "demographics", label: "Age & groups", icon: Users, color: "#FF9500" },
       { id: "product", label: "Display interest", icon: Package, color: "#34C759" },
-      { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: 4, color: "#FF3B30" },
       { id: "tour", label: "How to read this", icon: Sparkles, color: "#8B7CF6" },
     ],
   },
@@ -79,17 +97,18 @@ const NAV_SECTIONS_BRAND: { label: string; items: NavItem[] }[] = [
 
 const NAV_SECTIONS_STORE: { label: string; items: NavItem[] }[] = [
   {
-    label: "Floor",
+    label: "Live now",
     items: [
       { id: "manager", label: "Manager today", icon: ClipboardList, color: "#3ECF8E" },
-      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
-      { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: 4, color: "#FF3B30" },
+      { id: "queues", label: "Queues", icon: Timer, color: "#5ac8fa" },
+      { id: "zones", label: "Floor zones", icon: Map, color: "#FF9500" },
+      { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: ALERT_COUNT, color: "#FF3B30" },
     ],
   },
   {
     label: "Reference",
     items: [
-      { id: "zones", label: "Floor zones", icon: Map, color: "#FF9500" },
+      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
       { id: "tour", label: "How to read this", icon: Sparkles, color: "#8B7CF6" },
     ],
   },
@@ -97,11 +116,12 @@ const NAV_SECTIONS_STORE: { label: string; items: NavItem[] }[] = [
 
 const PAGE_TITLES: Record<Screen, string> = {
   overview: "Today",
-  storefront: "Entrance & window",
+  storefront: "Entrances",
   stores: "All stores",
   store: "Store detail",
-  campaigns: "Window A/B",
+  campaigns: "Window performance",
   zones: "Floor zones",
+  queues: "Queues",
   brief: "Monday brief",
   manager: "Manager today",
   compare: "Compare stores",
@@ -152,7 +172,8 @@ export function DashboardPage() {
 
   const changeRole = (r: Role) => {
     setRole(r)
-    if (r === "Store" && screen !== "stores" && screen !== "store" && screen !== "manager") {
+    const storeOk: Screen[] = ["stores", "store", "manager", "queues", "zones", "alerts", "tour"]
+    if (r === "Store" && !storeOk.includes(screen)) {
       setScreen("manager")
     }
     if (r === "Brand" && screen === "manager") {
@@ -170,6 +191,7 @@ export function DashboardPage() {
       case "store": return <StoreDetail storeId={selectedStore} />
       case "campaigns": return <Campaigns />
       case "zones": return <Zones />
+      case "queues": return <Queues />
       case "brief": return <Brief />
       case "manager": return <Manager />
       case "compare": return <Compare />

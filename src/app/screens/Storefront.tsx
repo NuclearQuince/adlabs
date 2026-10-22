@@ -26,7 +26,7 @@ export function Storefront() {
           </div>
           <div>
             <p className="eyebrow uppercase tracking-[0.16em] text-white/60">
-              Entrance & window · {TENANT.store}
+              Entrances · {TENANT.store}
             </p>
             <h1 className="mt-3 font-serif tracking-[-0.01em] cosmic-text-4xl leading-[1.02] text-white sm:cosmic-text-5xl">Pass, stop, enter</h1>
           </div>

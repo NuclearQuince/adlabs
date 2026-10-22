@@ -649,9 +649,10 @@ export const INDUSTRY_OVERVIEW = {
 }
 
 export const ALERTS = [
+  { id: "0", severity: "critical", zone: "Checkout", message: "Queue congestion — length 3, wait 2m 14s over soft threshold", time: "12m ago", action: "Open second till or pull floor staff to checkout", screen: "queues" },
   { id: "1", severity: "critical", zone: "F1", message: "Under-lit after 18:00 — dwell 2.1× below average", time: "2h ago", action: "Relight at 18:00, re-measure in 7 days", screen: "zones" },
   { id: "2", severity: "high", store: "Koregaon Park", message: "Stop rate 4.1% vs 8.9% cohort — declining 0.3pp/week", time: "4h ago", action: "Audit window display, benchmark cohort", screen: "stores" },
-  { id: "3", severity: "medium", zone: "V7", message: "Advisory Salon conversion dropped 3pp this week", time: "1d ago", action: "Review consultant placement, re-measure", screen: "zones" },
+  { id: "3", severity: "medium", zone: "V7", message: "Advisory Salon near-display interest dropped 3pp this week", time: "1d ago", action: "Review consultant placement, re-measure", screen: "zones" },
   { id: "4", severity: "low", zone: "T8", message: "Transit Corridor pace 1.3 m/s — cold transit", time: "2d ago", action: "Add visual anchor, re-measure in 14 days", screen: "zones" },
 ]
 

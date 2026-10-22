@@ -60,7 +60,6 @@ const scrollToId = (id: string) => {
 
 const STAT_STRIP = [
   { value: "2", label: "paths: Edge or Cloud" },
-  { value: "1 day", label: "from connect to live" },
   { value: "0", label: "new cameras to buy" },
   { value: "0", label: "faces stored as identity" },
 ]
@@ -83,30 +82,21 @@ const DELIVERABLES = [
   },
   {
     icon: LayoutDashboard,
-    kicker: "02 · THE DASHBOARD",
-    title: "Your storefront, live and legible",
-    body: "A real-time view of the signals that decide revenue — who stopped, who entered, which zones pulled attention and when.",
-    points: ["Street footfall, stop rate, look time, entry conversion", "Zone attention & pace inside the store", "Anomaly alerts before a trend costs you"],
+    kicker: "02 · LIVE OPS",
+    title: "What’s happening now",
+    body: "Entries, stop rate, floor zones, queues — a professional live view, not a marketing collage.",
+    points: ["Pass → stop → enter funnel", "Zone dwell and heat", "Queue length and wait"],
     spec: "Live demo: /dashboard",
     visual: "hud" as const,
   },
   {
     icon: FileText,
-    kicker: "03 · THE MONDAY BRIEF",
-    title: "Three actions, every single Monday",
-    body: "A 15-minute read for the founder. Baselines, the three changes that matter this week, and the numbers behind them — auditable, not authored.",
-    points: ["Delivered every Monday before the store opens", "Each action traceable to a measured signal", "Your numbers compared to your own history — not a category average"],
-    spec: "Monday · 07:30 · ~15 min read",
+    kicker: "03 · MONDAY BRIEF",
+    title: "Three actions every Monday",
+    body: "Verdict, evidence, keep-or-kill on the window — a 15-minute founder read from your own cameras.",
+    points: ["Traceable to measured signals", "14-day window A/B", "Your baselines, not a category average"],
+    spec: "Monday · ~15 min read",
     visual: "brief" as const,
-  },
-  {
-    icon: FlaskConical,
-    kicker: "04 · THE A/B ENGINE",
-    title: "Physical A/B. Measured on the glass.",
-    body: "Two window treatments run head-to-head for 14 days. You get a keep-or-kill verdict with an uplift number — the debate ends on data, not opinion.",
-    points: ["Test hero product placement, lighting, signage", "Same store, same street, controlled window", "Verdict with measured uplift you can action"],
-    spec: "14-day cycles · keep / kill verdict",
-    visual: "ab" as const,
   },
 ]
 
@@ -574,8 +564,8 @@ export function DiscoveryPage() {
         {/* ---------- WHAT SHIPS ---------- */}
         <SectionShell
           kicker="What the pilot ships"
-          title={<>One box, three outputs. <em className="em-accent">Nothing fluffy.</em></>}
-          sub="Every founding pilot puts one physical instrument in your store and three outputs in your hands — the live dashboard, the Monday Brief and the A/B engine. On the cameras you already own, from day one."
+          title={<>Path, live view, Monday verdict. <em className="em-accent">Nothing fluffy.</em></>}
+          sub="Every founding pilot: Edge or Cloud on cameras you own, a live ops dashboard, and a Monday Brief with three actions."
         >
           <div className="grid gap-5 md:grid-cols-2">
             {DELIVERABLES.map((d, i) => {
@@ -628,23 +618,6 @@ export function DiscoveryPage() {
                             </li>
                           ))}
                         </ul>
-                      </div>
-                    )}
-                    {d.visual === "ab" && (
-                      <div className="relative grid grid-cols-2 overflow-hidden border-b border-white/10 bg-[#0d0d11]">
-                        <div className="relative">
-                          <img src="/images/window-before.jpg" alt="Window treatment A" className="aspect-[4/5] w-full object-cover" />
-                          <div className="absolute left-3 top-3 rounded-full bg-black/60 px-2 py-1 font-mono cosmic-text-2xs tracking-[0.1em] text-white/90 backdrop-blur-sm">A</div>
-                        </div>
-                        <div className="relative">
-                          <img src="/images/window-after.jpg" alt="Window treatment B" className="aspect-[4/5] w-full object-cover" />
-                          <div className="absolute left-3 top-3 rounded-full bg-black/60 px-2 py-1 font-mono cosmic-text-2xs tracking-[0.1em] text-white/90 backdrop-blur-sm">B</div>
-                        </div>
-                        <div aria-hidden className="absolute inset-x-0 bottom-0 flex justify-center pb-3">
-                          <span className="rounded-full bg-[#8B7CF6] px-3 py-1 font-mono cosmic-text-2xs font-bold tracking-[0.1em] text-[#05050a] shadow-[0_8px_24px_rgba(139,124,246,0.35)]">
-                            +14.6% · 14D VERDICT
-                          </span>
-                        </div>
                       </div>
                     )}
 

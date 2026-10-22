@@ -1011,25 +1011,11 @@ html { scrollbar-width: thin; scrollbar-color: #333336 #05050a; }
 
 .app-panel {
   position: relative;
-  transition: transform var(--app-transition),
-    border-color var(--app-transition),
-    box-shadow var(--app-transition);
+  transition: border-color var(--app-transition), box-shadow var(--app-transition);
 }
 
 .app-panel:hover {
-  border-color: color-mix(in srgb, var(--app-accent) 38%, var(--app-line));
-  transform: translateY(-2px);
-}
-
-.app-panel::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 20px;
-  right: 20px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--app-accent-soft), transparent);
-  pointer-events: none;
+  border-color: color-mix(in srgb, var(--app-accent) 22%, var(--app-line));
 }
 
 .app-glow {
@@ -1037,11 +1023,11 @@ html { scrollbar-width: thin; scrollbar-color: #333336 #05050a; }
   inset: 0;
   pointer-events: none;
   background: var(--app-glow, none);
+  opacity: 0.55;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .app-panel { transition: none; }
-  .app-panel:hover { transform: none; }
 }
 
 .flip-card {

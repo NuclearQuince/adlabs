@@ -165,7 +165,25 @@ export function Metrics() {
           {m.h2}
         </SectionHeader>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <Reveal delay={0.06}>
+          <div className="relative mt-8 overflow-hidden rounded-2xl border border-white/10">
+            <img
+              src="/images/in-store-zones.jpg"
+              alt="Zone dwell inside the store"
+              className="aspect-[21/9] w-full object-cover opacity-80 sm:aspect-[2.8/1]"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0c0c14]/85 via-[#0c0c14]/35 to-transparent" />
+            <div className="absolute bottom-0 left-0 max-w-md p-5 sm:p-7">
+              <p className="font-mono cosmic-text-2xs uppercase tracking-[0.16em] text-[#8B7CF6]">Zone dwell</p>
+              <p className="mt-2 cosmic-text-lg font-semibold text-[#f5f5f7]">
+                Where attention lives on the floor — same signal on Edge or Cloud.
+              </p>
+            </div>
+          </div>
+        </Reveal>
+
+        <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {m.items.map((it, i) => (
             <Reveal key={it.title} delay={Math.min(i * 0.04, 0.3)}>
               <MetricCard it={it} />

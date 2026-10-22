@@ -12,14 +12,14 @@ const DATA_CLASSES = [
   {
     icon: Footprints,
     title: "Entries & hourly traffic",
-    where: "Today · Entrance & window",
+    where: "Today · Entrances",
     desc: "Tripwire IN/OUT counts and the hourly curve. Core EdgeSight output.",
     visual: <Sparkline data={[88, 132, 168, 198, 186, 214, 262, 289, 271, 196, 158, 112]} tone="gold" />,
   },
   {
     icon: Eye,
     title: "Window stop rate",
-    where: "Entrance & window",
+    where: "Entrances",
     desc: "Paused ≥4s in a window zone. Needs a street-facing camera + dwell zone.",
     visual: (
       <div className="flex items-end gap-1.5">
@@ -34,14 +34,14 @@ const DATA_CLASSES = [
   {
     icon: Timer,
     title: "Zone dwell & queue",
-    where: "Floor zones · Manager today",
+    where: "Floor zones · Queues",
     desc: "Avg dwell per polygon; queue length after ≥5s in a checkout zone.",
     visual: <DonutChart data={WINDOW_ENGAGEMENT} size={84} showCenter={false} />,
   },
   {
     icon: Megaphone,
-    title: "Window A/B",
-    where: "Window A/B",
+    title: "Window performance",
+    where: "Window performance",
     desc: "Same door, two rotations, stop-rate before/after. Keep or kill.",
     visual: (
       <div className="flex items-center gap-2 font-num">
@@ -86,7 +86,7 @@ const TIMELINE = [
     phase: "Month 1",
     chip: "Decisions compound",
     items: [
-      "Window A/B before/after on stop rate",
+      "Window performance A/B on stop rate",
       "Store compare across doors",
       "Monday brief with three actions from your rollups",
     ],

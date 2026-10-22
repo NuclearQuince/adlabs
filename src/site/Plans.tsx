@@ -125,7 +125,7 @@ export function Plans({ onPilot }: { onPilot?: () => void }) {
                 )}
               </div>
               <p className="px-1 cosmic-text-xs leading-relaxed text-[#86868b]">
-                Edge and Cloud are peer options. We do not imply a single edge-only future.
+                Edge and Cloud are peer options. Pilot terms are scoped on a short call — no public rate card.
               </p>
             </aside>
           </div>

@@ -40,11 +40,11 @@ export function BlindSpot() {
   ]
 
   return (
-    <section id="blindspot" className="relative py-24 section-cosmic cosmic-bg" style={{ scrollMarginTop: "4rem" }}>
+    <section id="blindspot" className="relative py-14 sm:py-16 lg:py-20 section-cosmic cosmic-bg" style={{ scrollMarginTop: "4rem" }}>
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">
         {/* Hook */}
         <Reveal>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 sm:mb-12">
             <span className="badge-cosmic">The Problem</span>
             <h2 className="mt-6 visual-headline">
               {b.h2a}

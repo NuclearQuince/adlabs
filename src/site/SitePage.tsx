@@ -5,9 +5,9 @@ import { Nav } from "./Nav"
 import { Hero } from "./Hero"
 import { BlindSpot } from "./BlindSpot"
 import { Plans } from "./Plans"
+import { FloorStrip } from "./FloorStrip"
 import { Metrics } from "./Metrics"
 import { How } from "./How"
-import { Pricing } from "./Pricing"
 import { Privacy } from "./Privacy"
 import { Faq } from "./Faq"
 import { Contact } from "./Contact"
@@ -25,10 +25,10 @@ export function SitePage() {
         <Hero onPilot={openPilot} />
         <BlindSpot />
         <Plans onPilot={openPilot} />
+        <FloorStrip />
         <Metrics />
         <Privacy />
         <How onPilot={openPilot} />
-        <Pricing />
         <Faq />
         <Contact onPilot={openPilot} />
       </main>

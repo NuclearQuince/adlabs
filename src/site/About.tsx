@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight, Shield, Zap, Target, Database, Users, Award, BadgeCheck } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Shield, Zap, Target, Database, BadgeCheck } from "lucide-react"
 import { Reveal } from "../components/Reveal"
 import { FlipCard, AnswerPanel } from "../components/FlipCard"
 import { Nav } from "./Nav"
@@ -20,8 +20,6 @@ export function About() {
     { icon: Zap, title: "Dual Deployment", desc: "Edge AI and Cloud are peers. Same signals, same Monday Brief. You pick where inference runs." },
     { icon: Target, title: "Verdicts, Not Dashboards", desc: "Numbers that end in a move. Physical A/B keep-or-kill. Three actions every Monday." },
     { icon: Database, title: "Store-Specific Intelligence", desc: "Baselines are yours. Anomalies surface before they cost a week." },
-    { icon: Users, title: "Built for the Floor", desc: "A 15-minute founder read and a daily staff view of the same evidence." },
-    { icon: Award, title: "Indian Retail First", desc: "Built for high streets and malls here first. Attention is universal; context is local." },
   ]
 
 return (
@@ -232,7 +230,7 @@ return (
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {principles.map((item, i) => (
                   <Reveal key={item.title} delay={i * 0.05}>
                     <div className="site-card group rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:border-[#8B7CF6]/40">
@@ -249,37 +247,7 @@ return (
           </div>
         </section>
 
-        {/* 06 — What we own */}
-        <section className="bg-[#05050a] py-12 sm:py-16 lg:py-20">
-          <div className="mx-auto max-w-[1200px] px-6">
-            <Reveal>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="font-mono cosmic-text-xs tracking-[0.18em] text-[#f5f5f7]/50">{a.ip.index} /</span>
-                <span className="section-kicker text-[#8B7CF6]">{a.ip.kicker}</span>
-              </div>
-              <h2 className="cosmic-text-3xl font-semibold tracking-[-0.02em] text-[#f5f5f7]">{a.ip.title}</h2>
-              <p className="mt-4 max-w-xl cosmic-text-base leading-relaxed text-[#a1a1aa]">{a.ip.sub}</p>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <div className="mt-10 flex flex-col">
-                {a.ip.points.map((p, i) => (
-                  <Reveal key={p.num} delay={i * 0.05}>
-                    <div className="flex flex-col gap-3 border-t border-white/10 py-6 last:border-b sm:flex-row sm:items-baseline sm:gap-8">
-                      <span className="font-mono cosmic-text-xs font-bold text-[#8B7CF6]">{p.num}</span>
-                      <div className="sm:flex-1">
-                        <h3 className="cosmic-text-xl font-semibold leading-tight text-[#f5f5f7]">{p.title}</h3>
-                        <p className="mt-1.5 cosmic-text-sm leading-relaxed text-[#a1a1aa]">{p.desc}</p>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* 07 — Where we are + Team */}
+        {/* 06 — Where we are + Team */}
         <section className="bg-[#12121a] py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-[1200px] px-6">
             <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -322,12 +290,13 @@ return (
                   </h2>
                   <p className="mt-3 cosmic-text-sm leading-relaxed text-[#a1a1aa]">{a.team.sub}</p>
                   <div className="mt-auto pt-8">
-                    <Link
-                      href="/about"
+                    <button
+                      type="button"
+                      onClick={openPilot}
                       className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 cosmic-text-sm font-semibold text-[#f5f5f7] transition-all duration-300 hover:border-white/40 hover:bg-[#05050a] hover:-translate-y-0.5"
                     >
-                      Meet the founders <ArrowRight size={16} strokeWidth={2.4} />
-                    </Link>
+                      Talk to the lab <ArrowRight size={16} strokeWidth={2.4} />
+                    </button>
                     <p className="mt-4 cosmic-text-xs leading-relaxed text-[#86868b]">{a.demoNote}</p>
                   </div>
                 </div>

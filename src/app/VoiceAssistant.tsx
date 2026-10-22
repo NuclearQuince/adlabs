@@ -5,7 +5,7 @@ import {
   PREDICTIONS, WEEKLY_HISTORY, INSIGHTS, TENANT,
 } from "../data/dashboard"
 
-type Screen = "overview" | "storefront" | "stores" | "store" | "campaigns" | "zones" | "brief" | "manager" | "compare" | "history" | "demographics" | "product" | "alerts" | "tour" | "ads"
+type Screen = "overview" | "storefront" | "stores" | "store" | "campaigns" | "zones" | "queues" | "brief" | "manager" | "compare" | "history" | "demographics" | "product" | "alerts" | "tour" | "ads"
 type Msg = { role: "user" | "ai"; text: string; screen?: Screen; storeId?: string; storeName?: string }
 
 /* ---------------- Intent engine over REAL dashboard data ---------------- */

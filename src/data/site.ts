@@ -56,7 +56,6 @@ export const NAV = [
   { label: "Outcomes", href: "#metrics" },
   { label: "Privacy", href: "#privacy" },
   { label: "How", href: "#how" },
-  { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ]
@@ -64,8 +63,8 @@ export const NAV = [
 export const PRIMARY_NAV: { label: string; href: string }[] = [
   { label: "Plans", href: "#plans" },
   { label: "Privacy", href: "#privacy" },
-  { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
 ]
 
 export type NavLinkDef = { label: string; href: string; desc?: string; new?: boolean }
@@ -77,9 +76,10 @@ export const NAV_GROUPS: NavGroup[] = [
     id: "product",
     links: [
       { label: "The Problem", href: "#blindspot", desc: "Passers-by you never counted" },
-      { label: "Edge vs Cloud", href: "#plans", desc: "Two ways to deploy", new: true },
-      { label: "Outcomes", href: "#metrics", desc: "Signals that drive decisions" },
-      { label: "Live Dashboard", href: "/dashboard", desc: "See the product working", new: true },
+      { label: "Edge vs Cloud", href: "#plans", desc: "Two ways to deploy" },
+      { label: "See the floor", href: "#floor", desc: "Zones that make the store readable" },
+      { label: "Outcomes", href: "#metrics", desc: "Six EdgeSight-class signals" },
+      { label: "Live Dashboard", href: "/dashboard", desc: "What’s happening now" },
     ],
   },
   {
@@ -92,13 +92,12 @@ export const NAV_GROUPS: NavGroup[] = [
     ],
   },
   {
-    label: "Support",
+    label: "Start",
     id: "support",
     links: [
-      { label: "How to Start", href: "#how", desc: "Three steps to a Monday Brief" },
-      { label: "Pricing", href: "#pricing", desc: "Edge path or Cloud path" },
+      { label: "How it works", href: "#how", desc: "Three steps to a Monday Brief" },
       { label: "FAQ", href: "#faq", desc: "Straight answers" },
-      { label: "Contact", href: "#contact", desc: "A human replies" },
+      { label: "Talk to us", href: "#contact", desc: "A human replies" },
     ],
   },
 ]
@@ -799,9 +798,9 @@ export const HOW = {
   ],
   compat: "EDGE AI OR CLOUD · EXISTING RTSP/NVR · DPDP + GDPR",
   wishlist: {
-    kicker: "Join the pilot list",
-    h2: "Tell us Edge, Cloud, or not sure.",
-    sub: "A human from the lab reviews your cameras and sketches a scope on the path that fits.",
+    kicker: "Next",
+    h2: "Ready to scope a store?",
+    sub: "Tell us Edge, Cloud, or not sure — a human replies.",
     successTitle: "You're on the runway.",
     successBody: "We'll review your storefront camera setup with you and schedule installation.",
     successNote: "Confirmation will be sent to",
@@ -1052,10 +1051,10 @@ export const PRICING = {
 }
 
 export const FAQ = {
-  index: "07",
+  index: "06",
   kicker: "FAQ",
   h2: "Straight answers.",
-  sub: "Privacy, cameras, Edge vs Cloud, pilots. Deeper questions go to the contact form.",
+  sub: "Edge vs Cloud, privacy, cameras. Everything else → talk to us.",
   items: [
     {
       q: "Edge AI or Cloud — which should we pick?",
@@ -1070,12 +1069,8 @@ export const FAQ = {
       a: "Usually no. We plug into existing PoE / RTSP / NVR feeds. Analog stacks can bridge at the recorder.",
     },
     {
-      q: "Is this surveillance?",
-      a: "No. We measure behaviour as anonymous vectors — position, pace, pause. No face map, no re-identification product.",
-    },
-    {
       q: "What does a pilot look like?",
-      a: "Scoped to one path and a flagship (or small set of doors). Install or connect, calibrate zones, then weekly Monday Briefs for the pilot term. You decide keep-or-kill with real numbers.",
+      a: "Scoped to one path and a flagship (or small set of doors). Install or connect, calibrate zones, then weekly Monday Briefs. You decide keep-or-kill with real numbers.",
     },
   ],
 }

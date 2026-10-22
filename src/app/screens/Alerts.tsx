@@ -53,7 +53,7 @@ export function Alerts() {
       <Panel
         title="Active alerts"
         action={<Label>{filtered.length} shown</Label>}
-        info="Severity = revenue impact: critical → walk-ins, high → stop rate, medium/low → dwell."
+        info="Severity by ops impact: critical → queue / entries, high → stop rate, medium/low → dwell."
       >
         <div className="flex flex-col gap-3">
           {filtered.map((a) => (

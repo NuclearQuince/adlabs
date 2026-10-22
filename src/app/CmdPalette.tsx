@@ -5,20 +5,21 @@ import { Search } from "lucide-react"
 type Screen = string
 
 const ALL: { id: string; label: string; group: string }[] = [
-  { id: "overview", label: "Today", group: "Today" },
-  { id: "storefront", label: "Entrance & window", group: "Today" },
-  { id: "stores", label: "All stores", group: "Today" },
-  { id: "zones", label: "Floor zones", group: "Today" },
-  { id: "brief", label: "Monday brief", group: "Today" },
+  { id: "overview", label: "Today", group: "Live now" },
+  { id: "storefront", label: "Entrances", group: "Live now" },
+  { id: "zones", label: "Floor zones", group: "Live now" },
+  { id: "queues", label: "Queues", group: "Live now" },
+  { id: "alerts", label: "Alerts", group: "Live now" },
+  { id: "campaigns", label: "Window performance", group: "Performance" },
+  { id: "stores", label: "All stores", group: "Performance" },
+  { id: "compare", label: "Compare stores", group: "Performance" },
+  { id: "history", label: "History", group: "Performance" },
+  { id: "brief", label: "Monday brief", group: "More" },
+  { id: "demographics", label: "Age & groups", group: "More" },
+  { id: "product", label: "Display interest", group: "More" },
   { id: "manager", label: "Manager today", group: "Floor" },
-  { id: "campaigns", label: "Window A/B", group: "Prove" },
-  { id: "ads", label: "Out-of-home", group: "Prove" },
-  { id: "compare", label: "Compare stores", group: "Prove" },
-  { id: "history", label: "History", group: "Prove" },
-  { id: "demographics", label: "Age & groups", group: "People" },
-  { id: "product", label: "Display interest", group: "People" },
-  { id: "alerts", label: "Alerts", group: "People" },
-  { id: "tour", label: "How to read this", group: "People" },
+  { id: "tour", label: "How to read this", group: "More" },
+  { id: "ads", label: "Out-of-home", group: "More" },
 ]
 
 export function CmdPalette({

@@ -16,7 +16,7 @@ export function Campaigns() {
 
   return (
     <div className="flex flex-col gap-5">
-      <ScreenHeader icon={Target} eyebrow="Window A/B" title="Window A/B" sub="What you changed on the glass, and what stop rate did next.">
+      <ScreenHeader icon={Target} eyebrow="Performance" title="Window performance" sub="What you changed on the glass, and what stop rate did next — 14-day A/B.">
         <Chip tone="gold">12-week arc</Chip>
       </ScreenHeader>
 

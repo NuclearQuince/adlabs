@@ -12,10 +12,10 @@ const HOME_SECTION_IDS = [
   "top",
   "blindspot",
   "plans",
+  "floor",
   "metrics",
   "privacy",
   "how",
-  "pricing",
   "faq",
   "contact",
 ]
