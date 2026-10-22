@@ -26,6 +26,9 @@ Every user-facing string and number lives in **two files**. Edit these — no co
 | `PRIVACY` | DPDP + GDPR principles; Edge vs Cloud what leaves |
 | `HOW` | 3 steps, wishlist form fields, success copy, feedback text |
 | `PILOT_FORM` | Modal form fields, options, success copy, note |
+| `PRICING` | Edge AI Pilot vs Cloud Pilot |
+| `FAQ` | Short objections (path, privacy, cameras, pilot) |
+| `ABOUT` | About page dual-deployment narrative |
 
 **Images referenced (in `public/images/`):**
 - `hero-storefront.*`, `blindspot-pass.jpg`, `blindspot-stop.jpg`, `blindspot-enter.jpg`
