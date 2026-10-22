@@ -19,11 +19,11 @@ export interface BusinessKpi {
 }
 
 export const BUSINESS_KPIS: BusinessKpi[] = [
-  { label: "Shopper yield", value: "₹6,420", delta: "+9.4%", tone: "pos", note: "Revenue per visitor · sales-linked", iconHint: "yield" },
-  { label: "Avg basket", value: "₹4,180", delta: "+5.1%", tone: "pos", note: "Average transaction value", iconHint: "basket" },
-  { label: "Sales conversion", value: "34%", delta: "+2.2pp", tone: "pos", note: "Visitors who transacted (POS linked)", iconHint: "pos" },
-  { label: "Campaign ROI", value: "6.8×", delta: "+0.9×", tone: "pos", note: "Attributed revenue vs OOH spend", iconHint: "megaphone" },
-  { label: "Revenue / walk-in", value: "₹1,780", delta: "+6.0%", tone: "pos", note: "Value per door crossing", iconHint: "currency" },
+  { label: "Entries today", value: "391", delta: "+2.1%", tone: "pos", note: "Tripwire IN crossings", iconHint: "yield" },
+  { label: "People in store", value: "34", delta: "57% of capacity", tone: "flat", note: "Net occupancy from cameras", iconHint: "basket" },
+  { label: "Avg dwell", value: "6m 12s", delta: "+22s", tone: "pos", note: "Zone dwell (or time-in-frame)", iconHint: "pos" },
+  { label: "Queue length", value: "3", delta: "wait 2m 14s", tone: "flat", note: "Checkout zone ≥5s dwell", iconHint: "megaphone" },
+  { label: "Peak hour", value: "16–17h", delta: "289 entries/hr", tone: "pos", note: "Busiest hour today", iconHint: "currency" },
 ]
 
 export interface FlowEdge {
@@ -33,8 +33,8 @@ export interface FlowEdge {
 }
 
 export const VISITOR_FLOW = {
-  title: "Visitor flow · path popularity",
-  sub: "How shoppers move across the floor — entry to exit. Thicker edge = more popular path.",
+  title: "Zone-to-zone paths",
+  sub: "Illustrative paths from zone dwell sequence. Not cross-camera re-ID.",
   nodes: [
     { id: "E0", name: "Entrance" },
     { id: "A1", name: "Apparel" },
@@ -57,8 +57,8 @@ export const VISITOR_FLOW = {
 }
 
 export const FORECAST = {
-  title: "Quarter outlook",
-  sub: "Projected stop rate with confidence band (Prophet style, on aggregated events only).",
+  title: "Traffic trend (sample)",
+  sub: "Historical stop-rate trend for the pilot demo. Not a live forecast model.",
   measured: [
     { week: "W1", value: 9.2 }, { week: "W2", value: 9.4 }, { week: "W3", value: 9.1 },
     { week: "W4", value: 9.3 }, { week: "W5", value: 10.8 }, { week: "W6", value: 11.2 },
@@ -102,16 +102,16 @@ export type Period = (typeof PERIODS)[number]
 
 export const KPIS: Record<"today" | "week", Kpi[]> = {
   today: [
-    { id: "footfall", label: "Street Footfall", value: "2,481", delta: "+6.2%", deltaTone: "pos", deltaNote: "vs yesterday", hint: "Peak volume 16:30 – 18:45" },
-    { id: "stop", label: "Window Stop Rate", value: "7.5%", delta: "+0.4pp", deltaTone: "pos", deltaNote: "vs yesterday", peer: "8.9%", hint: "Threshold: paused ≥ 4s" },
-    { id: "walkins", label: "Walk-ins", value: "39", delta: "+3", deltaTone: "pos", deltaNote: "vs yesterday", hint: "Peak entry 16:30 – 18:45" },
-    { id: "dwell", label: "In-Store Dwell", value: "6m 12s", delta: "+22s", deltaTone: "pos", deltaNote: "vs yesterday", hint: "Hero zone holds 9m 45s" },
+    { id: "footfall", label: "Passes at glass", value: "2,481", delta: "+6.2%", deltaTone: "pos", deltaNote: "vs yesterday", hint: "Street camera tracks · peak 16:30–18:45" },
+    { id: "stop", label: "Window stop rate", value: "7.5%", delta: "+0.4pp", deltaTone: "pos", deltaNote: "vs yesterday", peer: "8.9%", hint: "Paused ≥4s in window zone" },
+    { id: "walkins", label: "Entries", value: "39", delta: "+3", deltaTone: "pos", deltaNote: "vs yesterday", hint: "Entrance tripwire IN" },
+    { id: "dwell", label: "Avg dwell", value: "6m 12s", delta: "+22s", deltaTone: "pos", deltaNote: "vs yesterday", hint: "Zone dwell · hero 9m 45s" },
   ],
   week: [
-    { id: "footfall", label: "Street Footfall", value: "16,340", delta: "+1.5%", deltaTone: "pos", deltaNote: "vs last week", hint: "Best day: Saturday · 3,120" },
-    { id: "stop", label: "Window Stop Rate", value: "11.4%", delta: "+0.3pp", deltaTone: "pos", deltaNote: "vs last week", peer: "8.9%", hint: "Threshold: paused ≥ 4s" },
-    { id: "walkins", label: "Walk-ins", value: "391", delta: "+2.1%", deltaTone: "pos", deltaNote: "vs last week", hint: "Peak entry 16:30 – 18:45" },
-    { id: "dwell", label: "In-Store Dwell", value: "6m 12s", delta: "+8s", deltaTone: "pos", deltaNote: "vs last week", hint: "Hero zone holds 9m 45s" },
+    { id: "footfall", label: "Passes at glass", value: "16,340", delta: "+1.5%", deltaTone: "pos", deltaNote: "vs last week", hint: "Best day: Saturday · 3,120" },
+    { id: "stop", label: "Window stop rate", value: "11.4%", delta: "+0.3pp", deltaTone: "pos", deltaNote: "vs last week", peer: "8.9%", hint: "Paused ≥4s in window zone" },
+    { id: "walkins", label: "Entries", value: "391", delta: "+2.1%", deltaTone: "pos", deltaNote: "vs last week", hint: "Entrance tripwire IN" },
+    { id: "dwell", label: "Avg dwell", value: "6m 12s", delta: "+8s", deltaTone: "pos", deltaNote: "vs last week", hint: "Zone dwell · hero 9m 45s" },
   ],
 }
 
@@ -126,8 +126,8 @@ export interface BenchmarkRow {
 }
 
 export const PEER_BENCHMARK = {
-  title: "Your storefront vs. the cohort",
-  sub: "Bandra flagship compared against the anonymised luxury retail cohort — 40 stores across Bengaluru, Mumbai, Delhi NCR and Hyderabad.",
+  title: "Your store vs peer stores",
+  sub: "Bandra flagship vs anonymised peer cohort (40 fashion doors across Bengaluru, Mumbai, Delhi NCR, Hyderabad).",
   rows: [
     { id: "stop", label: "Window stop rate", you: 11.4, peer: 8.9, unit: "%", suffix: "pp", better: "higher" },
     { id: "look", label: "Deep look time", you: 39, peer: 31, unit: "%", suffix: "pp", better: "higher" },
@@ -141,18 +141,18 @@ export const PEER_BENCHMARK = {
 
 export const FUNNEL = {
   today: [
-    { stage: "Pass", value: 2481, rate: "100%", label: "Street Footfall" },
-    { stage: "Stop", value: 186, rate: "7.5%", label: "Attention Hook" },
-    { stage: "Enter", value: 39, rate: "21.0%", label: "Stop-to-Enter" },
-    { stage: "Explore", value: 34, rate: "87.2%", label: "Active Browsing" },
-    { stage: "Engage", value: 18, rate: "52.9%", label: "High-Intent Touch" },
+    { stage: "Pass", value: 2481, rate: "100%", label: "Passes at glass" },
+    { stage: "Stop", value: 186, rate: "7.5%", label: "Stopped ≥4s" },
+    { stage: "Enter", value: 39, rate: "21.0%", label: "Entries (tripwire)" },
+    { stage: "Explore", value: 34, rate: "87.2%", label: "Zone visits" },
+    { stage: "Engage", value: 18, rate: "52.9%", label: "Near-display dwell" },
   ],
   week: [
-    { stage: "Pass", value: 16340, rate: "100%", label: "Street Footfall" },
-    { stage: "Stop", value: 1861, rate: "11.4%", label: "Attention Hook" },
-    { stage: "Enter", value: 391, rate: "21.0%", label: "Stop-to-Enter" },
-    { stage: "Explore", value: 341, rate: "87.2%", label: "Active Browsing" },
-    { stage: "Engage", value: 180, rate: "52.9%", label: "High-Intent Touch" },
+    { stage: "Pass", value: 16340, rate: "100%", label: "Passes at glass" },
+    { stage: "Stop", value: 1861, rate: "11.4%", label: "Stopped ≥4s" },
+    { stage: "Enter", value: 391, rate: "21.0%", label: "Entries (tripwire)" },
+    { stage: "Explore", value: 341, rate: "87.2%", label: "Zone visits" },
+    { stage: "Engage", value: 180, rate: "52.9%", label: "Near-display dwell" },
   ],
 }
 
@@ -740,7 +740,7 @@ export const AD_FLOW = {
   ],
 }
 
-export const SIMULATED_NOTE = "Simulated showcase data"
+export const SIMULATED_NOTE = "Simulated showcase · Organic Clothing Co. · Bandra"
 export const PEER_NOTE = "Peer set: anonymised luxury cohort · n = 37 stores"
 
 export interface StaffingDay {

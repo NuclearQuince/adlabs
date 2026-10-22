@@ -17,7 +17,7 @@ export function Storefront() {
     <div className="flex flex-col gap-5">
       {/* Hero */}
       <div className="relative overflow-hidden rounded-3xl border border-[var(--app-line)]" style={{ boxShadow: "var(--app-shadow)" }}>
-        <img src="/images/hero-storefront.jpg" alt="Madison Avenue Flagship storefront" className="absolute inset-0 h-full w-full object-cover" />
+        <img src="/images/hero-storefront.jpg" alt="Bandra Flagship storefront" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, rgba(18,18,18,0.85) 0%, rgba(18,18,18,0.5) 55%, rgba(18,18,18,0.15) 100%)" }} />
         <div className="relative flex min-h-[260px] flex-col justify-between p-7 sm:p-10">
           <div className="flex items-center gap-2">
@@ -26,9 +26,9 @@ export function Storefront() {
           </div>
           <div>
             <p className="eyebrow uppercase tracking-[0.16em] text-white/60">
-              Storefront analytics · {TENANT.store}
+              Entrance & window · {TENANT.store}
             </p>
-            <h1 className="mt-3 font-serif tracking-[-0.01em] cosmic-text-4xl leading-[1.02] text-white sm:cosmic-text-5xl">The window is the store</h1>
+            <h1 className="mt-3 font-serif tracking-[-0.01em] cosmic-text-4xl leading-[1.02] text-white sm:cosmic-text-5xl">Pass, stop, enter</h1>
           </div>
         </div>
       </div>

@@ -58,11 +58,11 @@ export function Privacy() {
         <Reveal delay={0.2}>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {[
-              { icon: ShieldCheck, label: "DPDP 2023 COMPLIANT", color: "#8B7CF6" },
+              { icon: ShieldCheck, label: "DPDP 2023", color: "#8B7CF6" },
               { icon: Database, label: "GDPR-ALIGNED", color: "#8B7CF6" },
-              { icon: Eye, label: "ZERO BIOMETRICS", color: "#ff3b30" },
-              { icon: WifiOff, label: "OFFLINE-CAPABLE", color: "#8B7CF6" },
-              { icon: Zap, label: "12W EDGE", color: "#8B7CF6" },
+              { icon: Eye, label: "ZERO FACIAL ID", color: "#ff3b30" },
+              { icon: WifiOff, label: "EDGE OR CLOUD", color: "#8B7CF6" },
+              { icon: Zap, label: "SAME SIGNALS", color: "#8B7CF6" },
             ].map((badge) => (
               <span
                 key={badge.label}

@@ -27,7 +27,7 @@ export function History() {
     <div className="flex flex-col gap-5">
       <ScreenHeader
         icon={HistoryIcon}
-        eyebrow="Store intelligence"
+        eyebrow="Trends"
         title="History"
         sub="12-week trend with forward projection — stop rate, walk-ins, and dwell."
       />

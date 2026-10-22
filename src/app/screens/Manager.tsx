@@ -22,7 +22,7 @@ export function Manager() {
 
   return (
     <div className="flex flex-col gap-5">
-      <ScreenHeader icon={ClipboardList} eyebrow="Store manager view" title="Today" sub={`${m.store} · ${m.date}`}>
+      <ScreenHeader icon={ClipboardList} eyebrow="Floor" title="Manager today" sub={`${m.store} · ${m.date}`}>
         <Chip tone="live">Live</Chip>
         <Chip tone="gold" title={SIMULATED_NOTE}>Demo</Chip>
       </ScreenHeader>

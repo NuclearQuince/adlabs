@@ -9,8 +9,8 @@ export function Demographics() {
     <div className="flex flex-col gap-5">
       <ScreenHeader
         icon={Users}
-        eyebrow="Consumer intelligence"
-        title="Demographics"
+        eyebrow="People"
+        title="Age & groups"
         sub="Aggregated visitor composition · minimum 10 individuals per cohort."
       />
 

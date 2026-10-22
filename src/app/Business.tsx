@@ -12,7 +12,7 @@ const ICONS: Record<string, typeof Wallet> = {
 
 export function BusinessKpis() {
   return (
-    <Panel title="Business on the floor" action={<Label>sales-linked</Label>} verified="POS · anonymous join">
+    <Panel title="Camera signals today" action={<Label>EdgeSight-class</Label>} verified="Tripwire · zones · queue">
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
         {BUSINESS_KPIS.map((k) => {
           const Icon = ICONS[k.iconHint] ?? Wallet

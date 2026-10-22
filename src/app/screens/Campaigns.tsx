@@ -16,7 +16,7 @@ export function Campaigns() {
 
   return (
     <div className="flex flex-col gap-5">
-      <ScreenHeader icon={Target} eyebrow="Physical A/B" title="Campaigns" sub="Physical A/B: what you changed in the window — and what the street did next.">
+      <ScreenHeader icon={Target} eyebrow="Window A/B" title="Window A/B" sub="What you changed on the glass, and what stop rate did next.">
         <Chip tone="gold">12-week arc</Chip>
       </ScreenHeader>
 
@@ -74,10 +74,10 @@ export function Campaigns() {
       <Panel title="How the video becomes verified text data" action={<Label>Frame → Measurement → Decision</Label>}>
         <div className="grid gap-3 sm:grid-cols-4">
           {[
-            { step: "01", title: "Edge capture", desc: "Storefront camera sees the window. Face pixels are never uploaded." },
-            { step: "02", title: "Anonymised aggregate", desc: "People become counts: pass, stop, enter, dwell. No identities, no frames stored." },
-            { step: "03", title: "Text verdict", desc: "The engine writes what the street did: stop rate 6.4% → 7.3%, gaze 8.4s → 9.6s." },
-            { step: "04", title: "Verified decision", desc: "14-day rotation. Uplift beats baseline by +14.6% — keep or kill is a judgment, not a guess." },
+            { step: "01", title: "Capture", desc: "Window or entrance camera on Edge or Cloud. No facial identity product." },
+            { step: "02", title: "Counts only", desc: "Pass, stop (≥4s zone), enter (tripwire), dwell. Aggregates, not faces." },
+            { step: "03", title: "Verdict", desc: "Stop rate 6.4% → 7.3% on the same door. Plain before/after." },
+            { step: "04", title: "Decision", desc: "14-day rotation. Keep or kill from the uplift, not opinion." },
           ].map((s) => (
             <div key={s.step} className="relative rounded-2xl border border-[var(--app-line)] p-4">
               <span className="font-mono cosmic-text-xs font-bold text-[var(--app-gold)]">{s.step}</span>

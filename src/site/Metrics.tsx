@@ -165,7 +165,7 @@ export function Metrics() {
           {m.h2}
         </SectionHeader>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {m.items.map((it, i) => (
             <Reveal key={it.title} delay={Math.min(i * 0.04, 0.3)}>
               <MetricCard it={it} />

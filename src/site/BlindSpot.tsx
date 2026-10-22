@@ -51,8 +51,8 @@ export function BlindSpot() {
               <br />
               <span style={{ color: "var(--cosmic-violet)" }}>{b.h2b}</span>
             </h2>
-            <p className="mt-4 visual-sub max-w-[600px] mx-auto">
-              Every store counts who walked in. Almost no one knows who walked past. That's the blind spot.
+            <p className="mt-4 visual-sub max-w-[560px] mx-auto">
+              Three leaks: pass uncounted, stop unmeasured, window unproven.
             </p>
           </div>
         </Reveal>

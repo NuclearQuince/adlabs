@@ -16,11 +16,11 @@ export function Pricing() {
           {p.h2}
         </SectionHeader>
 
-        <div className="mt-8 grid items-stretch gap-6 lg:grid-cols-3">
+        <div className="mt-8 mx-auto grid max-w-4xl items-stretch gap-6 lg:grid-cols-2">
           {p.plans.map((plan, i) => (
             <Reveal key={plan.name} delay={i * 0.08}>
               <article
-                className={`flex h-full min-h-[520px] flex-col p-8 ${
+                className={`flex h-full min-h-[420px] flex-col p-8 ${
                   plan.featured ? "site-card-featured" : "site-card"
                 }`}
               >
@@ -67,37 +67,7 @@ export function Pricing() {
           ))}
         </div>
 
-        {/* Founding Cohort Bonus Stack */}
-        <Reveal delay={0.2}>
-          <div className="mt-8 rounded-3xl border border-[#8B7CF6]/30 bg-[#8B7CF6]/08 p-8 sm:p-10">
-            <div className="flex items-center gap-3">
-              <span className="rounded-full bg-[#8B7CF6] px-3 py-1 cosmic-text-xs font-bold uppercase tracking-wider text-[#05050a]">
-                FOUNDING COHORT BONUSES
-              </span>
-              <span className="cosmic-text-sm font-medium text-[#c4c4cc]">Included for all 10 flagship pilot seats</span>
-            </div>
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-2xl border border-white/8 bg-[#05050a]/60 p-5">
-                <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">Zero Camera Overhaul</p>
-                <p className="mt-1.5 cosmic-text-xs leading-relaxed text-[#a1a1aa]">Plugs directly into your existing RTSP/NVR security streams.</p>
-              </div>
-              <div className="rounded-2xl border border-white/8 bg-[#05050a]/60 p-5">
-                <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">14-Day Display Audit</p>
-                <p className="mt-1.5 cosmic-text-xs leading-relaxed text-[#a1a1aa]">Full storefront A/B display window rotation analysis included.</p>
-              </div>
-              <div className="rounded-2xl border border-white/8 bg-[#05050a]/60 p-5">
-                <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">DPDP 2023 Shield</p>
-                <p className="mt-1.5 cosmic-text-xs leading-relaxed text-[#a1a1aa]">100% on-device inference with zero facial data or biometrics.</p>
-              </div>
-              <div className="rounded-2xl border border-white/8 bg-[#05050a]/60 p-5">
-                <p className="cosmic-text-sm font-semibold text-[#f5f5f7]">Direct Lab Channel</p>
-                <p className="mt-1.5 cosmic-text-xs leading-relaxed text-[#a1a1aa]">Dedicated line to the Bengaluru engineering team during setup.</p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <p className="mt-6 text-center cosmic-text-sm font-medium text-[#86868b]">{p.bottom}</p>
+        <p className="mt-8 text-center cosmic-text-sm font-medium text-[#86868b]">{p.bottom}</p>
       </div>
     </Section>
   )

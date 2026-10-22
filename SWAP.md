@@ -14,15 +14,16 @@ Every user-facing string and number lives in **two files**. Edit these — no co
 | `SOCIALS` | `linkedin`, `instagram` URLs (currently empty strings) |
 | `FOUNDERS` | Names, roles, bios, LinkedIn URLs, initials |
 | `NAV` | Section labels + anchor hrefs |
-| `HERO` | Headline, sub, CTAs, badge text, ticker values, live counters, marquee lines, footline |
+| `HERO` | Headline, sub, CTAs |
+| `PLANS` | Edge AI vs Cloud interactive section |
 | `BLINDSPOT` | 3 cards: tags, titles, metrics, descriptions, images |
 | `JOURNEY` | Funnel bars, 5 step cards (counts, rates, descriptions, metrics), band tags |
 | `ATELIER` | 4 tabs (overlays, pins), 4 feature cards, main image |
 | `PROOF` | Store name, before/after values + images, uplift text |
 | `SYSTEM` | Trio cards, interface card (store name, stats, trend, hours, CTA) |
-| `METRICS` | 12 metric cards (title + desc) |
+| `METRICS` | ≤6 outcome cards (realistic EdgeSight signals) |
 | `SECTORS` | 4 cards (title, sub, tag, images) |
-| `PRIVACY` | 3 principles, 3 pipeline stages |
+| `PRIVACY` | DPDP + GDPR principles; Edge vs Cloud what leaves |
 | `HOW` | 3 steps, wishlist form fields, success copy, feedback text |
 | `PILOT_FORM` | Modal form fields, options, success copy, note |
 

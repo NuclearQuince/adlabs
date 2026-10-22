@@ -11,8 +11,8 @@ export function Zones() {
     <div className="flex flex-col gap-5">
       <ScreenHeader
         icon={Map}
-        eyebrow="Store intelligence"
-        title="Zones"
+        eyebrow="Floor"
+        title="Floor zones"
         sub="Traffic share per zone · hover any cell for dwell and notes. Red dot = flagged."
       />
 

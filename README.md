@@ -2,7 +2,7 @@
 
 ## Overview
 
-Marketing website + analytics dashboard for **AD Labs** (Ad Labs Tech Pvt Ltd, founded 2026, Bengaluru). A single Next.js app serves four routes: the storefront landing page (`/`), an in-depth company page (`/about`), the marketing/discovery page (`/discover`), and the live analytics dashboard (`/dashboard`).
+Marketing website + analytics dashboard for **AD Labs**. Dual deployment: **Edge AI** and **Cloud**, both DPDP + GDPR. (Ad Labs Tech Pvt Ltd, founded 2026, Bengaluru). A single Next.js app serves four routes: the storefront landing page (`/`), an in-depth company page (`/about`), the marketing/discovery page (`/discover`), and the live analytics dashboard (`/dashboard`).
 
 **Live URLs (when deployed):**
 - Website: `https://adlabs.in`
@@ -31,23 +31,18 @@ adlabs/
 │   └── favicon.svg                # Favicon
 ├── src/
 │   ├── site/                      # Marketing website sections
-│   │   ├── SitePage.tsx           # Composition root (01–14)
-│   │   ├── Nav.tsx                # Sticky, blur, section tracking, mobile drawer
-│   │   ├── Hero.tsx               # Full-bleed, telemetry badges, marquee
-│   │   ├── BlindSpot.tsx          # 3-card problem framing (01)
-│   │   ├── Journey.tsx            # Funnel bars + 5 step cards (02)
-│   │   ├── Atelier.tsx            # Tabbed in-store view with overlays (03)
-│   │   ├── System.tsx             # Trio + mini dashboard preview (04)
-│   │   ├── Privacy.tsx            # Privacy architecture, DPDP charter (05)
-│   │   ├── Proof.tsx              # A/B before/after with uplift (06)
-│   │   ├── Metrics.tsx            # 12-signal grid (07)
-│   │   ├── Sectors.tsx            # 4 sector cards (08)
-│   │   ├── Mission.tsx            # Witness-not-spy ethos (09)
-│   │   ├── Team.tsx               # Founder cards + operating principles (10)
-│   │   ├── How.tsx                # 3 steps + wishlist form (11)
-│   │   ├── Pricing.tsx            # Pilot terms + cohort bonuses (12)
-│   │   ├── Faq.tsx                # Accordion FAQ (13)
-│   │   ├── Contact.tsx            # Contact form (14)
+│   │   ├── SitePage.tsx           # Home: Hero → Problem → Plans → Outcomes → Privacy → How → Pricing → FAQ → Contact
+│   │   ├── Nav.tsx                # Sticky nav (pruned anchors)
+│   │   ├── Hero.tsx               # Dual-path hero + CTAs
+│   │   ├── BlindSpot.tsx          # Problem (≤3 points)
+│   │   ├── Plans.tsx              # Interactive Edge AI vs Cloud
+│   │   ├── Metrics.tsx            # Outcomes (≤6 realistic signals)
+│   │   ├── Privacy.tsx            # DPDP + GDPR on both paths
+│   │   ├── How.tsx                # 3 steps + wishlist
+│   │   ├── Pricing.tsx            # Edge vs Cloud pilots
+│   │   ├── Faq.tsx                # Short FAQ
+│   │   ├── Contact.tsx            # Contact form
+│   │   ├── Journey/Atelier/System/Proof/Sectors/Mission/Team/Demo/Sensor  # unmounted helpers
 │   │   ├── About.tsx              # /about content
 │   │   ├── DiscoveryPage.tsx      # /discover content
 │   │   ├── Footer.tsx             # Links, newsletter, socials, legal
@@ -104,7 +99,7 @@ All copy and numbers are centralized for instant swapping:
 | `src/data/site.ts` | Website copy, nav groups, founders, form fields, pricing, FAQ |
 | `src/data/dashboard.ts` | Dashboard KPIs, funnel, traffic hours, stores, zones, campaigns, briefs |
 
-Section indices (01–14) and navigation anchor ids (`#blindspot`, `#journey`, …) are driven from `src/data/site.ts` — keep them in sync when reordering sections.
+Home anchors: `#top`, `#blindspot`, `#plans`, `#metrics`, `#privacy`, `#how`, `#pricing`, `#faq`, `#contact`. Driven from `src/data/site.ts` + `SitePage.tsx`.
 
 ## Deployment (Vercel)
 

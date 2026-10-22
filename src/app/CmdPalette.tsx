@@ -5,20 +5,20 @@ import { Search } from "lucide-react"
 type Screen = string
 
 const ALL: { id: string; label: string; group: string }[] = [
-  { id: "overview", label: "Overview", group: "Run" },
-  { id: "storefront", label: "Storefront", group: "Run" },
-  { id: "stores", label: "Stores", group: "Run" },
-  { id: "zones", label: "Zone heatmaps", group: "Run" },
-  { id: "brief", label: "Monday Brief", group: "Run" },
-  { id: "manager", label: "Today (store)", group: "Store" },
-  { id: "campaigns", label: "Campaigns & A/B", group: "Prove" },
-  { id: "ads", label: "Out-of-home ads", group: "Prove" },
+  { id: "overview", label: "Today", group: "Today" },
+  { id: "storefront", label: "Entrance & window", group: "Today" },
+  { id: "stores", label: "All stores", group: "Today" },
+  { id: "zones", label: "Floor zones", group: "Today" },
+  { id: "brief", label: "Monday brief", group: "Today" },
+  { id: "manager", label: "Manager today", group: "Floor" },
+  { id: "campaigns", label: "Window A/B", group: "Prove" },
+  { id: "ads", label: "Out-of-home", group: "Prove" },
   { id: "compare", label: "Compare stores", group: "Prove" },
   { id: "history", label: "History", group: "Prove" },
-  { id: "demographics", label: "Demographics", group: "Understand" },
-  { id: "product", label: "Product gaze", group: "Understand" },
-  { id: "alerts", label: "Alerts", group: "Understand" },
-  { id: "tour", label: "How you'll see it", group: "Understand" },
+  { id: "demographics", label: "Age & groups", group: "People" },
+  { id: "product", label: "Display interest", group: "People" },
+  { id: "alerts", label: "Alerts", group: "People" },
+  { id: "tour", label: "How to read this", group: "People" },
 ]
 
 export function CmdPalette({

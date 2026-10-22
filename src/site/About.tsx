@@ -16,12 +16,12 @@ export function About() {
   const openPilot = () => setPilot(true)
 
   const principles = [
-    { icon: Shield, title: "Privacy by Architecture", desc: "Not a policy. A constraint. The system literally cannot watch — it counts. Zero faces. Zero cloud video. Zero re-identification. By design." },
-    { icon: Zap, title: "Evidence Over Opinion", desc: "Every feature ships with its proof chain. If a stat can't be reproduced by hand, it doesn't print. The Monday Brief is audited, not authored." },
-    { icon: Target, title: "Verdicts, Not Dashboards", desc: "Numbers that end in a move. The A/B engine decides keep-or-kill. The Monday Brief delivers three actions. No dashboards to babysit." },
-    { icon: Database, title: "Store-Specific Intelligence", desc: "Baselines are store-specific. Anomalies surface before they cost. Your Monday is compared to your own history, not a category average." },
-    { icon: Users, title: "Built for the Floor", desc: "A 15-minute read for founders, a daily checklist for staff. Each role gets its own view of the same evidence." },
-    { icon: Award, title: "Indian Retail First", desc: "Designed for Bandra, Indiranagar, Koregaon Park. Peak hours, festive surges, window realities. Attention is universal; context is local." },
+    { icon: Shield, title: "Privacy by Architecture", desc: "DPDP + GDPR on both paths. No facial identity product. Edge keeps video local; Cloud runs under contract controls." },
+    { icon: Zap, title: "Dual Deployment", desc: "Edge AI and Cloud are peers. Same signals, same Monday Brief. You pick where inference runs." },
+    { icon: Target, title: "Verdicts, Not Dashboards", desc: "Numbers that end in a move. Physical A/B keep-or-kill. Three actions every Monday." },
+    { icon: Database, title: "Store-Specific Intelligence", desc: "Baselines are yours. Anomalies surface before they cost a week." },
+    { icon: Users, title: "Built for the Floor", desc: "A 15-minute founder read and a daily staff view of the same evidence." },
+    { icon: Award, title: "Indian Retail First", desc: "Built for high streets and malls here first. Attention is universal; context is local." },
   ]
 
 return (
@@ -114,9 +114,9 @@ return (
             <Reveal delay={0.15}>
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {[
-                  { img: "/images/in-store-zones.jpg", label: "The Instrument" },
-                  { img: "/images/sector-fashion.jpg", label: "On-Device AI" },
-                  { img: "/images/window-after.jpg", label: "Store-Ready" },
+                  { img: "/images/in-store-zones.jpg", label: "Edge AI" },
+                  { img: "/images/sector-fashion.jpg", label: "Cloud Path" },
+                  { img: "/images/window-after.jpg", label: "DPDP + GDPR" },
                 ].map((c) => (
                   <div key={c.label} className="cosmic-card group overflow-hidden rounded-2xl">
                     <div className="relative h-36 overflow-hidden">
@@ -323,7 +323,7 @@ return (
                   <p className="mt-3 cosmic-text-sm leading-relaxed text-[#a1a1aa]">{a.team.sub}</p>
                   <div className="mt-auto pt-8">
                     <Link
-                      href="/#team"
+                      href="/about"
                       className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 cosmic-text-sm font-semibold text-[#f5f5f7] transition-all duration-300 hover:border-white/40 hover:bg-[#05050a] hover:-translate-y-0.5"
                     >
                       Meet the founders <ArrowRight size={16} strokeWidth={2.4} />

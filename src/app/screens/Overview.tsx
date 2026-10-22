@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { CountUp } from "../../components/CountUp"
-import { RevenueKpis } from "../../components/RevenueKpis"
 import { BusinessKpis, OccupancyGauge } from "../Business"
 import { VisitorFlow } from "../FlowChart"
 import { Skeleton } from "../../components/Skeleton"
@@ -29,17 +28,17 @@ const KPI_ICONS: Record<string, { icon: typeof Eye; tint: string }> = {
 
 const SNAPSHOT = [
   { icon: Eye, label: "Window stop rate", value: "7.5%", sub: "peer 8.9%" },
-  { icon: Users, label: "Inside now", value: `${OCCUPANCY.now}`, sub: `capacity ${OCCUPANCY.capacity}` },
-  { icon: Clock, label: "Till wait", value: OCCUPANCY.avgWait, sub: "avg queue 3" },
-  { icon: Clock3, label: "Peak window", value: "16:30", sub: "– 18:45" },
+  { icon: Users, label: "People in store", value: `${OCCUPANCY.now}`, sub: `capacity ${OCCUPANCY.capacity}` },
+  { icon: Clock, label: "Checkout wait", value: OCCUPANCY.avgWait, sub: "queue length 3" },
+  { icon: Clock3, label: "Peak hour", value: "16:30", sub: "– 18:45" },
 ]
 
 const QUICK = [
-  { icon: TrendingUp, label: "Storefront", screen: "storefront" as const },
-  { icon: Store, label: "Stores", screen: "stores" as const },
-  { icon: Megaphone, label: "Campaigns", screen: "campaigns" as const },
-  { icon: Map, label: "Zones", screen: "zones" as const },
-  { icon: FileText, label: "Brief", screen: "brief" as const },
+  { icon: TrendingUp, label: "Entrance & window", screen: "storefront" as const },
+  { icon: Store, label: "All stores", screen: "stores" as const },
+  { icon: Megaphone, label: "Window A/B", screen: "campaigns" as const },
+  { icon: Map, label: "Floor zones", screen: "zones" as const },
+  { icon: FileText, label: "Monday brief", screen: "brief" as const },
   { icon: BarChart3, label: "Compare", screen: "compare" as const },
 ]
 
@@ -55,10 +54,10 @@ export function Overview({ onNavigate }: { onNavigate?: (screen: string) => void
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="font-inter cosmic-text-base font-semibold text-[var(--app-text)]">
-            <OverviewGreeting /> — Maison&nbsp;Étoile
+            <OverviewGreeting /> — Organic Clothing Co.
           </p>
           <p className="mt-0.5 font-inter font-medium cosmic-text-xs text-[var(--app-sub)]">
-            Your storefront answered the street before the door opened.
+            Entries, stop rate, dwell, and queue from your cameras.
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -256,10 +255,10 @@ export function Overview({ onNavigate }: { onNavigate?: (screen: string) => void
 
       {/* Chart + funnel */}
       <div className="grid gap-5 xl:grid-cols-[1.6fr_1fr]">
-        <Panel title="Street footfall" action={<Label>by hour · {period}</Label>} verified="Edge video">
+        <Panel title="Hourly traffic" action={<Label>by hour · {period}</Label>} verified="Camera rollups">
           <AreaChart data={TRAFFIC_HOURS} peaks={[{ from: "15", to: "17" }]} />
         </Panel>
-        <Panel title="Physical funnel" action={<Label>{period}</Label>}>
+        <Panel title="Pass → stop → enter" action={<Label>{period}</Label>}>
           <FunnelBars stages={funnel} />
         </Panel>
       </div>
@@ -267,13 +266,10 @@ export function Overview({ onNavigate }: { onNavigate?: (screen: string) => void
       {/* Live occupancy + visitor flow */}
       <div className="grid gap-5 xl:grid-cols-[1fr_2fr]">
         <OccupancyGauge />
-        <Panel title="How shoppers move" action={<Label>path popularity</Label>} info="Thicker edge = more travelled path. Anonymised trajectories on aggregate.">
+        <Panel title="Zone-to-zone paths" action={<Label>illustrative</Label>} info="From zone dwell sequence. Not cross-camera re-ID.">
           <VisitorFlow />
         </Panel>
       </div>
-
-      {/* Revenue-grade signal */}
-      <RevenueKpis />
 
       {/* Stores + A/B */}
       <div className="grid gap-5 xl:grid-cols-[1fr_1.3fr]">

@@ -7,8 +7,8 @@ export function Ads() {
     <div className="flex flex-col gap-5">
       <ScreenHeader
         icon={Megaphone}
-        eyebrow="Attribution · offline → on-floor"
-        title="Ads"
+        eyebrow="Out-of-home"
+        title="Out-of-home"
         sub="Did they see the ad — and did it convert? Each campaign below tracks the same journey: sighting on the street, entrance at the door, first zone reached, and the product they engaged."
       >
         <div className="flex flex-col items-end gap-2">

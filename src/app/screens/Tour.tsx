@@ -11,16 +11,16 @@ import {
 const DATA_CLASSES = [
   {
     icon: Footprints,
-    title: "Footfall",
-    where: "Overview · Storefront",
-    desc: "How many people pass your store. Shown as a daily number and an hourly curve.",
+    title: "Entries & hourly traffic",
+    where: "Today · Entrance & window",
+    desc: "Tripwire IN/OUT counts and the hourly curve. Core EdgeSight output.",
     visual: <Sparkline data={[88, 132, 168, 198, 186, 214, 262, 289, 271, 196, 158, 112]} tone="gold" />,
   },
   {
     icon: Eye,
-    title: "Stop rate + window engagement",
-    where: "Storefront · Window",
-    desc: "Who pauses at the glass, and how long — glance, deep attention, or a turn inside.",
+    title: "Window stop rate",
+    where: "Entrance & window",
+    desc: "Paused ≥4s in a window zone. Needs a street-facing camera + dwell zone.",
     visual: (
       <div className="flex items-end gap-1.5">
         {[42, 39, 19].map((p, i) => (
@@ -33,16 +33,16 @@ const DATA_CLASSES = [
   },
   {
     icon: Timer,
-    title: "Dwell & attention depth",
-    where: "Zones · Product",
-    desc: "Minutes inside, and which fixtures hold people longest — the heatmap makes it obvious.",
+    title: "Zone dwell & queue",
+    where: "Floor zones · Manager today",
+    desc: "Avg dwell per polygon; queue length after ≥5s in a checkout zone.",
     visual: <DonutChart data={WINDOW_ENGAGEMENT} size={84} showCenter={false} />,
   },
   {
     icon: Megaphone,
-    title: "Campaign proof",
-    where: "Campaigns",
-    desc: "Before/after capture: the same window, two rotations, one honest number.",
+    title: "Window A/B",
+    where: "Window A/B",
+    desc: "Same door, two rotations, stop-rate before/after. Keep or kill.",
     visual: (
       <div className="flex items-center gap-2 font-num">
         <span className="font-mono cosmic-text-base font-bold text-[var(--app-sub)]">6.4%</span>
@@ -56,9 +56,9 @@ const DATA_CLASSES = [
   },
   {
     icon: Route,
-    title: "Zone heat",
-    where: "Zones",
-    desc: "Every zone on one grid — darkest cell is where the day is happening.",
+    title: "Floor heatmap",
+    where: "Floor zones",
+    desc: "Person-seconds per floor cell. Relative heat, not absolute science fiction.",
     visual: <HeatGrid zones={ZONES.slice(0, 5)} />,
   },
 ]
@@ -68,27 +68,27 @@ const TIMELINE = [
     phase: "Day 1",
     chip: "Live from the first camera",
     items: [
-      "Your storefront hero — footfall, stop rate, walk-ins, dwell, dead zones",
-      "Today's curve with the peak band",
-      "The five numbers that matter",
+      "Entries, exits, people in store, avg dwell, queue length",
+      "Hourly traffic curve and peak hour",
+      "Window stop rate if a street camera is calibrated",
     ],
   },
   {
     phase: "Week 1",
     chip: "Patterns begin to talk",
     items: [
-      "Traffic by day × hour — the heatmap",
-      "Window engagement breakdown (glance vs deep attention)",
-      "First zone flags and alerts",
+      "Traffic by day × hour",
+      "Zone dwell and floor heatmap",
+      "Queue congestion alerts",
     ],
   },
   {
     phase: "Month 1",
-    chip: "Intelligence compounds",
+    chip: "Decisions compound",
     items: [
-      "12-week history + forecast with confidence band",
-      "Verified before/after campaign results",
-      "Monday Brief with three actions — generated from your data, not from templates",
+      "Window A/B before/after on stop rate",
+      "Store compare across doors",
+      "Monday brief with three actions from your rollups",
     ],
   },
 ]

@@ -3,15 +3,9 @@
 import { useState } from "react"
 import { Nav } from "./Nav"
 import { Hero } from "./Hero"
-import { Demo } from "./Demo"
-import { Sensor } from "./Sensor"
 import { BlindSpot } from "./BlindSpot"
-import { Proof } from "./Proof"
+import { Plans } from "./Plans"
 import { Metrics } from "./Metrics"
-import { Journey } from "./Journey"
-import { Flow } from "./Flow"
-import { Team } from "./Team"
-import { Mission } from "./Mission"
 import { How } from "./How"
 import { Pricing } from "./Pricing"
 import { Privacy } from "./Privacy"
@@ -28,30 +22,11 @@ export function SitePage() {
     <div className="site-scope min-h-screen text-[var(--ds-text-primary)] page-in" style={{ background: "var(--ds-bg-primary)" }}>
       <Nav onPilot={openPilot} />
       <main className="overflow-x-hidden">
-        {/* HOOK: The Problem */}
         <Hero onPilot={openPilot} />
-        
-        {/* MESSAGE: The Solution */}
-        <Sensor />
-        
-        {/* PROOF: The Story */}
-        <Demo />
-        
-        {/* EVIDENCE: The Data */}
         <BlindSpot />
-        <Journey />
-        <Proof />
+        <Plans onPilot={openPilot} />
         <Metrics />
-        
-        {/* HOW IT WORKS */}
-        <Flow />
         <Privacy />
-        
-        {/* THE TEAM */}
-        <Team />
-        <Mission />
-        
-        {/* ACTION */}
         <How onPilot={openPilot} />
         <Pricing />
         <Faq />

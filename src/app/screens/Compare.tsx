@@ -12,8 +12,8 @@ export function Compare() {
     <div className="flex flex-col gap-5">
       <ScreenHeader
         icon={BarChart3}
-        eyebrow="Peer cohort"
-        title="Compare"
+        eyebrow="Stores"
+        title="Compare stores"
         sub={`Stores ranked by stop rate versus the anonymised luxury cohort (peer ${COHORT_STOP}%).`}
       >
         <Chip tone="gold">{SIMULATED_NOTE}</Chip>
@@ -74,9 +74,9 @@ export function Compare() {
       >
         <BarChart
           data={[
-            { label: "Maison Étoile", value: 11.4 },
-            { label: "Beverly Hills", value: 6.2 },
-            { label: "Mayfair", value: 4.1 },
+            { label: "Bandra Flagship", value: 11.4 },
+            { label: "Indiranagar", value: 6.2 },
+            { label: "Koregaon Park", value: 4.1 },
             { label: "Cohort", value: COHORT_STOP },
           ]}
           height={200}

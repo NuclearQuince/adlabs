@@ -13,9 +13,9 @@ export function Product() {
       {/* Header */}
       <ScreenHeader
         icon={Package}
-        eyebrow="Industry intelligence"
-        title="Industry Intelligence"
-        sub={`Fixture-level gaze and touch across ${INDUSTRY_OVERVIEW.totalSectors} sectors · benchmarks, trends, and conversion signals.`}
+        eyebrow="Display interest"
+        title="Near-display interest"
+        sub="Who lingered near a fixture (proximity + dwell). Not facial recognition. Sector demos below."
       >
         <Chip tone="gold">{SIMULATED_NOTE}</Chip>
         <span className="rounded-full px-2.5 py-1 font-inter cosmic-text-2xs font-bold tracking-[0.08em]" style={{ background: "var(--app-gold-soft)", color: "var(--app-gold)" }}>

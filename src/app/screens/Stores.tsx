@@ -8,8 +8,8 @@ export function Stores({ onOpen }: { onOpen: (id: string) => void }) {
     <div className="flex flex-col gap-5">
       <ScreenHeader
         icon={Store}
-        eyebrow="Store network"
-        title="Stores"
+        eyebrow="Network"
+        title="All stores"
         sub="Composite grade = stop rate, capture and dwell versus the anonymised peer set."
       />
 

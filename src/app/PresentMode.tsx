@@ -167,14 +167,14 @@ export function PresentMode({ theme, onClose }: { theme: "light" | "dark"; onClo
             <div>
               <Label>{SLIDES[6]}</Label>
               <p className="mt-6 max-w-3xl font-inter cosmic-text-base leading-relaxed text-[var(--app-text)] sm:cosmic-text-xl">
-                Maison Étoile leads the cohort at 11.4% stop rate — 2.5pp above the luxury benchmark. Mayfair Salon at 4.1% needs intervention.
+                Bandra Flagship leads the cohort at 11.4% stop rate — 2.5pp above the peer median. Koregaon Park at 4.1% needs intervention.
               </p>
               <div className="mt-6 rounded-2xl border border-[var(--app-line)] bg-[var(--app-card)] p-6 sm:p-8" style={{ boxShadow: "var(--app-shadow)" }}>
                 <HBars items={[
-                  { label: "Maison Étoile", pct: 11.4, sub: "Grade A · New York" },
-                  { label: "Beverly Hills Boutique", pct: 6.2, sub: "Grade B · Los Angeles" },
-                  { label: "Mayfair Salon", pct: 4.1, sub: "Grade C · London" },
-                  { label: "Cohort median", pct: 8.9, sub: "Anonymised luxury" },
+                  { label: "Bandra Flagship", pct: 11.4, sub: "Grade A · Mumbai" },
+                  { label: "Indiranagar Boutique", pct: 6.2, sub: "Grade B · Bengaluru" },
+                  { label: "Koregaon Park", pct: 4.1, sub: "Grade C · Pune" },
+                  { label: "Cohort median", pct: 8.9, sub: "Anonymised peer stores" },
                 ]} />
               </div>
               <div className="mt-4 rounded-2xl border border-[var(--app-line)] bg-[var(--app-card)] p-4">

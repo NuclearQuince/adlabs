@@ -59,20 +59,26 @@ const scrollToId = (id: string) => {
 /* ============================================================ */
 
 const STAT_STRIP = [
-  { value: "12", label: "signals from one sensor" },
-  { value: "1 day", label: "from unboxing to live" },
+  { value: "2", label: "paths: Edge or Cloud" },
+  { value: "1 day", label: "from connect to live" },
   { value: "0", label: "new cameras to buy" },
-  { value: "0", label: "faces ever stored" },
+  { value: "0", label: "faces stored as identity" },
 ]
+
+const DEPLOYMENT_PATHS = [
+  { id: "edge", label: "Edge AI", hint: "On-prem inference. Video stays in the store." },
+  { id: "cloud", label: "Cloud processing", hint: "Controlled cloud pipeline. Faster multi-store." },
+  { id: "unsure", label: "Not sure", hint: "We scope cameras and recommend a path." },
+] as const
 
 const DELIVERABLES = [
   {
     icon: Box,
-    kicker: "01 · THE INSTRUMENT",
-    title: "A 12W box that thinks on site",
-    body: "One Edge Observer unit plugs into the cameras you already own. Everything is processed on-device — no cloud video, no stored faces, ever.",
-    points: ["Plugs into your existing RTSP / NVR feed", "Runs offline — counts even when the internet drops", "Sleeps on a PoE cable; no new hardware, no network change"],
-    spec: "12W · PoE · on-device inference",
+    kicker: "01 · DEPLOYMENT",
+    title: "Edge AI or Cloud — you choose",
+    body: "Same cameras. Same signals. Edge keeps inference on a store box; Cloud processes under DPDP + GDPR controls.",
+    points: ["Existing RTSP / NVR feeds", "Edge stays offline-capable", "Cloud fits multi-store rollouts"],
+    spec: "Edge · Cloud · DPDP + GDPR",
     visual: "edge" as const,
   },
   {
@@ -136,10 +142,10 @@ const TIMELINE = [
 ]
 
 const GUARANTEES = [
-  { icon: Eye, title: "Zero faces stored", body: "Faces blur before anything is kept — there is no face data to leak." },
-  { icon: Lock, title: "Zero cloud video", body: "Raw footage stays in the store; only counts travel." },
-  { icon: Database, title: "On-device by design", body: "The system cannot watch — it counts. Architecture, not policy." },
-  { icon: ShieldCheck, title: "DPDP 2023 aligned", body: "Built to Indian retail and DPDP Act 2023 expectations." },
+  { icon: Eye, title: "No facial identity", body: "No recognition product. Aggregate cohorts only where models run." },
+  { icon: Lock, title: "Edge: video stays local", body: "On-prem path keeps frames in the store; counts sync as numbers." },
+  { icon: Database, title: "Cloud: controls, not identity", body: "Cloud path runs under retention and access rules in your contract." },
+  { icon: ShieldCheck, title: "DPDP + GDPR", body: "Both paths adhere to DPDP (India) and GDPR." },
 ]
 
 /* ============================================================ */
@@ -282,6 +288,7 @@ export type DiscoveryAnswers = {
   format: string | null
   footfall: number | null
   success: string | null
+  deployment: "edge" | "cloud" | "unsure" | null
 }
 
 const EMPTY_ANSWERS: DiscoveryAnswers = {
@@ -293,6 +300,7 @@ const EMPTY_ANSWERS: DiscoveryAnswers = {
   format: null,
   footfall: null,
   success: null,
+  deployment: null,
 }
 
 type Setter = <K extends keyof DiscoveryAnswers>(key: K, value: DiscoveryAnswers[K]) => void
@@ -425,14 +433,13 @@ export function DiscoveryPage() {
                 </p>
 
                 <h1 className="mt-5 max-w-3xl font-serif cosmic-text-4xl sm:cosmic-text-5xl font-semibold leading-[1.08] tracking-[-0.02em] cosmic-text">
-                  Your website has analytics.{" "}
-                  Your storefront is <em className="em-accent">flying blind.</em>
+                  Scope a pilot.{" "}
+                  Pick <em className="em-accent">Edge or Cloud.</em>
                 </h1>
 
                 <p className="mt-5 max-w-xl cosmic-text-lg leading-relaxed" style={{ color: "var(--cosmic-text-dim)" }}>
-                  Google Analytics tells you who visited and who bought on your site. Nothing tells you that for the
-                  street in front of your store — who passed, who paused at the glass, who stepped in. AD Labs reads
-                  your pavement from the cameras you already own and hands you a Monday verdict. No faces. No cloud video.
+                  Measure who passed, who paused at the glass, who entered. Deploy on Edge AI or Cloud.
+                  Both paths adhere to DPDP and GDPR. Existing cameras. Monday verdict.
                 </p>
 
                 <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -996,6 +1003,36 @@ export function DiscoveryPage() {
                 </p>
 
                 <div className="mt-5">
+                  <p className="mb-2 cosmic-text-sm font-medium text-[#f5f5f7]">Preferred path</p>
+                  <div className="flex flex-wrap gap-2">
+                    {DEPLOYMENT_PATHS.map((d) => {
+                      const selected = answers.deployment === d.id
+                      return (
+                        <button
+                          key={d.id}
+                          type="button"
+                          aria-pressed={selected}
+                          onClick={() => set("deployment", d.id)}
+                          title={d.hint}
+                          className={`rounded-full border px-4 py-2 cosmic-text-xs font-medium transition-all duration-200 ${
+                            selected
+                              ? "border-[#8B7CF6] bg-[#8B7CF6] text-[#05050a]"
+                              : "border-white/12 bg-[#1a1a24] text-[#c4c4cc] hover:border-[#8B7CF6]/40 hover:text-[#f5f5f7]"
+                          }`}
+                        >
+                          {d.label}
+                        </button>
+                      )
+                    })}
+                  </div>
+                  {answers.deployment && (
+                    <p className="mt-2 cosmic-text-xs text-[#86868b]">
+                      {DEPLOYMENT_PATHS.find((d) => d.id === answers.deployment)?.hint}
+                    </p>
+                  )}
+                </div>
+
+                <div className="mt-5">
                   <p className="mb-2 cosmic-text-sm font-medium text-[#f5f5f7]">Store format</p>
                   <div className="flex flex-wrap gap-2">
                     {STORE_FORMATS.map((f) => {
@@ -1187,6 +1224,7 @@ function Seat({ answers, set: _set }: { answers: DiscoveryAnswers; set: Setter }
         { label: "Email", value: form.email },
         { label: "Role", value: form.role },
         { label: "Top problem", value: answers.pain ? PRIORITIES[answers.pain] : "" },
+        { label: "Deployment path", value: answers.deployment ? DEPLOYMENT_PATHS.find((d) => d.id === answers.deployment)?.label : "" },
         { label: "Tracks today", value: answers.tracking ? TRACKING_OPTIONS.find((t) => t.id === answers.tracking)?.label : "" },
         { label: "Camera stack", value: answers.cameras ? CAMERA_STACK.find((c) => c.id === answers.cameras)?.label : "" },
         { label: "Must-haves", value: `${mustCount} capabilities` },
@@ -1226,6 +1264,12 @@ function Seat({ answers, set: _set }: { answers: DiscoveryAnswers; set: Setter }
                     <dt className="cosmic-text-xs text-[#a1a1aa]">Top problem</dt>
                     <dd className="max-w-[60%] text-right cosmic-text-xs font-medium text-[#f5f5f7]">
                       {answers.pain ? PRIORITIES[answers.pain] : "—"}
+                    </dd>
+                  </div>
+                  <div className="flex items-start justify-between gap-3">
+                    <dt className="cosmic-text-xs text-[#a1a1aa]">Path</dt>
+                    <dd className="max-w-[60%] text-right cosmic-text-xs font-medium text-[#f5f5f7]">
+                      {answers.deployment ? DEPLOYMENT_PATHS.find((d) => d.id === answers.deployment)?.label : "—"}
                     </dd>
                   </div>
                   <div className="flex items-start justify-between gap-3">

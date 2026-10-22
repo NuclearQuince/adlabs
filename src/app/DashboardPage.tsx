@@ -34,8 +34,8 @@ type Screen = "overview" | "storefront" | "stores" | "store" | "campaigns" | "zo
 type Role = "Brand" | "Store"
 type Theme = "light" | "dark"
 
-const OWNER_NAME = "Alexa"
-const OWNER_ROLE = "Brand owner · Maison Étoile"
+const OWNER_NAME = "Priya"
+const OWNER_ROLE = "Brand owner · Organic Clothing Co."
 
 function greeting() {
   const h = new Date().getHours()
@@ -48,69 +48,69 @@ type NavItem = { id: Screen; label: string; icon: typeof LayoutDashboard; badge?
 
 const NAV_SECTIONS_BRAND: { label: string; items: NavItem[] }[] = [
   {
-    label: "Run",
+    label: "Today",
     items: [
-      { id: "overview", label: "Overview", icon: LayoutDashboard, color: "#8B7CF6" },
-      { id: "storefront", label: "Storefront", icon: Eye, color: "#3ECF8E" },
-      { id: "stores", label: "Stores", icon: Store, color: "#5ac8fa" },
-      { id: "zones", label: "Zones", icon: Map, color: "#FF9500" },
-      { id: "brief", label: "Brief", icon: FileText, badge: 3, color: "#FF3B30" },
+      { id: "overview", label: "Today", icon: LayoutDashboard, color: "#8B7CF6" },
+      { id: "storefront", label: "Entrance & window", icon: Eye, color: "#3ECF8E" },
+      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
+      { id: "zones", label: "Floor zones", icon: Map, color: "#FF9500" },
+      { id: "brief", label: "Monday brief", icon: FileText, badge: 3, color: "#FF3B30" },
     ],
   },
   {
     label: "Prove",
     items: [
-      { id: "campaigns", label: "Campaigns", icon: Megaphone, color: "#AF52DE" },
-      { id: "ads", label: "Ads", icon: ChartPie, color: "#FF2D55" },
-      { id: "compare", label: "Compare", icon: BarChart3, color: "#5856D6" },
+      { id: "campaigns", label: "Window A/B", icon: Megaphone, color: "#AF52DE" },
+      { id: "ads", label: "Out-of-home", icon: ChartPie, color: "#FF2D55" },
+      { id: "compare", label: "Compare stores", icon: BarChart3, color: "#5856D6" },
       { id: "history", label: "History", icon: HistoryIcon, color: "#007AFF" },
     ],
   },
   {
-    label: "Understand",
+    label: "People",
     items: [
-      { id: "demographics", label: "People", icon: Users, color: "#FF9500" },
-      { id: "product", label: "Product", icon: Package, color: "#34C759" },
+      { id: "demographics", label: "Age & groups", icon: Users, color: "#FF9500" },
+      { id: "product", label: "Display interest", icon: Package, color: "#34C759" },
       { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: 4, color: "#FF3B30" },
-      { id: "tour", label: "Tour", icon: Sparkles, color: "#8B7CF6" },
+      { id: "tour", label: "How to read this", icon: Sparkles, color: "#8B7CF6" },
     ],
   },
 ]
 
 const NAV_SECTIONS_STORE: { label: string; items: NavItem[] }[] = [
   {
-    label: "Store",
+    label: "Floor",
     items: [
-      { id: "manager", label: "Today", icon: ClipboardList, color: "#3ECF8E" },
-      { id: "stores", label: "Stores", icon: Store, color: "#5ac8fa" },
+      { id: "manager", label: "Manager today", icon: ClipboardList, color: "#3ECF8E" },
+      { id: "stores", label: "All stores", icon: Store, color: "#5ac8fa" },
       { id: "alerts", label: "Alerts", icon: ShieldCheck, badge: 4, color: "#FF3B30" },
     ],
   },
   {
     label: "Reference",
     items: [
-      { id: "zones", label: "Zones", icon: Map, color: "#FF9500" },
-      { id: "tour", label: "Tour", icon: Sparkles, color: "#8B7CF6" },
+      { id: "zones", label: "Floor zones", icon: Map, color: "#FF9500" },
+      { id: "tour", label: "How to read this", icon: Sparkles, color: "#8B7CF6" },
     ],
   },
 ]
 
 const PAGE_TITLES: Record<Screen, string> = {
-  overview: "Overview",
-  storefront: "Storefront",
-  stores: "Stores",
+  overview: "Today",
+  storefront: "Entrance & window",
+  stores: "All stores",
   store: "Store detail",
-  campaigns: "Campaigns",
-  zones: "Zones",
-  brief: "Weekly Brief",
-  manager: "Today",
-  compare: "Compare",
+  campaigns: "Window A/B",
+  zones: "Floor zones",
+  brief: "Monday brief",
+  manager: "Manager today",
+  compare: "Compare stores",
   history: "History",
-  demographics: "People",
-  product: "Product",
+  demographics: "Age & groups",
+  product: "Display interest",
   alerts: "Alerts",
-  tour: "How you'll see it",
-  ads: "Ads",
+  tour: "How to read this",
+  ads: "Out-of-home",
 }
 
 export function DashboardPage() {
